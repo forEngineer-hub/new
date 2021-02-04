@@ -16,7 +16,14 @@
                     <div class="subitem">
                         <th:block th:each="secondLevelCategory : ${category.secondLevelCategoryVOS}">
                         <dl class="fore1">
-                            <dt><a href="#"><th:block th:text="${secondLevelCategory.categoryName}"></th:block></a></dt>
+                            <dt>
+<!--                                <em><a href="#" th:href="@{'/search?goodsCategoryId='+${thirdLevelCategory.categoryId}}" >-->
+<!--                                <th:block th:text="${secondLevelCategory.categoryName}"></th:block></a>-->
+<!--                                </em>-->
+                                    <a href="#" th:href="@{'/search?goodsCategoryId='+${secondLevelCategory.categoryName}}">
+                                    <th:block th:text="${secondLevelCategory.categoryName}"></th:block></a>
+
+                            </dt>
                             <dd>
                                 <th:block th:each="thirdLevelCategory : ${secondLevelCategory.thirdLevelCategoryVOS}">
                                 <em><a href="#"th:href="@{'/search?goodsCategoryId='+${thirdLevelCategory.categoryId}}">

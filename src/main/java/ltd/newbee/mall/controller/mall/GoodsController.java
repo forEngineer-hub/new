@@ -51,6 +51,7 @@ public class GoodsController {
                 request.setAttribute("searchPageCategoryVO", searchPageCategoryVO);
             }
         }
+
         //封装参数供前端回显
         if (params.containsKey("orderBy") && !StringUtils.isEmpty(params.get("orderBy") + "")) {
             request.setAttribute("orderBy", params.get("orderBy") + "");
