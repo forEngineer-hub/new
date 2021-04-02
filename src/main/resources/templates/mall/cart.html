@@ -100,6 +100,18 @@
 <script th:src="@{/admin/plugins/jquery/jquery.min.js}"></script>
 <script th:src="@{/admin/plugins/sweetalert/sweetalert.min.js}"></script>
 <script type="text/javascript">
+    //added by ka 2021/02/19
+    //add sort function
+    $(function() {
+        debugger;
+        $(".content2 ").sort(sort_content).appendTo('.list');
+        function sort_content(a, b) {
+            var bPrice = parseInt($(b).find( ".sub_content:eq(3)").text().replace("元",""));
+            var aPrice = parseInt($(a).find( ".sub_content:eq(3)").text().replace("元",""));
+                        return bPrice < aPrice ? 1 : -1;
+            //$(b).find( "sub_content:eq(3)").text()
+        }
+    });
 
     /**
      * 购物车中数量为0时提示

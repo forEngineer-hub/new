@@ -121,6 +121,36 @@
         </if>
     </select>
 
+    <select id="searchGoodsBySecCategoryId" parameterType="Map" resultMap="BaseResultMap">
+        select
+        ca.category_id,
+        go.goods_id,
+        go.goods_name,
+        go.goods_intro,
+        go.goods_category_id,
+        go.goods_cover_img,
+        go.goods_carousel,
+        go.original_price,
+        go.selling_price,
+        go.stock_num,
+        go.tag,
+        go.goods_sell_status,
+        go.create_user,
+        go.create_time,
+        go.update_user,
+        go.update_time
+        from tb_newbee_mall_goods_category as ca
+        join tb_newbee_mall_goods_info as go
+        on ca.category_id = go.goods_category_id
+
+        <where>
+            <if test="goodsCategoryId!=null and goodsCategoryId!=''">
+                and ca.parent_id = #{goodsCategoryId}
+            </if>
+        </where>
+        order by ca.category_id
+    </select>
+
     <select id="getTotalNewBeeMallGoodsBySearch" parameterType="Map" resultType="int">
         select count(*) from tb_newbee_mall_goods_info
         <where>

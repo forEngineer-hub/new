@@ -173,6 +173,25 @@ function deleteConfig () {
     ;
 }
 
+function testConfig () {
+    let ids = []
+    debugger;
+    // $('input:checkbox:checked').parent().next().next().next().next().next().map( el => {
+    //     debugger;
+    //     console.log(el);
+    //     return ids.push(el.innerText)
+    //
+    // })
+
+    $('input:checkbox:checked').parent().next().next().next().next().next().map( function() {
+        debugger;
+        ids.push($( this ).text())
+        return ids;
+    })
+
+    console.log(ids);
+}
+
 
 function reset() {
     $("#configName").val('');

@@ -22,7 +22,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 @Controller
 public class IndexController {
@@ -37,7 +42,7 @@ public class IndexController {
     private NewBeeMallCategoryService newBeeMallCategoryService;
 
     @GetMapping({"/index", "/", "/index.html"})
-    public String indexPage(HttpServletRequest request) {
+    public String indexPage(HttpServletRequest request) throws ParseException {
         List<NewBeeMallIndexCategoryVO> categories = newBeeMallCategoryService.getCategoriesForIndex();
         if (CollectionUtils.isEmpty(categories)) {
             return "error/error_5xx";
@@ -51,6 +56,17 @@ public class IndexController {
         request.setAttribute("hotGoodses", hotGoodses);//热销商品
         request.setAttribute("newGoodses", newGoodses);//新品
         request.setAttribute("recommendGoodses", recommendGoodses);//推荐商品
+
+        String dateStr = "Tue Oct 13 11:41:59 JST 2020";
+
+        DateFormat formatter = new SimpleDateFormat("E MMM dd hh:mm:ss 'JST' yyyy", Locale.ENGLISH);
+        Date date = formatter.parse(dateStr);
+
+//        String dateStr = "Tue Oct 13 11:41:59 2020";
+//
+//        DateFormat formatter = new SimpleDateFormat("E MMM dd hh:mm:ss yyyy", Locale.ENGLISH);
+//        Date date = formatter.parse(dateStr);
+
         return "mall/index";
     }
 }

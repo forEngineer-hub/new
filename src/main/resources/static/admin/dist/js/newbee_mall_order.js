@@ -116,9 +116,11 @@ function openOrderItems(orderId) {
     $('.modal-title').html('订单详情');
     $.ajax({
         type: 'GET',//方法类型
-        url: '/admin/order-items/' + orderId,
+        //url: '/admin/order-items/' + orderId,
+        url: 'xxx/orderBy=' + orderId + '&upOrDown=up',
         contentType: 'application/json',
         success: function (result) {
+            debugger;
             if (result.resultCode == 200) {
                 $('#orderItemModal').modal('show');
                 var itemString = '';
@@ -191,6 +193,7 @@ $('#saveButton').click(function () {
         contentType: 'application/json',
         data: JSON.stringify(data),
         success: function (result) {
+            debugger;
             if (result.resultCode == 200) {
                 $('#orderInfoModal').modal('hide');
                 swal("保存成功", {

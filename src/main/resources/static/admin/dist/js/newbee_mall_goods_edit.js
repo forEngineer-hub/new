@@ -48,7 +48,7 @@ $(function () {
 
     //图片上传插件初始化 用于商品预览图上传
     new AjaxUpload('#uploadGoodsCoverImg', {
-        action: '/admin/upload/file',
+        action: '/admin/upload/file?goodsId=' + 1,
         name: 'file',
         autoSubmit: true,
         responseType: "json",

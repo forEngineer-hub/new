@@ -46,4 +46,6 @@ public interface NewBeeMallGoodsMapper {
 
     int batchUpdateSellStatus(@Param("orderIds")Long[] orderIds,@Param("sellStatus") int sellStatus);
 
+    // added by ka 2021/02/07 add second category id search.
+    List<NewBeeMallGoods> searchGoodsBySecCategoryId(PageQueryUtil pageUtil);
 }
