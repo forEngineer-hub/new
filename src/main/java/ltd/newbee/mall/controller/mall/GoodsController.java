@@ -71,20 +71,6 @@ public class GoodsController {
         return "mall/search";
     }
 
-    @GetMapping({"/searchSecondLevelCategory", "/search.html"})
-    public String searchPageSecondLevelCategory(@RequestParam Map<String, Object> params, HttpServletRequest request) {
-        if (StringUtils.isEmpty(params.get("page"))) {
-            params.put("page", 1);
-        }
-        params.put("limit", Constants.GOODS_SEARCH_PAGE_LIMIT);
-
-        PageQueryUtil pageUtil = new PageQueryUtil(params);
-
-        request.setAttribute("pageResult", newBeeMallGoodsService.searchBySecCategoryId(pageUtil));
-
-        return "mall/search";
-    }
-
     @GetMapping("/goods/detail/{goodsId}")
     public String detailPage(@PathVariable("goodsId") Long goodsId, HttpServletRequest request) {
         if (goodsId < 1) {

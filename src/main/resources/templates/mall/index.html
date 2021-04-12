@@ -17,9 +17,9 @@
                         <th:block th:each="secondLevelCategory : ${category.secondLevelCategoryVOS}">
                         <dl class="fore1">
                             <dt>
-                                <a href="#" th:href="@{'/searchSecondLevelCategory?goodsCategoryId='+${secondLevelCategory.categoryId}}">
+                                <!-- <a href="#" th:href="@{'/searchSecondLevelCategory?goodsCategoryId='+${secondLevelCategory.categoryId}}"> -->
                                     <th:block th:text="${secondLevelCategory.categoryName}"></th:block>
-                                </a>
+                                <!-- </a> -->
                             </dt>
                             <dd>
                                 <th:block th:each="thirdLevelCategory : ${secondLevelCategory.thirdLevelCategoryVOS}">

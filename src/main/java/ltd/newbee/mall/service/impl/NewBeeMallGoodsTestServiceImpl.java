@@ -12,7 +12,7 @@ import ltd.newbee.mall.common.ServiceResultEnum;
 import ltd.newbee.mall.controller.vo.NewBeeMallSearchGoodsVO;
 import ltd.newbee.mall.dao.NewBeeMallGoodsMapper;
 import ltd.newbee.mall.entity.NewBeeMallGoods;
-import ltd.newbee.mall.service.NewBeeMallGoodsService;
+import ltd.newbee.mall.service.NewBeeMallGoodsTestService;
 import ltd.newbee.mall.util.BeanUtil;
 import ltd.newbee.mall.util.PageQueryUtil;
 import ltd.newbee.mall.util.PageResult;
@@ -25,11 +25,16 @@ import java.util.Date;
 import java.util.List;
 
 @Service
-public class NewBeeMallGoodsServiceImpl implements NewBeeMallGoodsService {
+public class NewBeeMallGoodsTestServiceImpl implements NewBeeMallGoodsTestService {
 
     @Autowired
     private NewBeeMallGoodsMapper goodsMapper;
-
+    
+    @Override
+    public String getTestResult() {
+    	return "test";
+    }
+    
     @Override
     public PageResult getNewBeeMallGoodsPage(PageQueryUtil pageUtil) {
         List<NewBeeMallGoods> goodsList = goodsMapper.findNewBeeMallGoodsList(pageUtil);
@@ -100,4 +105,36 @@ public class NewBeeMallGoodsServiceImpl implements NewBeeMallGoodsService {
         PageResult pageResult = new PageResult(newBeeMallSearchGoodsVOS, total, pageUtil.getLimit(), pageUtil.getPage());
         return pageResult;
     }
+
+    // added by ka . 2021/02/07 add service implementation of search by second level category id
+    @Override
+    public PageResult searchBySecCategoryId(PageQueryUtil pageUtil) {
+        List<NewBeeMallGoods> goodsList = goodsMapper.searchGoodsBySecCategoryId(pageUtil);
+        int total = 0;
+        List<NewBeeMallSearchGoodsVO> newBeeMallSearchGoodsVOS = new ArrayList<>();
+        if (!CollectionUtils.isEmpty(goodsList)) {
+            // gooodslist size
+            total= goodsList.size();
+
+            // List<NewBeeMallGoods> => List<NewBeeMallSearchGoodsVO>
+            newBeeMallSearchGoodsVOS = BeanUtil.copyList(goodsList, NewBeeMallSearchGoodsVO.class);
+
+            for (NewBeeMallSearchGoodsVO newBeeMallSearchGoodsVO : newBeeMallSearchGoodsVOS) {
+                String goodsName = newBeeMallSearchGoodsVO.getGoodsName();
+                String goodsIntro = newBeeMallSearchGoodsVO.getGoodsIntro();
+                // 字符串过长导致文字超出的问题
+                if (goodsName.length() > 28) {
+                    goodsName = goodsName.substring(0, 28) + "...";
+                    newBeeMallSearchGoodsVO.setGoodsName(goodsName);
+                }
+                if (goodsIntro.length() > 30) {
+                    goodsIntro = goodsIntro.substring(0, 30) + "...";
+                    newBeeMallSearchGoodsVO.setGoodsIntro(goodsIntro);
+                }
+            }
+        }
+        PageResult pageResult = new PageResult(newBeeMallSearchGoodsVOS, total, pageUtil.getLimit(), pageUtil.getPage());
+        return pageResult;
+    }
+
 }
