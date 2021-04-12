@@ -70,12 +70,4 @@ public interface NewBeeMallGoodsService {
      * @return
      */
     PageResult searchNewBeeMallGoods(PageQueryUtil pageUtil);
-
-    /**
-     * 商品搜索（second level)
-     *
-     * @param pageUtil
-     * @return
-     */
-    PageResult searchBySecCategoryId(PageQueryUtil pageUtil);
 }
