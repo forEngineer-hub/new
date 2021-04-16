@@ -8,11 +8,13 @@
  */
 package ltd.newbee.mall.service;
 
+import java.util.List;
+
+import ltd.newbee.mall.entity.GoodsImage;
 import ltd.newbee.mall.entity.NewBeeMallGoods;
+import ltd.newbee.mall.entity.Review;
 import ltd.newbee.mall.util.PageQueryUtil;
 import ltd.newbee.mall.util.PageResult;
-
-import java.util.List;
 
 public interface NewBeeMallGoodsService {
     /**
@@ -70,4 +72,16 @@ public interface NewBeeMallGoodsService {
      * @return
      */
     PageResult searchNewBeeMallGoods(PageQueryUtil pageUtil);
+    
+    /**
+     * 商品画像リスト
+     * 2021/04/16
+     * @param goodsId
+     * @return List<GoodsImage>
+     * @author foren
+     */
+    List<GoodsImage> getImageList(Integer goodsId);
+    
+    // added by ka 2021/04/16　レビューリストを取得
+    List<Review> getReviewList(String goodsId);
 }

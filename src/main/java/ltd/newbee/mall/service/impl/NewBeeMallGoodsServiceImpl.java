@@ -8,21 +8,24 @@
  */
 package ltd.newbee.mall.service.impl;
 
-import ltd.newbee.mall.common.ServiceResultEnum;
-import ltd.newbee.mall.controller.vo.NewBeeMallSearchGoodsVO;
-import ltd.newbee.mall.dao.NewBeeMallGoodsMapper;
-import ltd.newbee.mall.entity.NewBeeMallGoods;
-import ltd.newbee.mall.service.NewBeeMallGoodsService;
-import ltd.newbee.mall.util.BeanUtil;
-import ltd.newbee.mall.util.PageQueryUtil;
-import ltd.newbee.mall.util.PageResult;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import ltd.newbee.mall.common.ServiceResultEnum;
+import ltd.newbee.mall.controller.vo.NewBeeMallSearchGoodsVO;
+import ltd.newbee.mall.dao.NewBeeMallGoodsMapper;
+import ltd.newbee.mall.entity.GoodsImage;
+import ltd.newbee.mall.entity.NewBeeMallGoods;
+import ltd.newbee.mall.entity.Review;
+import ltd.newbee.mall.service.NewBeeMallGoodsService;
+import ltd.newbee.mall.util.BeanUtil;
+import ltd.newbee.mall.util.PageQueryUtil;
+import ltd.newbee.mall.util.PageResult;
 
 @Service
 public class NewBeeMallGoodsServiceImpl implements NewBeeMallGoodsService {
@@ -100,4 +103,16 @@ public class NewBeeMallGoodsServiceImpl implements NewBeeMallGoodsService {
         PageResult pageResult = new PageResult(newBeeMallSearchGoodsVOS, total, pageUtil.getLimit(), pageUtil.getPage());
         return pageResult;
     }
+
+	@Override
+	public List<GoodsImage> getImageList(Integer goodsId) {
+		List<GoodsImage> imgList = goodsMapper.getImageList(goodsId);
+		 return imgList; 
+	}
+	
+	@Override
+	public List<Review> getReviewList(String goodsId){
+		List<Review> reviewList = goodsMapper.getReviewList(goodsId);
+		return reviewList;
+	}
 }

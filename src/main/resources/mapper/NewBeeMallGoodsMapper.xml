@@ -404,4 +404,18 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where goods_id = #{goodsId,jdbcType=BIGINT}
   </update>
+  
+  <!-- added by foren　2021/04/16 画像取得 -->
+  <select id="getImageList" parameterType="java.lang.Integer" resultType="ltd.newbee.mall.entity.GoodsImage">
+        select id, path 
+        from goods_image
+        where id = #{goodsId,jdbcType=INTEGER}
+   </select>
+   
+     <!-- added by foren　2021/04/16 画像取得 -->
+  <select id="getReviewList" parameterType="java.lang.String" resultType="ltd.newbee.mall.entity.Review">
+        SELECT comment_date, content, customer_id, goods_id, id, picture, star, title 
+        FROM review
+        where goods_id = #{goodsId}
+   </select>
 </mapper>

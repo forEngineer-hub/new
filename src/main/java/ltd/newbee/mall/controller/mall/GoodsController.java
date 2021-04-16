@@ -87,6 +87,8 @@ public class GoodsController {
         BeanUtil.copyProperties(goods, goodsDetailVO);
         goodsDetailVO.setGoodsCarouselList(goods.getGoodsCarousel().split(","));
         request.setAttribute("goodsDetail", goodsDetailVO);
+        //added by foren 2021/04/15 詳細画面追加対応
+        //newBeeMallGoodsService.getImageList("1");
         return "mall/detail";
     }
 

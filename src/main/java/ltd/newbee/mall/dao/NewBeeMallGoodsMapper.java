@@ -8,12 +8,17 @@
  */
 package ltd.newbee.mall.dao;
 
-import ltd.newbee.mall.entity.NewBeeMallGoods;
-import ltd.newbee.mall.entity.StockNumDTO;
-import ltd.newbee.mall.util.PageQueryUtil;
-import org.apache.ibatis.annotations.Param;
+
 
 import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
+import ltd.newbee.mall.entity.GoodsImage;
+import ltd.newbee.mall.entity.NewBeeMallGoods;
+import ltd.newbee.mall.entity.Review;
+import ltd.newbee.mall.entity.StockNumDTO;
+import ltd.newbee.mall.util.PageQueryUtil;
 
 public interface NewBeeMallGoodsMapper {
     int deleteByPrimaryKey(Long goodsId);
@@ -48,4 +53,8 @@ public interface NewBeeMallGoodsMapper {
 
     // added by ka 2021/02/07 add second category id search.
     List<NewBeeMallGoods> searchGoodsBySecCategoryId(PageQueryUtil pageUtil);
+    // added by ka 2021/04/16 イメージリストを取得
+    List<GoodsImage> getImageList(Integer goodsId);
+    // added by ka 2021/04/16　レビューリストを取得
+    List<Review> getReviewList(String goodsId);
 }
