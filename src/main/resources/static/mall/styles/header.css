@@ -344,3 +344,179 @@
 .footer-info .info-text .nav-bottom a { padding: 0 8px; color: #9b9ea0;}
 .footer-info .info-text .copyright { padding-top: 5px;}
 .footer-info .info-text em { padding: 0 8px;}
+/* added by ka 2021/04/15 詳細画面、追加画像のスタイル */
+.slgcolumn {
+    float: left;
+    width: 29%;
+    margin-left: 5px;
+    margin-top: 5px;
+}
+.slgrow {
+    margin-left: 20px;
+    height: 150px;
+    padding: 5px 5px 5px 5px;
+    border: solid;
+    width: 450px;
+}
+a.slgprev {
+    float: left;
+    margin-top: 50px;
+}
+a.slgnext{
+    float: left;
+    margin-top: 50px;
+}
+.imgContainer{
+    margin: 20px auto;
+    width:1226px;
+}
+.g-table-a, .g-lg-table-a {
+    width: 100%;
+    border-spacing: 0;
+    border-top: 1px solid #dbdbdb;
+}
+.g-table-a th, .g-lg-table-a th {
+    font-weight: normal;
+    text-align: left;
+    white-space: nowrap;
+    background-color: #f7f7f7;
+}
+.g-table-a th, .g-table-a td, .g-lg-table-a th, .g-lg-table-a td {
+    padding: 12px 15px;
+    vertical-align: top;
+    border-bottom: 1px solid #dbdbdb;
+}
+/* section#js-product-spec {
+    margin: 10px auto;
+    width: 1229px;
+} */
+div#p-specMore {
+    width: 500px;
+    /* margin: auto; */
+}
+
+.p-hd {
+    font-size: 2rem;
+}
+.p-hd {
+    font-size: 1.8rem;
+    margin-bottom: 13px;
+}
+.g-h-i, .g-lg-h-i {
+    display: flex;
+    align-items: center;
+}
+#ZVCQA {
+    font-size: 14px;
+    margin-bottom: 30px;
+    color: #333;
+    padding: 0;
+}
+#ZVCQA div.zv-cqa-step {
+    box-shadow: 0 1px 0 0 #dbdbdb;
+}
+#ZVCQA .zv-cqa-step-link {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 20px;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+#ZVCQA .zv-select-wrap {
+    overflow: hidden;
+    position: relative;
+    border: 1px solid #bdc3c7;
+    border-radius: 3px;
+    background: #ffffff;
+    width: auto;
+    display: inline-block;
+    -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.2);
+    -webkit-box-shadow: inset 0 1px 2px rgb(0 0 0 / 20%);
+    box-shadow: inner 0 1px 2px rgba(0, 0, 0, 0.2);
+    vertical-align: middle;
+}
+#ZVCQA .zv-select {
+    padding-right: 1em;
+    cursor: pointer;
+    text-indent: 0.01px;
+    text-overflow: ellipsis;
+    border: none;
+    outline: none;
+    background: transparent;
+    background-image: none;
+    box-shadow: none;
+    -webkit-appearance: none;
+    appearance: none;
+    padding: 4px 38px 4px 8px;
+    font-size: 13px;
+}
+.zv-cqa {
+    margin: 0 0 15px;
+    border-bottom: 1px dashed #dbdbdb;
+    padding-bottom: 15px;
+}
+.zv-cqa-question {
+    padding: 15px 0 0;
+}
+.zv-space {
+    width: 20px;
+    display: block;
+    float: left;
+    font-weight: bold;
+}
+.zv-cqa-q-text {
+    font-weight: bold;
+    margin: 10px 0;
+    line-height: 1.5;
+}
+.zv-cqa-answer {
+    display: hidden;
+    margin: 10px 0 0 10px;
+}
+.zv-space {
+    width: 20px;
+    display: block;
+    float: left;
+    font-weight: bold;
+}
+.zv-cqa-a-content {
+    display: block;
+    width: calc(100% - 20px);
+    float: none;
+}
+.zv-p {
+    margin: 0;
+    overflow-wrap: break-word;
+}
+.zv-space {
+    width: 20px;
+    display: block;
+    float: left;
+    font-weight: bold;
+}
+#ZVCQA div.zv-helpful-form {
+    line-height: 1;
+    margin-top: 15px;
+}
+#ZVCQA .zv-helpful-form {
+    display: inline-block;
+    color: #555;
+}
+div#sizeQAContainer {
+    width: 1229px;
+    margin: 0 auto;
+}
+section#js-product-spec {
+    /* margin: 10px auto; */
+    /* width: 1229px; */
+    float: left;
+    width: 500px;
+}
+section.g-grid_item.g-sm-block-sm {
+    float: left;
+    width: 710px;
+    padding: 0px 0px 10px 10px;
+    margin-right: 0px;
+    height: 1500px;
+    overflow: scroll;
+}

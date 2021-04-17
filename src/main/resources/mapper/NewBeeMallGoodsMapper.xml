@@ -416,6 +416,20 @@
   <select id="getReviewList" parameterType="java.lang.String" resultType="ltd.newbee.mall.entity.Review">
         SELECT comment_date, content, customer_id, goods_id, id, picture, star, title 
         FROM review
-        where goods_id = #{goodsId}
+        where customer_id = #{goodsId}
    </select>
+   
+   <select id="getGoodsDesc" parameterType="java.lang.Long" resultType="ltd.newbee.mall.entity.GoodsDescEntity">
+	 SELECT goods_id,
+	    color,
+	    size,
+	    material,
+	    weight,
+	    warranty_year,
+	    set_date,
+	    warp_size
+	FROM goods_desc
+		where goods_id = #{goodsId,jdbcType=BIGINT}
+   </select>
+
 </mapper>

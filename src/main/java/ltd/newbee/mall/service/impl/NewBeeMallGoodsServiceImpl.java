@@ -19,6 +19,7 @@ import org.springframework.util.CollectionUtils;
 import ltd.newbee.mall.common.ServiceResultEnum;
 import ltd.newbee.mall.controller.vo.NewBeeMallSearchGoodsVO;
 import ltd.newbee.mall.dao.NewBeeMallGoodsMapper;
+import ltd.newbee.mall.entity.GoodsDescEntity;
 import ltd.newbee.mall.entity.GoodsImage;
 import ltd.newbee.mall.entity.NewBeeMallGoods;
 import ltd.newbee.mall.entity.Review;
@@ -114,5 +115,11 @@ public class NewBeeMallGoodsServiceImpl implements NewBeeMallGoodsService {
 	public List<Review> getReviewList(String goodsId){
 		List<Review> reviewList = goodsMapper.getReviewList(goodsId);
 		return reviewList;
+	}
+
+	@Override
+	public GoodsDescEntity getGoodsDesc(Long goodsId) {
+		GoodsDescEntity goodsDesc = goodsMapper.getGoodsDesc(goodsId);
+		return goodsDesc;
 	}
 }

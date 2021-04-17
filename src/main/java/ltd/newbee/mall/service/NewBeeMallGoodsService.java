@@ -10,6 +10,7 @@ package ltd.newbee.mall.service;
 
 import java.util.List;
 
+import ltd.newbee.mall.entity.GoodsDescEntity;
 import ltd.newbee.mall.entity.GoodsImage;
 import ltd.newbee.mall.entity.NewBeeMallGoods;
 import ltd.newbee.mall.entity.Review;
@@ -84,4 +85,6 @@ public interface NewBeeMallGoodsService {
     
     // added by ka 2021/04/16　レビューリストを取得
     List<Review> getReviewList(String goodsId);
+    
+    GoodsDescEntity getGoodsDesc(Long goodsId);
 }
