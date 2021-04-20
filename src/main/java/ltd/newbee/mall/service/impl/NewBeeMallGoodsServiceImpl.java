@@ -106,7 +106,7 @@ public class NewBeeMallGoodsServiceImpl implements NewBeeMallGoodsService {
     }
 
 	@Override
-	public List<GoodsImage> getImageList(Integer goodsId) {
+	public List<GoodsImage> getImageList(Long goodsId) {
 		List<GoodsImage> imgList = goodsMapper.getImageList(goodsId);
 		 return imgList; 
 	}
@@ -122,4 +122,5 @@ public class NewBeeMallGoodsServiceImpl implements NewBeeMallGoodsService {
 		GoodsDescEntity goodsDesc = goodsMapper.getGoodsDesc(goodsId);
 		return goodsDesc;
 	}
+	
 }

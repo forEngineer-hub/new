@@ -8,25 +8,30 @@
  */
 package ltd.newbee.mall.controller.mall;
 
-import ltd.newbee.mall.common.Constants;
-import ltd.newbee.mall.common.NewBeeMallException;
-import ltd.newbee.mall.common.ServiceResultEnum;
-import ltd.newbee.mall.controller.vo.NewBeeMallGoodsDetailVO;
-import ltd.newbee.mall.controller.vo.SearchPageCategoryVO;
-import ltd.newbee.mall.entity.NewBeeMallGoods;
-import ltd.newbee.mall.service.NewBeeMallCategoryService;
-import ltd.newbee.mall.service.NewBeeMallGoodsService;
-import ltd.newbee.mall.util.BeanUtil;
-import ltd.newbee.mall.util.PageQueryUtil;
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import java.util.Map;
+import ltd.newbee.mall.common.Constants;
+import ltd.newbee.mall.common.NewBeeMallException;
+import ltd.newbee.mall.common.ServiceResultEnum;
+import ltd.newbee.mall.controller.vo.GoodsImageVO;
+import ltd.newbee.mall.controller.vo.NewBeeMallGoodsDetailVO;
+import ltd.newbee.mall.controller.vo.SearchPageCategoryVO;
+import ltd.newbee.mall.entity.GoodsImage;
+import ltd.newbee.mall.entity.NewBeeMallGoods;
+import ltd.newbee.mall.service.NewBeeMallCategoryService;
+import ltd.newbee.mall.service.NewBeeMallGoodsService;
+import ltd.newbee.mall.util.BeanUtil;
+import ltd.newbee.mall.util.PageQueryUtil;
 
 @Controller
 public class GoodsController {
@@ -83,10 +88,18 @@ public class GoodsController {
         if (Constants.SELL_STATUS_UP != goods.getGoodsSellStatus()) {
             NewBeeMallException.fail(ServiceResultEnum.GOODS_PUT_DOWN.getResult());
         }
+        //added by ka 2021/04/20 add imageList
+        List<GoodsImage> imageEntityList = newBeeMallGoodsService.getImageList(goodsId);
+        //copy list
+        List<GoodsImageVO> imageVoList = BeanUtil.copyList(imageEntityList, GoodsImageVO.class);
+        
         NewBeeMallGoodsDetailVO goodsDetailVO = new NewBeeMallGoodsDetailVO();
         BeanUtil.copyProperties(goods, goodsDetailVO);
         goodsDetailVO.setGoodsCarouselList(goods.getGoodsCarousel().split(","));
         request.setAttribute("goodsDetail", goodsDetailVO);
+        // set imageList
+        request.setAttribute("imageList", imageVoList);
+        
         //added by foren 2021/04/15 詳細画面追加対応
         //newBeeMallGoodsService.getImageList("1");
         return "mall/detail";

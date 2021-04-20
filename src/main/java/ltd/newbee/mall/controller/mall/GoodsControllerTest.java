@@ -12,7 +12,7 @@ import ltd.newbee.mall.service.impl.NewBeeMallGoodsServiceImpl;
 
 
 @SpringBootTest
-public class GoodsControllerTest extends GoodsController {
+public class GoodsControllerTest  {
 	
 	//このアノテーションでインスタンス化する
 	//注入

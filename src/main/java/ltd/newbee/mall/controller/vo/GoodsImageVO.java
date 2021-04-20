@@ -6,23 +6,25 @@
  * Copyright (c) 2019-2020 十三 all rights reserved.
  * 版权所有，侵权必究！
  */
-package ltd.newbee.mall.entity;
+package ltd.newbee.mall.controller.vo;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import java.io.Serializable;
+import java.util.List;
 
-import java.util.Date;
-
-public class GoodsImage {
-	private Long id;
+/**
+ * 商品详情页VO
+ */
+public class GoodsImageVO implements Serializable {
+	private Integer id;
 
     private String path;
     
 
-    public Long getId() {
+    public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -33,11 +35,5 @@ public class GoodsImage {
 	public void setPath(String path) {
 		this.path = path;
 	}
-
-	@Override
-	public String toString() {
-		return "GoodsImage [id=" + id + ", path=" + path + "]";
-	}
-
 
 }

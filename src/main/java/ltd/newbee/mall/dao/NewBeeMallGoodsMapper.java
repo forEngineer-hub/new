@@ -55,7 +55,7 @@ public interface NewBeeMallGoodsMapper {
     // added by ka 2021/02/07 add second category id search.
     List<NewBeeMallGoods> searchGoodsBySecCategoryId(PageQueryUtil pageUtil);
     // added by ka 2021/04/16 イメージリストを取得
-    List<GoodsImage> getImageList(Integer goodsId);
+    List<GoodsImage> getImageList(Long goodsId);
     // added by ka 2021/04/16　レビューリストを取得
     List<Review> getReviewList(String goodsId);
     

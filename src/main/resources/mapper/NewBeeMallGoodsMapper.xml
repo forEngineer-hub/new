@@ -21,11 +21,9 @@
     <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="ltd.newbee.mall.entity.NewBeeMallGoods">
         <result column="goods_detail_content" jdbcType="LONGVARCHAR" property="goodsDetailContent"/>
     </resultMap>
-    <sql id="Base_Column_List">
-    goods_id, goods_name, goods_intro,goods_category_id, goods_cover_img, goods_carousel, original_price,
+    <sql id="Base_Column_List">goods_id, goods_name, goods_intro,goods_category_id, goods_cover_img, goods_carousel, original_price,
     selling_price, stock_num, tag, goods_sell_status, create_user, create_time, update_user, 
-    update_time
-  </sql>
+    update_time</sql>
     <sql id="Blob_Column_List">
     goods_detail_content
   </sql>
@@ -404,22 +402,14 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where goods_id = #{goodsId,jdbcType=BIGINT}
   </update>
-  
-  <!-- added by foren　2021/04/16 画像取得 -->
-  <select id="getImageList" parameterType="java.lang.Integer" resultType="ltd.newbee.mall.entity.GoodsImage">
-        select id, path 
-        from goods_image
-        where id = #{goodsId,jdbcType=INTEGER}
+
+	<select id="getImageList" parameterType="java.lang.Long" resultType="ltd.newbee.mall.entity.GoodsImage">
+	 SELECT id,path
+	FROM goods_image
+		where id = #{goodsId,jdbcType=BIGINT}
    </select>
    
-     <!-- added by foren　2021/04/16 画像取得 -->
-  <select id="getReviewList" parameterType="java.lang.String" resultType="ltd.newbee.mall.entity.Review">
-        SELECT comment_date, content, customer_id, goods_id, id, picture, star, title 
-        FROM review
-        where customer_id = #{goodsId}
-   </select>
-   
-   <select id="getGoodsDesc" parameterType="java.lang.Long" resultType="ltd.newbee.mall.entity.GoodsDescEntity">
+<select id="getGoodsDesc" parameterType="java.lang.Long" resultType="ltd.newbee.mall.entity.GoodsDescEntity">
 	 SELECT goods_id,
 	    color,
 	    size,
@@ -431,5 +421,4 @@
 	FROM goods_desc
 		where goods_id = #{goodsId,jdbcType=BIGINT}
    </select>
-
 </mapper>

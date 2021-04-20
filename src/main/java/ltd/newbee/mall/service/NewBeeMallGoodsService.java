@@ -81,10 +81,11 @@ public interface NewBeeMallGoodsService {
      * @return List<GoodsImage>
      * @author foren
      */
-    List<GoodsImage> getImageList(Integer goodsId);
+    List<GoodsImage> getImageList(Long goodsId);
     
     // added by ka 2021/04/16　レビューリストを取得
     List<Review> getReviewList(String goodsId);
     
     GoodsDescEntity getGoodsDesc(Long goodsId);
+
 }
