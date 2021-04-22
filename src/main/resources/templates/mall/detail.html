@@ -62,7 +62,13 @@
     <div class="imgContainer">
         <div class="slgrow">
 	    	<a class="slgprev" onclick="plusSlides(-1)">❮</a>
-		    <div class="slgcolumn" >
+    	 <th:block th:each="image: ${imageList}">
+	      	<div class="slgcolumn">      
+	        <img class= "slgdemo" th:src ="@{${image.path}}">
+	        </div>
+        </th:block>
+        
+		    <!-- <div class="slgcolumn" >
 		      <img class="slgdemo" src="/goods-img/6a160b96-9b4a-4844-b335-feb31b1f5d8c.jpg"  onclick="currentSlide(1)" alt="The Woods">
 		    </div>
 		    <div class="slgcolumn" >
@@ -70,7 +76,7 @@
 		    </div>
 		    <div class="slgcolumn" >
 		      <img class="slgdemo" src="/goods-img/6a160b96-9b4a-4844-b335-feb31b1f5d8c.jpg"  onclick="currentSlide(3)" alt="Mountains and fjords">
-		    </div>
+		    </div> -->
 		    <a class="slgnext" onclick="plusSlides(1)">❯</a>
 	  	</div>
     </div>
@@ -85,7 +91,6 @@
     			<tbody>
     				<tr>
 						<th>商品コード</th>
-						<td>1141059</td>
 					</tr><tr>
 						<th>カラー</th>
 						<td>グリーン/ミドルブラウン</td>
@@ -212,18 +217,12 @@
           <div class="zv-cqa-comment">
             <div class="zv-cqa-comment-actions">
               <p class="zv-error-message" id="ZVLoginErrorComment-58746">コメントを記入するにはログインが必要です。</p>
-              
-              
             </div>
             <div class="zv-cqa-comment-list-body zv-hide">
-              
             </div>
           </div>
-          
         </div>
       </div>
-    
-    
     </div>
   </div>
 
@@ -422,14 +421,23 @@
 適度なフカフカさもあります。
 良い買い物出来ました。
 触り心地良いですが、飲み物などこぼしたら、シミになりそうなので、私は色も好きだけど、ソファカバーを店舗で買いました。</p>
-	 	<p class="g-reviewList_like"><a class="g-link reviewLike0" id="js-hitLike" data-count="0" data="5f157a91791f76004b000099" data-clickable=""><i class="g-s g-s-like-g" aria-hidden="true"></i><span>参考になった（125人）</span></a></p>
+	 	<p class="g-reviewList_like"><a class="g-link reviewLike0" id="js-hitLike" data-count="0" data="5f157a91791f76004b000099" data-clickable="">
+	 	<i class="g-s g-s-like-g" aria-hidden="true">
+	 		<img class="thumUpImg" src="/goods-img/thumUp.jpg" alt="Italian Trulli">
+	 	</i><span>参考になった（125人）</span></a></p>
   	</li>
   	
   	<li class="g-reviewList_item">
 	    <div class="g-lg-flow-sm">
 			<p class="g-score">
 				<span data-score="5.0">
-					<span class="g-clip">text.product.review.Rating</span>
+					<span class="g-clip">
+					<img  src="/goods-img/star.jpg">
+					<img  src="/goods-img/star.jpg">
+					<img  src="/goods-img/star.jpg">
+					<img  src="/goods-img/star.jpg">
+					<img  src="/goods-img/star.jpg">
+					</span>
 	      		</span>
 			</p>
 	      	<p class="g-reviewList_user"><b>ルル</b>さん 2021/03/09</p>

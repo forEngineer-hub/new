@@ -90,6 +90,7 @@ public class GoodsController {
         }
         //added by ka 2021/04/20 add imageList
         List<GoodsImage> imageEntityList = newBeeMallGoodsService.getImageList(goodsId);
+        
         //copy list
         List<GoodsImageVO> imageVoList = BeanUtil.copyList(imageEntityList, GoodsImageVO.class);
         
