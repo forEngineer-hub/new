@@ -16,3 +16,4 @@ var newbeeSwiper = new Swiper('.swiper-container', {
         prevEl: '.swiper-button-prev',
     }
 })
+

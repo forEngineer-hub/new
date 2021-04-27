@@ -8,6 +8,7 @@
  */
 package ltd.newbee.mall.controller.mall;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -18,7 +19,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import ltd.newbee.mall.common.Constants;
 import ltd.newbee.mall.common.NewBeeMallException;
@@ -27,11 +32,15 @@ import ltd.newbee.mall.controller.vo.GoodsImageVO;
 import ltd.newbee.mall.controller.vo.NewBeeMallGoodsDetailVO;
 import ltd.newbee.mall.controller.vo.SearchPageCategoryVO;
 import ltd.newbee.mall.entity.GoodsImage;
+import ltd.newbee.mall.entity.GoodsQa;
 import ltd.newbee.mall.entity.NewBeeMallGoods;
 import ltd.newbee.mall.service.NewBeeMallCategoryService;
 import ltd.newbee.mall.service.NewBeeMallGoodsService;
 import ltd.newbee.mall.util.BeanUtil;
 import ltd.newbee.mall.util.PageQueryUtil;
+import ltd.newbee.mall.util.PageResult;
+import ltd.newbee.mall.util.Result;
+import ltd.newbee.mall.util.ResultGenerator;
 
 @Controller
 public class GoodsController {
@@ -104,6 +113,37 @@ public class GoodsController {
         //added by foren 2021/04/15 詳細画面追加対応
         //newBeeMallGoodsService.getImageList("1");
         return "mall/detail";
+    }
+
+    /**
+     * paging
+     */
+    @RequestMapping(value = "/goods/qaSort", method = RequestMethod.POST)
+    @ResponseBody
+    public Result qaSort(@RequestBody PagingBean page) {
+    	
+    	List<GoodsQa> qaList = new ArrayList<GoodsQa>();
+    	GoodsQa q1 = new GoodsQa();
+    	GoodsQa q2 = new GoodsQa();
+    	GoodsQa q3 = new GoodsQa();
+    	q1.setId("1");
+    	q1.setAnswer("①答えです。よろしくお願いいたします。");
+    	q1.setQuestion("１回答よろしくお願いいたします。");
+    	qaList.add(q1);
+    	
+    	q2.setId("2");
+    	q2.setAnswer("②答えです。よろしくお願いいたします。");
+    	q2.setQuestion("２回答よろしくお願いいたします。");
+    	qaList.add(q2);
+    	
+    	q3.setId("3");
+    	q3.setAnswer("③答えです。よろしくお願いいたします。");
+    	q3.setQuestion("３回答よろしくお願いいたします。");
+    	qaList.add(q3);
+    	
+		 PageResult pageResult = new PageResult(qaList, 10, 3, 1);
+	     return ResultGenerator.genSuccessResult(pageResult);
+    
     }
 
 }

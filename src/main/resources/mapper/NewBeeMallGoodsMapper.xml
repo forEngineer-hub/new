@@ -421,4 +421,5 @@
 	FROM goods_desc
 		where goods_id = #{goodsId,jdbcType=BIGINT}
    </select>
+  
 </mapper>
