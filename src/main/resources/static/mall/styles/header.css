@@ -1379,3 +1379,7 @@ img {
 .hiddenQaDiv{
     display:none;
 }
+.previousPage, .nextPage{
+    cursor: pointer; 
+	color: #009e96;
+}
