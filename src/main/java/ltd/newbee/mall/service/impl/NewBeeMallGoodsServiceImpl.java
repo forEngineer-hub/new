@@ -21,6 +21,7 @@ import ltd.newbee.mall.controller.vo.NewBeeMallSearchGoodsVO;
 import ltd.newbee.mall.dao.NewBeeMallGoodsMapper;
 import ltd.newbee.mall.entity.GoodsDescEntity;
 import ltd.newbee.mall.entity.GoodsImage;
+import ltd.newbee.mall.entity.GoodsQa;
 import ltd.newbee.mall.entity.NewBeeMallGoods;
 import ltd.newbee.mall.entity.Review;
 import ltd.newbee.mall.service.NewBeeMallGoodsService;
@@ -121,6 +122,22 @@ public class NewBeeMallGoodsServiceImpl implements NewBeeMallGoodsService {
 	public GoodsDescEntity getGoodsDesc(Long goodsId) {
 		GoodsDescEntity goodsDesc = goodsMapper.getGoodsDesc(goodsId);
 		return goodsDesc;
+	}
+
+	@Override
+	public int insertQa(GoodsQa qa) {
+		int count = goodsMapper.insertQa(qa);
+		return count;
+	}
+
+	@Override
+	public Long getMaxQaId(Long goodsId) {
+		Long maxGoodsId = goodsMapper.getMaxQaId(goodsId);
+		if(maxGoodsId !=null) {
+			return maxGoodsId + 1;
+		}else {
+			return 1L;
+		}
 	}
 	
 }

@@ -16,6 +16,7 @@ import org.apache.ibatis.annotations.Param;
 
 import ltd.newbee.mall.entity.GoodsDescEntity;
 import ltd.newbee.mall.entity.GoodsImage;
+import ltd.newbee.mall.entity.GoodsQa;
 import ltd.newbee.mall.entity.NewBeeMallGoods;
 import ltd.newbee.mall.entity.Review;
 import ltd.newbee.mall.entity.StockNumDTO;
@@ -60,4 +61,8 @@ public interface NewBeeMallGoodsMapper {
     List<Review> getReviewList(String goodsId);
     
     GoodsDescEntity getGoodsDesc(Long goodsId);
+    // added by ka 2021/04/29 insert qa
+    int insertQa(GoodsQa qa);
+    // get max qa id
+    Long getMaxQaId(Long goodsId);
 }

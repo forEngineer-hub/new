@@ -421,5 +421,58 @@
 	FROM goods_desc
 		where goods_id = #{goodsId,jdbcType=BIGINT}
    </select>
-  
+  <insert id="insertQa" parameterType="ltd.newbee.mall.entity.GoodsQa">
+        insert into goods_qa
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="question != null">
+                question,
+            </if>
+            <if test="submitDate != null">
+                submit_date,
+            </if>
+            <if test="answer != null">
+                answer,
+            </if>
+            <if test="answerDate != null">
+                answer_date,
+            </if>
+            <if test="helpedNum != null">
+                helped_num,
+            </if>
+            <if test="goodsId != null">
+                goods_id,
+            </if>
+            
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="question != null">
+                #{question,jdbcType=VARCHAR},
+            </if>
+            <if test="submitDate != null">
+                #{submitDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="answer != null">
+                #{answer,jdbcType=VARCHAR},
+            </if>
+            <if test="answerDate != null">
+                #{answerDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="helpedNum != null">
+                #{helpedNum,jdbcType=VARCHAR},
+            </if>
+            <if test="goodsId != null">
+                #{goodsId,jdbcType=BIGINT},
+            </if>
+           
+        </trim>
+    </insert>
+    <select id="getMaxQaId" parameterType="java.lang.Long" resultType="java.lang.Long">
+	 SELECT max(id) FROM goods_qa where goods_id = #{goodsId,jdbcType=BIGINT}
+   </select>
 </mapper>

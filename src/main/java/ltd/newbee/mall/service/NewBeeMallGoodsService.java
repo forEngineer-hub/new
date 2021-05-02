@@ -12,6 +12,7 @@ import java.util.List;
 
 import ltd.newbee.mall.entity.GoodsDescEntity;
 import ltd.newbee.mall.entity.GoodsImage;
+import ltd.newbee.mall.entity.GoodsQa;
 import ltd.newbee.mall.entity.NewBeeMallGoods;
 import ltd.newbee.mall.entity.Review;
 import ltd.newbee.mall.util.PageQueryUtil;
@@ -87,5 +88,9 @@ public interface NewBeeMallGoodsService {
     List<Review> getReviewList(String goodsId);
     
     GoodsDescEntity getGoodsDesc(Long goodsId);
-
+    
+    //added by ka 2021/04/29 QA挿入サービス
+    int insertQa(GoodsQa qa);
+    
+    Long getMaxQaId(Long goodsId);
 }
