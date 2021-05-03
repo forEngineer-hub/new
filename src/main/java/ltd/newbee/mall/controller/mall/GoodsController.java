@@ -30,6 +30,7 @@ import ltd.newbee.mall.common.Constants;
 import ltd.newbee.mall.common.NewBeeMallException;
 import ltd.newbee.mall.common.ServiceResultEnum;
 import ltd.newbee.mall.controller.vo.GoodsImageVO;
+import ltd.newbee.mall.controller.vo.GoodsReviewVo;
 import ltd.newbee.mall.controller.vo.NewBeeMallGoodsDetailVO;
 import ltd.newbee.mall.controller.vo.SearchPageCategoryVO;
 import ltd.newbee.mall.entity.GoodsImage;
@@ -174,4 +175,13 @@ public class GoodsController {
     
     }
     
+    @RequestMapping(value = "/goods/showMoreRevies", method = RequestMethod.POST)
+    @ResponseBody
+    public Result showMoreRevies(@RequestBody Long goodsId) {
+    	
+    	List<GoodsReviewVo>	reviewList = newBeeMallGoodsService.getGoodsReviews(goodsId);
+    	
+    	return ResultGenerator.genSuccessResult(reviewList);
+	    
+    } 
 }

@@ -17,11 +17,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import ltd.newbee.mall.common.ServiceResultEnum;
+import ltd.newbee.mall.controller.vo.GoodsImageVO;
+import ltd.newbee.mall.controller.vo.GoodsReviewVo;
 import ltd.newbee.mall.controller.vo.NewBeeMallSearchGoodsVO;
 import ltd.newbee.mall.dao.NewBeeMallGoodsMapper;
 import ltd.newbee.mall.entity.GoodsDescEntity;
 import ltd.newbee.mall.entity.GoodsImage;
 import ltd.newbee.mall.entity.GoodsQa;
+import ltd.newbee.mall.entity.GoodsReview;
 import ltd.newbee.mall.entity.NewBeeMallGoods;
 import ltd.newbee.mall.entity.Review;
 import ltd.newbee.mall.service.NewBeeMallGoodsService;
@@ -138,6 +141,13 @@ public class NewBeeMallGoodsServiceImpl implements NewBeeMallGoodsService {
 		}else {
 			return 1L;
 		}
+	}
+
+	@Override
+	public List<GoodsReviewVo> getGoodsReviews(Long goodsId) {
+		List<GoodsReview> entityList = goodsMapper.getGoodsReview(goodsId);
+		List<GoodsReviewVo> reviewVoList = BeanUtil.copyList(entityList, GoodsReviewVo.class);
+		return reviewVoList;
 	}
 	
 }

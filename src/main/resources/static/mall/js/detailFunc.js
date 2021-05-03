@@ -19,17 +19,66 @@ $( ".previousPage" ).click(function() {
 	paging(1);
 });
 
+//レビューをもっと見るクリックイベント
+$( "#showMoreReviewsBtn" ).click(function() {
+	var goodsId = getGoodsId();
+	
+	$.ajax({
+            type: 'POST',//方法类型
+            url: '/goods/showMoreRevies',
+            contentType: 'application/json',
+            data: JSON.stringify(goodsId),
+            success: function (result) {
+			//サーバーが成功の場合ここ呼ばれる
+                if (result.resultCode == 200) {
+					debugger;
+					var list = result.data;
+					/*if("1" === 1){
+						//if failed ope
+						swal("string type 1 === int i", {
+                        icon: "error",
+                    	});
+					}
+					if("1" == 1){
+						//if failed ope
+						swal("string type 1 == int i", {
+                        icon: "error",
+                    	});
+					}*/
+					if(list === undefined){
+						//if failed ope
+						swal("error", {
+                        icon: "error",
+                    	});
+					}
+					if(list != undefined && list.length != 0){
+						for( i =0; i< list.length; i++){
+							var el = $(".hiddenList").clone().removeClass("hiddenList");
+							el.find(".g-clip").html(list[i].id);
+							$(".hiddenList").before(el);
+						}	
+					}
+					
+                } else {
+                    swal(result.message, {
+                        icon: "error",
+                    });
+                }
+                ;
+            },
+		//エラーの場合、以下呼ばれる
+            error: function () {
+                swal("操作失败", {
+                    icon: "error",
+                });
+            }
+        });
+});
+
 $("#ZVPostQuestionButton").click(function(){
 	var question = $("#ZVQuestionTextarea").val();
 	//get url
-	var path = window.location.pathname;
-	// split with /
-	var ar = path.split("/");
-	// get array length
-	var len = ar.length;
-	// get goodsId
-	var goodsId = ar[len-1];
-	
+	var goodsId = getGoodsId();
 	data = {
         "question": question,
 		"goodsId": goodsId
@@ -127,3 +176,15 @@ function paging(num) {
             }
         });
 	}
+
+function getGoodsId(){
+	var path = window.location.pathname;
+	// split with /
+	var ar = path.split("/");
+	// get array length
+	var len = ar.length;
+	// get goodsId
+	var goodsId = ar[len-1];
+	
+	return goodsId;
+}

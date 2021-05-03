@@ -1383,3 +1383,6 @@ img {
     cursor: pointer; 
 	color: #009e96;
 }
+.hiddenList{
+    display:none;
+}
