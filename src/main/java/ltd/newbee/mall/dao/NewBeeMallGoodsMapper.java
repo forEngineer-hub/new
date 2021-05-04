@@ -18,6 +18,7 @@ import ltd.newbee.mall.entity.GoodsDescEntity;
 import ltd.newbee.mall.entity.GoodsImage;
 import ltd.newbee.mall.entity.GoodsQa;
 import ltd.newbee.mall.entity.GoodsReview;
+import ltd.newbee.mall.entity.GoodsReviewHelpNum;
 import ltd.newbee.mall.entity.NewBeeMallGoods;
 import ltd.newbee.mall.entity.Review;
 import ltd.newbee.mall.entity.StockNumDTO;
@@ -69,4 +70,12 @@ public interface NewBeeMallGoodsMapper {
     
     //get goods review
     List<GoodsReview> getGoodsReview(Long goodsId);
+    
+    //insert HelpNum
+    boolean insertHelpNum(GoodsReviewHelpNum goodsReviewHelpNum);
+    
+    // update review help num
+    boolean updateReviewNum(GoodsReviewHelpNum goodsReviewHelpNum);
+    
+    long getGoodsReviewHelpNum(int reviewId);
 }

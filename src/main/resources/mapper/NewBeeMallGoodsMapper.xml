@@ -481,4 +481,17 @@
  		FROM review where goods_id = #{goodsId,jdbcType=BIGINT}
  		order by star DESC
    </select>
+   <insert id="insertHelpNum" parameterType="ltd.newbee.mall.entity.GoodsReviewHelpNum">
+        insert into help_num(review_id, user_id) 
+        values(#{reviewId,jdbcType=INTEGER}, #{userId,jdbcType=BIGINT})
+	</insert>
+	<update id="updateReviewNum">
+            update review set review_num = review_num + 1
+            where id = #{reviewId} 
+    </update>
+    
+    <select id="getGoodsReviewHelpNum" parameterType="int" resultType="java.lang.Long">
+	 SELECT review_num
+ 		FROM review where id = #{reviewId,jdbcType=BIGINT}
+   </select>
 </mapper>

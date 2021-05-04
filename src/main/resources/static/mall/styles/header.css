@@ -1386,3 +1386,9 @@ img {
 .hiddenList{
     display:none;
 }
+.hidSpForRevId{
+    display:none;
+}
+.helpNumSpan{
+    cursor:pointer;
+}

@@ -14,6 +14,7 @@ import ltd.newbee.mall.controller.vo.GoodsReviewVo;
 import ltd.newbee.mall.entity.GoodsDescEntity;
 import ltd.newbee.mall.entity.GoodsImage;
 import ltd.newbee.mall.entity.GoodsQa;
+import ltd.newbee.mall.entity.GoodsReviewHelpNum;
 import ltd.newbee.mall.entity.NewBeeMallGoods;
 import ltd.newbee.mall.entity.Review;
 import ltd.newbee.mall.util.PageQueryUtil;
@@ -98,4 +99,10 @@ public interface NewBeeMallGoodsService {
     //get goods review list
     
     List<GoodsReviewVo> getGoodsReviews(Long goodsId);
+
+	boolean addHelpNum(GoodsReviewHelpNum goodsReviewHelpNum);
+	
+    boolean updateReviewNum(GoodsReviewHelpNum goodsReviewHelpNum);
+    
+    long getGoodsReviewHelpNum(int reviewId);
 }
