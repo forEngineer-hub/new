@@ -231,3 +231,6 @@ function getGoodsId(){
 	return goodsId;
 }
 
+function clickImage(src){
+	$(".swiper-container").find("img").attr('src',src);
+}

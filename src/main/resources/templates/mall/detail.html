@@ -77,7 +77,7 @@
 				<a class="slgprev" onclick="plusSlides(-1)">❮</a>
 				<th:block th:each="image: ${imageList}">
 					<div class="slgcolumn">
-						<img class="slgdemo" th:src="@{${image.path}}">
+						<img class="slgdemo" th:src="@{${image.path}}" th:attr="onclick=|clickImage('${image.path}')|" >
 					</div>
 				</th:block>
 
