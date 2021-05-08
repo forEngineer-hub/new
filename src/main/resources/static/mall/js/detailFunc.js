@@ -49,6 +49,7 @@ $( "#showMoreReviewsBtn" ).click(function() {
                         icon: "error",
                     	});
 					}
+					debugger;
 					if(list != undefined && list.length != 0){
 						for( i =0; i< list.length; i++){
 							var el = $(".hiddenList").clone().removeClass("hiddenList");
@@ -56,6 +57,16 @@ $( "#showMoreReviewsBtn" ).click(function() {
 							el.find(".hidSpForRevId").html(list[i].id);
 							el.find(".helpNumSpan").on( "click", helpNumClickFunc);
 							
+							var img = "<img src='/goods-img/star.jpg'>";
+							var star = list[i].star;
+							for(var j=0; j<star; j++){
+								el.find(".g-clip").append(img)
+							}
+							//
+							//el.find(".helpNumSpan").text("参考になった（" + list[i].num +"人)" )
+							// java get 
+							// java set
+							// javascript the same method. text()=> get text("xxx")=> set
 							$(".hiddenList").before(el);
 						}	
 					}

@@ -211,5 +211,30 @@ public class GoodsController {
     		return ResultGenerator.genFailResult("挿入失敗！！");
     	}
 	    
-    } 
+    }
+    
+    @RequestMapping(value = "/searchHistory/getSearchHistory", method = RequestMethod.POST)
+    @ResponseBody
+    public Result getSearchHistory(HttpSession httpSession) {
+    	
+//    	NewBeeMallUserVO user = (NewBeeMallUserVO) httpSession.getAttribute(Constants.MALL_USER_SESSION_KEY);
+//    	if(user!=null) {
+//    		goodsReviewHelpNum.setUserId(user.getUserId());
+//    	}
+    	List<NewBeeMallGoods> list = new ArrayList<NewBeeMallGoods>();
+    	NewBeeMallGoods goods1 = new NewBeeMallGoods();
+    	NewBeeMallGoods goods2 = new NewBeeMallGoods();
+    	NewBeeMallGoods goods3 = new NewBeeMallGoods();
+    	goods1.setGoodsId(10700L);
+    	goods1.setGoodsName("iphone10");
+    	list.add(goods1);
+    	goods2.setGoodsId(10003L);
+    	goods2.setGoodsName("无印良品 MUJI 基础润肤化妆水");
+    	list.add(goods2);
+    	goods3.setGoodsId(10004L);
+    	goods3.setGoodsName("无印良品 MUJI 柔和洁面泡沫");
+    	list.add(goods3);
+    	return ResultGenerator.genSuccessResult(list);
+	    
+    }
 }

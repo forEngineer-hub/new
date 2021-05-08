@@ -23,7 +23,7 @@ public class GoodsReviewVo implements Serializable {
 	private String title;
 	private String content;
 	private String picture;
-	
+	//private long num;
 	private int id;
 	public int getId() {
 		return id;
