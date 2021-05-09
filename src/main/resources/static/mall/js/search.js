@@ -119,30 +119,22 @@ $( "#searchResultUl" ).mouseleave(function(){
 $("#keyword").keyup(function(){
 	debugger;
 	var keyword = $("#keyword").val();
-	console.log(keyword);
+	
 	$.ajax({
-            type: 'POST',//方法类型
-            url: '/goods/search',
-            contentType: 'application/json',
-            //data: JSON.stringify(keyword),
-			data: keyword,
-            success: function (result) {
-			//サーバーが成功の場合ここ呼ばれる
-                if (result.resultCode == 200) {
-					debugger;
-					console.log(result);
-					
-                } else {
-                    swal(result.message, {
-                        icon: "error",
-                    });
-                };
-            },
-			//エラーの場合、以下呼ばれる
-            error: function () {
-                swal("操作失败", {
-                    icon: "error",
-                });
-            }
-        });
+        type:"get",                // method = "POST"
+        url:"/goods/search?goodsName="+keyword,        // POST送信先のURL
+        //data: keyword,  // JSONデータ本体
+        //contentType: 'application/json', // リクエストの Content-Type
+        dataType: "json",           // レスポンスをJSONとしてパースする
+        success: function(json_data) {   // 200 OK時
+			debugger;
+           	console.log(json_data);
+           
+        },
+        error: function() {         // HTTPエラー時
+			debugger;
+            alert("Server Error. Pleasy try again later.");
+        }
+    });
+
 });

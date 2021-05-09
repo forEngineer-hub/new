@@ -240,16 +240,16 @@ public class GoodsController {
     }
     
     //get hit goods
-    @RequestMapping(value = "/goods/search", method = RequestMethod.POST)
-    @ResponseBody
-    //public Result getHitGoodsList(@RequestParam Map<String, Object> params) {
-    public Result getHitGoodsList(@RequestBody String goodsName) {
-    	Map<String, Object> params = new HashMap<String, Object>();
-    	params.put("keyword", goodsName);
-    	params.put("page", 1);
-    	params.put("limit", 9);
-        //params.put("start", 0);
-        PageQueryUtil pageUtil = new PageQueryUtil(params);
-        return ResultGenerator.genSuccessResult(newBeeMallGoodsService.searchNewBeeMallGoods(pageUtil));
-    }
+//    @RequestMapping(value = "/goods/search", method = RequestMethod.POST)
+//    @ResponseBody
+//    //public Result getHitGoodsList(@RequestParam Map<String, Object> params) {
+//    public Result getHitGoodsList(@RequestBody String goodsName) {
+//    	Map<String, Object> params = new HashMap<String, Object>();
+//    	params.put("keyword", goodsName);
+//    	params.put("page", 1);
+//    	params.put("limit", 9);
+//        //params.put("start", 0);
+//        PageQueryUtil pageUtil = new PageQueryUtil(params);
+//        return ResultGenerator.genSuccessResult(newBeeMallGoodsService.searchNewBeeMallGoods(pageUtil));
+//    }
 }
