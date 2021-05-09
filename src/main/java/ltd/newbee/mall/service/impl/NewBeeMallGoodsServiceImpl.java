@@ -167,13 +167,5 @@ public class NewBeeMallGoodsServiceImpl implements NewBeeMallGoodsService {
 		
 		return goodsMapper.getGoodsReviewHelpNum(reviewId);
 	}
-
-	@Override
-	public PageResult getHitGoodsPage(PageQueryUtil pageUtil) {
-		  List<NewBeeMallGoods> goodsList = goodsMapper.findHitGoodsList(pageUtil);
-	       // int total = goodsMapper.getTotalNewBeeMallGoods(pageUtil);
-	        PageResult pageResult = new PageResult(goodsList, 10, pageUtil.getLimit(), pageUtil.getPage());
-	        return pageResult;
-	}
 	
 }

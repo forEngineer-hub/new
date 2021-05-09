@@ -82,21 +82,6 @@
             limit #{start},#{limit}
         </if>
     </select>
-
-	<select id="findHitGoodsList" parameterType="Map" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List"/>
-        from tb_newbee_mall_goods_info
-        <where>
-            <if test="goodsName!=null and goodsName!=''">
-                and goods_name like CONCAT('%', #{goodsName} ,'%')
-            </if>
-        </where>
-        order by goods_id desc
-        <if test="start!=null and limit!=null">
-            limit #{start},#{limit}
-        </if>
-    </select>
     
     <select id="findNewBeeMallGoodsListBySearch" parameterType="Map" resultMap="BaseResultMap">
         select

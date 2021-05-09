@@ -106,6 +106,4 @@ public interface NewBeeMallGoodsService {
     boolean updateReviewNum(GoodsReviewHelpNum goodsReviewHelpNum);
     
     long getGoodsReviewHelpNum(int reviewId);
-
-	PageResult getHitGoodsPage(PageQueryUtil pageUtil);
 }

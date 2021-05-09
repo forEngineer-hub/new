@@ -124,7 +124,8 @@ $("#keyword").keyup(function(){
             type: 'POST',//方法类型
             url: '/goods/search',
             contentType: 'application/json',
-            data: JSON.stringify(keyword),
+            //data: JSON.stringify(keyword),
+			data: keyword,
             success: function (result) {
 			//サーバーが成功の場合ここ呼ばれる
                 if (result.resultCode == 200) {

@@ -40,8 +40,6 @@ public interface NewBeeMallGoodsMapper {
     int updateByPrimaryKey(NewBeeMallGoods record);
 
     List<NewBeeMallGoods> findNewBeeMallGoodsList(PageQueryUtil pageUtil);
-
-    List<NewBeeMallGoods> findHitGoodsList(PageQueryUtil pageUtil);
     
     int getTotalNewBeeMallGoods(PageQueryUtil pageUtil);
 
