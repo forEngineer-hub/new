@@ -10,6 +10,7 @@ package ltd.newbee.mall.controller.mall;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -236,5 +237,19 @@ public class GoodsController {
     	list.add(goods3);
     	return ResultGenerator.genSuccessResult(list);
 	    
+    }
+    
+    //get hit goods
+    @RequestMapping(value = "/goods/search", method = RequestMethod.POST)
+    @ResponseBody
+    //public Result getHitGoodsList(@RequestParam Map<String, Object> params) {
+    public Result getHitGoodsList(@RequestBody String goodsName) {
+    	Map<String, Object> params = new HashMap<String, Object>();
+    	params.put("page", 1);
+    	params.put("limit", 9);
+        //params.put("start", 0);
+        params.put("goodsName", "i");
+        PageQueryUtil pageUtil = new PageQueryUtil(params);
+        return ResultGenerator.genSuccessResult(newBeeMallGoodsService.getHitGoodsPage(pageUtil));
     }
 }

@@ -1,3 +1,6 @@
+//image index flag
+var currentImageIndex = 1;
+
 $(function() {
   	// disable previous page
 	$(".previousPage").css("pointer-events", "none").css("color","grey");
@@ -242,6 +245,32 @@ function getGoodsId(){
 	return goodsId;
 }
 
+// image click event
 function clickImage(src){
 	$(".swiper-container").find("img").attr('src',src);
+	
+	var length = 3;
+	for(var i =2; i<= length+1; i++){
+		var imageSrc = $( ".slgrow div:nth-child("+ i +")" ).find("img").attr('src'); 
+		if(imageSrc == src){
+			currentImageIndex = i-1;
+		}
+	}
+}
+
+// num is 1 or -1
+function plusSlides(num){
+	var nextIndex = currentImageIndex + num;
+	if(nextIndex == 0){
+		nextIndex = 3;
+	}
+	if(nextIndex == 4){
+		nextIndex = 1;
+	}
+	console.log(nextIndex);
+	var nextIndexInDiv = nextIndex + 1
+	var src = $( ".slgrow div:nth-child("+ nextIndexInDiv +")" ).find("img").attr('src'); 
+	console.log(src);
+	$(".swiper-container ").find("img").attr('src',src);
+	currentImageIndex = nextIndex;
 }

@@ -80,7 +80,8 @@ public interface NewBeeMallGoodsService {
     /**
      * 商品画像リスト
      * 2021/04/16
-     * @param goodsId
+     * @param goods@Override
+	Id
      * @return List<GoodsImage>
      * @author foren
      */
@@ -105,4 +106,6 @@ public interface NewBeeMallGoodsService {
     boolean updateReviewNum(GoodsReviewHelpNum goodsReviewHelpNum);
     
     long getGoodsReviewHelpNum(int reviewId);
+
+	PageResult getHitGoodsPage(PageQueryUtil pageUtil);
 }

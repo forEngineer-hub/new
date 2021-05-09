@@ -41,6 +41,8 @@ public interface NewBeeMallGoodsMapper {
 
     List<NewBeeMallGoods> findNewBeeMallGoodsList(PageQueryUtil pageUtil);
 
+    List<NewBeeMallGoods> findHitGoodsList(PageQueryUtil pageUtil);
+    
     int getTotalNewBeeMallGoods(PageQueryUtil pageUtil);
 
     List<NewBeeMallGoods> selectByPrimaryKeys(List<Long> goodsIds);

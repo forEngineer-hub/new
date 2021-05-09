@@ -52,7 +52,7 @@ $( "#keyword" ).focus(function() {
 });
 //delete elements when focus out
 $( "#keyword").focusout(function() {
-	debugger;
+	
 	//return means jump out of this function. end.
 	if(MouseOnSearchResultUl){
 		return;
@@ -76,13 +76,9 @@ $( "#keyword").focusout(function() {
 	
 })
 
-//ajax あいまい検索
-$( "#keyword" ).keyup(function() {
-   console.log("Handler for .keyup() called." );
-});
 
 function showResult(result){
-	debugger;
+	
 	var list = result.data;
 	//href="/goods/detail/10700"
 	var _href = "/goods/detail/";
@@ -98,7 +94,7 @@ function showResult(result){
 }
 
 function appendToSearchBar(el){
-	debugger;
+	
 	var searchBar = $("#keyword"); //jquery object
 	//var searchBar = document.getElementById("keyword");// dom
 	var rect = searchBar[0].getBoundingClientRect(); //convert jquery object to dom by searchBar[0]
@@ -112,10 +108,40 @@ function appendToSearchBar(el){
 $( "#searchResultUl" ).mousemove(function() {
 
 	MouseOnSearchResultUl = true;
-	debugger;
+	
 });
 
 $( "#searchResultUl" ).mouseleave(function(){
-	debugger;
+	
 	MouseOnSearchResultUl = false;
+});
+
+$("#keyword").keyup(function(){
+	debugger;
+	var keyword = $("#keyword").val();
+	console.log(keyword);
+	$.ajax({
+            type: 'POST',//方法类型
+            url: '/goods/search',
+            contentType: 'application/json',
+            data: JSON.stringify(keyword),
+            success: function (result) {
+			//サーバーが成功の場合ここ呼ばれる
+                if (result.resultCode == 200) {
+					debugger;
+					console.log(result);
+					
+                } else {
+                    swal(result.message, {
+                        icon: "error",
+                    });
+                };
+            },
+			//エラーの場合、以下呼ばれる
+            error: function () {
+                swal("操作失败", {
+                    icon: "error",
+                });
+            }
+        });
 });
