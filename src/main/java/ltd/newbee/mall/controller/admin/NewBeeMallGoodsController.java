@@ -51,27 +51,32 @@ public class NewBeeMallGoodsController {
         return "admin/newbee_mall_goods";
     }
 
+//    @GetMapping("/goods/edit")
+//    public String edit(HttpServletRequest request) {
+//        request.setAttribute("path", "edit");
+//        //查询所有的一级分类
+//        List<GoodsCategory> firstLevelCategories = newBeeMallCategoryService.selectByLevelAndParentIdsAndNumber(Collections.singletonList(0L), NewBeeMallCategoryLevelEnum.LEVEL_ONE.getLevel());
+//        if (!CollectionUtils.isEmpty(firstLevelCategories)) {
+//            //查询一级分类列表中第一个实体的所有二级分类
+//            List<GoodsCategory> secondLevelCategories = newBeeMallCategoryService.selectByLevelAndParentIdsAndNumber(Collections.singletonList(firstLevelCategories.get(0).getCategoryId()), NewBeeMallCategoryLevelEnum.LEVEL_TWO.getLevel());
+//            if (!CollectionUtils.isEmpty(secondLevelCategories)) {
+//                //查询二级分类列表中第一个实体的所有三级分类
+//                List<GoodsCategory> thirdLevelCategories = newBeeMallCategoryService.selectByLevelAndParentIdsAndNumber(Collections.singletonList(secondLevelCategories.get(0).getCategoryId()), NewBeeMallCategoryLevelEnum.LEVEL_THREE.getLevel());
+//                request.setAttribute("firstLevelCategories", firstLevelCategories);
+//                request.setAttribute("secondLevelCategories", secondLevelCategories);
+//                request.setAttribute("thirdLevelCategories", thirdLevelCategories);
+//                request.setAttribute("path", "goods-edit");
+//                return "admin/newbee_mall_goods_edit";
+//            }
+//        }
+//        return "error/error_5xx";
+//    }
+
     @GetMapping("/goods/edit")
     public String edit(HttpServletRequest request) {
-        request.setAttribute("path", "edit");
-        //查询所有的一级分类
-        List<GoodsCategory> firstLevelCategories = newBeeMallCategoryService.selectByLevelAndParentIdsAndNumber(Collections.singletonList(0L), NewBeeMallCategoryLevelEnum.LEVEL_ONE.getLevel());
-        if (!CollectionUtils.isEmpty(firstLevelCategories)) {
-            //查询一级分类列表中第一个实体的所有二级分类
-            List<GoodsCategory> secondLevelCategories = newBeeMallCategoryService.selectByLevelAndParentIdsAndNumber(Collections.singletonList(firstLevelCategories.get(0).getCategoryId()), NewBeeMallCategoryLevelEnum.LEVEL_TWO.getLevel());
-            if (!CollectionUtils.isEmpty(secondLevelCategories)) {
-                //查询二级分类列表中第一个实体的所有三级分类
-                List<GoodsCategory> thirdLevelCategories = newBeeMallCategoryService.selectByLevelAndParentIdsAndNumber(Collections.singletonList(secondLevelCategories.get(0).getCategoryId()), NewBeeMallCategoryLevelEnum.LEVEL_THREE.getLevel());
-                request.setAttribute("firstLevelCategories", firstLevelCategories);
-                request.setAttribute("secondLevelCategories", secondLevelCategories);
-                request.setAttribute("thirdLevelCategories", thirdLevelCategories);
-                request.setAttribute("path", "goods-edit");
-                return "admin/newbee_mall_goods_edit";
-            }
-        }
-        return "error/error_5xx";
+    	return "admin/goodsCategory";
     }
-
+    
     @GetMapping("/goods/edit/{goodsId}")
     public String edit(HttpServletRequest request, @PathVariable("goodsId") Long goodsId) {
         request.setAttribute("path", "edit");

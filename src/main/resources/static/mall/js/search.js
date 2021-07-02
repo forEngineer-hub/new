@@ -2,6 +2,7 @@ var MouseOnSearchResultUl;
 
 $(function () {
     $('#keyword').keypress(function (e) {
+		debugger;
         var key = e.which; //e.which是按键的值
         if (key == 13) {
             var q = $(this).val();
@@ -22,8 +23,14 @@ function search() {
 }
 
 //ajax与后台通信，查找查询履歴
-$( "#keyword" ).focus(function() {
-	//var keyword = $("#keyword").text();
+$( "#keyword" ).focus(function(e) {
+	debugger;
+	var keyword = $("#keyword").val();
+	// when input is filled , trigger keyup event
+	//トリガー
+	if(keyword !=""){
+		$( "#keyword" ).trigger("keyup");
+	}
 	// url:restful api
 	$.ajax({
             type: 'POST',//方法类型
@@ -57,6 +64,13 @@ $( "#keyword").focusout(function() {
 	if(MouseOnSearchResultUl){
 		return;
 	}
+    clearResultList();
+	//hide #searchResultUl
+	$("#searchResultUl").hide();
+	
+})
+
+function clearResultList(){
     //clear #searchResultUl's elements
 	//foreach is javascript's method
 	//$("#searchResultUl").children() is jquery
@@ -71,11 +85,7 @@ $( "#keyword").focusout(function() {
 		}
 		
 	})
-	//hide #searchResultUl
-	$("#searchResultUl").hide();
-	
-})
-
+}
 
 function showResult(result){
 	
@@ -93,9 +103,26 @@ function showResult(result){
 	appendToSearchBar($("#searchResultUl"));
 }
 
-function appendToSearchBar(el){
+function showResultForLikeSearch(result){
 	
+	var list = result.data.list;
+	//href="/goods/detail/10700"
+	var _href = "/goods/detail/";
+	for(var i = 0; i< list.length; i++){
+		var el = $(".dumyLi").clone().removeClass("dumyLi");
+		var link = el.find("a");
+		link.text(list[i].goodsName);
+		link.attr("href", _href + list[i].goodsId);
+		$(".dumyLi").before(el);
+	}
+	$("#searchResultUl").show();
+	appendToSearchBar($("#searchResultUl"));
+}
+
+function appendToSearchBar(el){
+	debugger;
 	var searchBar = $("#keyword"); //jquery object
+
 	//var searchBar = document.getElementById("keyword");// dom
 	var rect = searchBar[0].getBoundingClientRect(); //convert jquery object to dom by searchBar[0]
 	console.log(rect.top, rect.right, rect.bottom, rect.left);
@@ -128,8 +155,12 @@ $("#keyword").keyup(function(){
         dataType: "json",           // レスポンスをJSONとしてパースする
         success: function(json_data) {   // 200 OK時
 			debugger;
-           	console.log(json_data);
-           
+			clearResultList();
+           	showResultForLikeSearch(json_data);
+		//1 取去第一行数据 1-1直接去页面取数据 
+		//2 提取keyword  如果入力"ip" 
+		// "apple iphone 11"  => 截取结果keyword : iphone
+		// insert ajax
         },
         error: function() {         // HTTPエラー時
 			debugger;

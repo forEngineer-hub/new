@@ -53,13 +53,23 @@ public class SearchGoodsController {
 
    
     //get hit goods
+//    @RequestMapping(value = "/goods/search", method = RequestMethod.GET)
+//    //public GoodsQa getHitGoodsList(@RequestBody String goodsName) {
+//    //getの場合、RequestBodyは使えない、postのみです。
+//    //getは@RequestParam
+//    public Result getHitGoodsList(@RequestParam String goodsName) {
+//    	Map<String, Object> params = new HashMap<String, Object>();
+//    	params.put("keyword", goodsName);
+//    	params.put("page", 1);
+//    	params.put("limit", 9);
+//        //params.put("start", 0);
+//        PageQueryUtil pageUtil = new PageQueryUtil(params);
+//        return ResultGenerator.genSuccessResult(newBeeMallGoodsService.searchNewBeeMallGoods(pageUtil));
+//    }
     @RequestMapping(value = "/goods/search", method = RequestMethod.GET)
-    //public GoodsQa getHitGoodsList(@RequestBody String goodsName) {
-    //getの場合、RequestBodyは使えない、postのみです。
-    //getは@RequestParam
-    public Result getHitGoodsList(@RequestParam String goodsName) {
+    public Result getHitGoodsList() {
     	Map<String, Object> params = new HashMap<String, Object>();
-    	params.put("keyword", goodsName);
+    	params.put("keyword", "iphone");
     	params.put("page", 1);
     	params.put("limit", 9);
         //params.put("start", 0);

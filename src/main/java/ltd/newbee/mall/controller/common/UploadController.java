@@ -9,13 +9,16 @@
 package ltd.newbee.mall.controller.common;
 
 import ltd.newbee.mall.common.Constants;
+import ltd.newbee.mall.entity.Campaign;
 import ltd.newbee.mall.util.NewBeeMallUtils;
 import ltd.newbee.mall.util.Result;
 import ltd.newbee.mall.util.ResultGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.CollectionUtils;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -24,12 +27,17 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 
 import javax.servlet.http.HttpServletRequest;
+
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @author 13
@@ -58,6 +66,14 @@ public class UploadController {
         File fileDirectory = new File(Constants.FILE_UPLOAD_DIC);
         //创建文件
         File destFile = new File(Constants.FILE_UPLOAD_DIC + newFileName);
+        //***
+        try {
+			InputStream is = file.getInputStream();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+        //**
         try {
             if (!fileDirectory.exists()) {
                 if (!fileDirectory.mkdir()) {
@@ -127,5 +143,68 @@ public class UploadController {
         resultSuccess.setData(fileNames);
         return resultSuccess;
     }
-
+    
+    @PostMapping({"/upload2/file"})
+    @ResponseBody
+    public Result upload2(@RequestParam("goodsId") Long goodsId,HttpServletRequest httpServletRequest, @RequestParam("file") MultipartFile file) throws URISyntaxException {
+        	// step1 read file 
+    		// step2 insert record 
+    		
+			try {
+				InputStream is = file.getInputStream();
+				//wrap inputStream
+				//bufferedReader <=> writer   i/o 
+				//while readline
+				//split
+				//set entity
+				//call insert service
+			
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			return null;
+    }
+    
+    @PostMapping({"/file/download"})
+    @ResponseBody
+    public Result download(@RequestBody int[] ids) throws URISyntaxException {
+    	File f = new File("D:\\upload\\test.csv"); //仕様
+		try {
+			BufferedWriter bw = new BufferedWriter(new FileWriter(f,true));
+			//List<Campaign> camList = service.xxx();
+			
+			Campaign c1 = new Campaign();
+			c1.setId(1L);
+			c1.setName("cam1");
+			Campaign c2 = new Campaign();
+			c2.setId(2L);
+			c2.setName("cam2");
+			//camList.add(c1);
+			//camList.add(c2);
+			List<Campaign> camList =  Arrays.asList(c1,c2);
+			
+			// for each
+			camList.stream().forEach( c -> {
+					try {
+						bw.write(c.toString());
+						bw.newLine();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+			});
+		
+			bw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		Result resultSuccess = ResultGenerator.genSuccessResult();
+        resultSuccess.setData("/upload/test.csv");
+        return resultSuccess;
+    }
 }

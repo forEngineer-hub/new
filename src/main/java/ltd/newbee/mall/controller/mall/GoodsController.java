@@ -8,11 +8,14 @@
  */
 package ltd.newbee.mall.controller.mall;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
+import java.util.TimeZone;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +23,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -93,7 +97,24 @@ public class GoodsController {
 
     @GetMapping("/goods/detail/{goodsId}")
     public String detailPage(@PathVariable("goodsId") Long goodsId, HttpServletRequest request) {
-        if (goodsId < 1) {
+        
+    	
+//    	SimpleDateFormat formatter = new SimpleDateFormat("yyyy/mm/dd", Locale.ENGLISH);
+//    	//formatter.setTimeZone(TimeZone.getTimeZone("America/New_York"));
+//
+//    	String dateInString = "22-01-2015 10:15:55 AM";
+//    	//String dateInString = "72/23/2013";
+//    	//String dateInString = "yyyy/mm/dd";
+//    	Date date = null;
+//		try {
+//			date = formatter.parse(dateInString);
+//		} catch (ParseException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//    	String formattedDateString = formatter.format(date);
+    	
+    	if (goodsId < 1) {
             return "error/error_5xx";
         }
         NewBeeMallGoods goods = newBeeMallGoodsService.getNewBeeMallGoodsById(goodsId);
@@ -213,10 +234,10 @@ public class GoodsController {
     	}
 	    
     }
-    
-    @RequestMapping(value = "/searchHistory/getSearchHistory", method = RequestMethod.POST)
+    @CrossOrigin(origins = "http://localhost:3001")
+    @RequestMapping(value = "/searchHistory/getSearchHistory", method = RequestMethod.GET)
     @ResponseBody
-    public Result getSearchHistory(HttpSession httpSession) {
+    public Result getSearchHistory() {
     	
 //    	NewBeeMallUserVO user = (NewBeeMallUserVO) httpSession.getAttribute(Constants.MALL_USER_SESSION_KEY);
 //    	if(user!=null) {
@@ -239,17 +260,4 @@ public class GoodsController {
 	    
     }
     
-    //get hit goods
-//    @RequestMapping(value = "/goods/search", method = RequestMethod.POST)
-//    @ResponseBody
-//    //public Result getHitGoodsList(@RequestParam Map<String, Object> params) {
-//    public Result getHitGoodsList(@RequestBody String goodsName) {
-//    	Map<String, Object> params = new HashMap<String, Object>();
-//    	params.put("keyword", goodsName);
-//    	params.put("page", 1);
-//    	params.put("limit", 9);
-//        //params.put("start", 0);
-//        PageQueryUtil pageUtil = new PageQueryUtil(params);
-//        return ResultGenerator.genSuccessResult(newBeeMallGoodsService.searchNewBeeMallGoods(pageUtil));
-//    }
 }
