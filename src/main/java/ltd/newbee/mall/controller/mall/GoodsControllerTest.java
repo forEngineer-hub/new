@@ -59,6 +59,7 @@ public class GoodsControllerTest {
 	@Test
 	public void testEquals() {
 		//dev2_brach 
+		//dev2_brach agin
 		GoodsImage img1 = new GoodsImage();
 		img1.setId(1l);
 		img1.setPath("xxx");
