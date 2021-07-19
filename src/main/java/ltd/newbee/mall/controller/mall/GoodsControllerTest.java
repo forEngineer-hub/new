@@ -53,20 +53,6 @@ public class GoodsControllerTest {
 		}
 		assertEquals(3, size);
 
-//	  //2: リストが同じか //他のプロパティは略 
-//	  NewBeeMallGoods expect1 = new NewBeeMallGoods();
-//	  expect1.setGoodsId(10906L); //QAだと以下の感じっすね。 //expect1.setxx();
-//	  //expect1.setxx(); //expect1.setxx(); 
-//	  NewBeeMallGoods expect2 = new NewBeeMallGoods(); 
-//	  expect2.setGoodsId(10905L); 
-//	  NewBeeMallGoods expect3 = new
-//	  NewBeeMallGoods(); expect3.setGoodsId(10904L);
-//	  
-//	  List<NewBeeMallGoods> expectList = new ArrayList<NewBeeMallGoods>();
-//	  expectList.add(expect1); 
-//	  expectList.add(expect2); 
-//	  expectList.add(expect3);
-//	  Boolean isTrue = goodsList.equals(expectList);
 
 	}
 
