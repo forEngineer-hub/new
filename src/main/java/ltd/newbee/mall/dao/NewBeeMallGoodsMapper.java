@@ -78,4 +78,5 @@ public interface NewBeeMallGoodsMapper {
     boolean updateReviewNum(GoodsReviewHelpNum goodsReviewHelpNum);
     
     long getGoodsReviewHelpNum(int reviewId);
+    
 }

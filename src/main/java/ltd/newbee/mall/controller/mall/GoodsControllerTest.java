@@ -10,9 +10,11 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import ltd.newbee.mall.common.ServiceResultEnum;
+import ltd.newbee.mall.dao.CarouselMapper;
 import ltd.newbee.mall.entity.Carousel;
 import ltd.newbee.mall.entity.GoodsImage;
 import ltd.newbee.mall.entity.NewBeeMallGoods;
@@ -32,7 +34,7 @@ public class GoodsControllerTest {
 
 	@Resource
 	NewBeeMallCarouselService newBeeMallCarouselService;
-
+	
 	@Test
 
 	public void testGoodsService() {
@@ -58,6 +60,8 @@ public class GoodsControllerTest {
 
 	@Test
 	public void testEquals() {
+		//dev2_brach 
+		//dev2_brach agin
 		GoodsImage img1 = new GoodsImage();
 		img1.setId(1l);
 		img1.setPath("xxx");
@@ -87,5 +91,22 @@ public class GoodsControllerTest {
 		carousel.setCreateUser(11);
 		String rs = newBeeMallCarouselService.saveCarousel(carousel);
 		assertEquals(ServiceResultEnum.SUCCESS.getResult(), rs);
+	}
+	
+	@Test
+	public void testInsertStudent() {
+//		Long id = mappper.getStudentId();
+//		Student s = new Student();
+//		s.setId(id);
+//		s.setName("xiaozhang");
+//		s.setAge(23);
+//		int count = mappper.insertStudent(s);
+//		assertEqual(1,count);
+//		
+//		Student s2 = new Student();
+//		s2 = mapper.selectByName("xiao");
+//		assertEquals("xiaozhang",s.getName);
+//		assertEquals(23,s.getAge);
+	
 	}
 }
