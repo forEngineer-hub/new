@@ -46,6 +46,16 @@
         from tb_newbee_mall_goods_info
         where goods_id = #{goodsId,jdbcType=BIGINT}
     </select>
+    
+    <select id="getStudentByName" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from tb_newbee_mall_goods_info
+        where goods_id = #{goodsId,jdbcType=BIGINT}
+    </select>
+    
     <update id="updateStockNum">
         <foreach collection="stockNumDTOS" item="stockNumDTO">
             update tb_newbee_mall_goods_info set stock_num = stock_num-#{stockNumDTO.goodsCount}

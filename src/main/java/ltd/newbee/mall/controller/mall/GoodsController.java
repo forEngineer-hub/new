@@ -57,6 +57,7 @@ public class GoodsController {
 
     @Resource
     private NewBeeMallGoodsService newBeeMallGoodsService;
+
     @Resource
     private NewBeeMallCategoryService newBeeMallCategoryService;
 
@@ -98,22 +99,6 @@ public class GoodsController {
     @GetMapping("/goods/detail/{goodsId}")
     public String detailPage(@PathVariable("goodsId") Long goodsId, HttpServletRequest request) {
         
-    	
-//    	SimpleDateFormat formatter = new SimpleDateFormat("yyyy/mm/dd", Locale.ENGLISH);
-//    	//formatter.setTimeZone(TimeZone.getTimeZone("America/New_York"));
-//
-//    	String dateInString = "22-01-2015 10:15:55 AM";
-//    	//String dateInString = "72/23/2013";
-//    	//String dateInString = "yyyy/mm/dd";
-//    	Date date = null;
-//		try {
-//			date = formatter.parse(dateInString);
-//		} catch (ParseException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//    	String formattedDateString = formatter.format(date);
-    	
     	if (goodsId < 1) {
             return "error/error_5xx";
         }
@@ -235,7 +220,7 @@ public class GoodsController {
 	    
     }
     @CrossOrigin(origins = "http://localhost:3001")
-    @RequestMapping(value = "/searchHistory/getSearchHistory", method = RequestMethod.GET)
+    @RequestMapping(value = "/searchHistory/getSearchHistory", method = RequestMethod.POST)
     @ResponseBody
     public Result getSearchHistory() {
     	

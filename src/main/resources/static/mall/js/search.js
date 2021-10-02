@@ -144,7 +144,7 @@ $( "#searchResultUl" ).mouseleave(function(){
 });
 
 $("#keyword").keyup(function(){
-	debugger;
+	
 	var keyword = $("#keyword").val();
 	
 	$.ajax({
@@ -154,7 +154,6 @@ $("#keyword").keyup(function(){
         //contentType: 'application/json', // リクエストの Content-Type
         dataType: "json",           // レスポンスをJSONとしてパースする
         success: function(json_data) {   // 200 OK時
-			debugger;
 			clearResultList();
            	showResultForLikeSearch(json_data);
 		//1 取去第一行数据 1-1直接去页面取数据 
@@ -163,7 +162,6 @@ $("#keyword").keyup(function(){
 		// insert ajax
         },
         error: function() {         // HTTPエラー時
-			debugger;
             alert("Server Error. Pleasy try again later.");
         }
     });
