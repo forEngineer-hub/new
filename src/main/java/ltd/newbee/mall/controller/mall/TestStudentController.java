@@ -19,7 +19,7 @@ public class TestStudentController {
 	
 	// name 王小丽,王小丫
 	@Test
-	public void testGoodsService() {
+	public void testLenght() {
 		String name = "小";
 		// 01 王小丽
 		// 02 王小丫
@@ -37,5 +37,19 @@ public class TestStudentController {
 
 	}
 
-	
+	// name 王小丽,王小丫
+		@Test
+		public void ifMactchName() {
+			String name = "小";
+			// 01 王小丽
+			// 02 王小丫
+			String name1 = "王小丽";
+			String name2 = "王小丫";
+			ArrayList<Student> list = studentService.getStudentsListByName(name);
+			for(Student s :list) {
+				assertTrue(name1.equals(s.getStudentName()) || name2.equals(s.getStudentName()) );
+			}
+		
+
+		}
 }

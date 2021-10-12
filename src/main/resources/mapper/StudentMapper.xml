@@ -3,6 +3,6 @@
 <mapper namespace="ltd.newbee.mall.dao.StudentMapper">
    <select id="getStudentListByName" parameterType="java.lang.String" resultType="ltd.newbee.mall.entity.Student">
 	 SELECT student_id,student_name
- 		FROM student where name like CONCAT('%',#{name},'%')
+ 		FROM student where student_name like CONCAT('%',#{name},'%')
    </select>
 </mapper>
