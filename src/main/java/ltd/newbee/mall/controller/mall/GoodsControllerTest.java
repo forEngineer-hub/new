@@ -10,11 +10,9 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import ltd.newbee.mall.common.ServiceResultEnum;
-import ltd.newbee.mall.dao.CarouselMapper;
 import ltd.newbee.mall.entity.Carousel;
 import ltd.newbee.mall.entity.GoodsImage;
 import ltd.newbee.mall.entity.NewBeeMallGoods;
@@ -36,7 +34,6 @@ public class GoodsControllerTest {
 	NewBeeMallCarouselService newBeeMallCarouselService;
 	
 	@Test
-
 	public void testGoodsService() {
 
 		Map<String, Object> params = new HashMap<String, Object>();
