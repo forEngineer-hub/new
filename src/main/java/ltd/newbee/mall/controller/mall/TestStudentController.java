@@ -17,39 +17,25 @@ public class TestStudentController {
 	@Resource
 	StudentService studentService;
 	
-	// name 王小丽,王小丫
+	// 01 王小丽
+	// 02 王小丫
+	String name = "小";
+	String name1 = "王小丽";
+	String name2 = "王小丫";
+	
 	@Test
 	public void testLenght() {
-		String name = "小";
-		// 01 王小丽
-		// 02 王小丫
-		String name1 = "王小丽";
-		String name2 = "王小丫";
 		ArrayList<Student> list = studentService.getStudentsListByName(name);
 		if(list !=null && !list.isEmpty()) {
 			assertEquals(2,list.size());
 		}
-		
+	}
+
+	@Test
+	public void ifMactchName() {
+		ArrayList<Student> list = studentService.getStudentsListByName(name);
 		for(Student s :list) {
 			assertTrue(name1.equals(s.getStudentName()) || name2.equals(s.getStudentName()) );
 		}
-	
-
 	}
-
-	// name 王小丽,王小丫
-		@Test
-		public void ifMactchName() {
-			String name = "小";
-			// 01 王小丽
-			// 02 王小丫
-			String name1 = "王小丽";
-			String name2 = "王小丫";
-			ArrayList<Student> list = studentService.getStudentsListByName(name);
-			for(Student s :list) {
-				assertTrue(name1.equals(s.getStudentName()) || name2.equals(s.getStudentName()) );
-			}
-		
-
-		}
 }
