@@ -14,8 +14,10 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.util.CollectionUtils;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ltd.newbee.mall.common.Constants;
@@ -33,9 +35,9 @@ public class TestStudentServiceRestController
 	
     //@CrossOrigin(origins = "http://localhost:3000")
     @SuppressWarnings("rawtypes")
-	@RequestMapping(value = "/student", method = RequestMethod.POST)
+	@RequestMapping(value = "/student", method = RequestMethod.GET)
     @ResponseBody
-    public Result categories(String name) 
+    public Result categories(@RequestParam String name) 
     {
     	
     	List<Student> list = studentService.getStudentListByName(name);
