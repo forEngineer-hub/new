@@ -17,9 +17,11 @@ public interface StudentMapper {
     List<Student> selectByName(String name);
     
     Long getStudentId();
-    
-    int insertStudent(Student s);
 
 	ArrayList<Student> getStudentListByName(String name);
+
+	Long insertStudent(Student s);
+
+	Long getMaxStudentID();
    
 }
