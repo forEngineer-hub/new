@@ -1,7 +1,10 @@
 package ltd.newbee.mall.controller.mall;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import java.util.ArrayList;
-import static org.junit.Assert.*;
+
 import javax.annotation.Resource;
 
 import org.junit.jupiter.api.Test;
@@ -9,6 +12,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import ltd.newbee.mall.entity.Student;
 import ltd.newbee.mall.service.StudentService;
+
+
 
 @SpringBootTest
 public class TestStudentController {

@@ -18,7 +18,6 @@ public class StudentServiceImpl implements StudentService{
 	
 	@Override
 	public ArrayList<Student> getStudentsListByName(String name) {
-		//ArrayList<Student> list = studentMapper.getStudentListByName(name)
 		return studentMapper.getStudentListByName(name);
 	}
 

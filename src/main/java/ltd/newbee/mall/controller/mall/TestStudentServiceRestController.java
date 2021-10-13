@@ -42,8 +42,6 @@ public class TestStudentServiceRestController {
         }else {
         	return ResultGenerator.genSuccessResult(list);
         }
-    
     }
-    
    
 }
