@@ -25,6 +25,7 @@ public class StudentServiceImpl implements StudentService
 
     @Resource
     private StudentMapper studentMapper;
+   
 	
 	@Override
 	public ArrayList<Student> getStudentListByName(String name) 
@@ -33,4 +34,11 @@ public class StudentServiceImpl implements StudentService
 		return studentMapper.getStudentListByName(name);
 	}
 	
+	@Override
+	public Long insertStudent(Student s)
+	{
+		Long id = studentMapper.getMaxStudentID();
+		s.setStudentId(id + 1);
+		return studentMapper.insertStudent(s);
+	}
 }
