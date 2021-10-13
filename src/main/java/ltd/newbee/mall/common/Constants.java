@@ -46,5 +46,7 @@ public class Constants {
     
     public final static int CATEGORY_FETCH_ERROR = 300;// リターンコード
     public final static String CATEGORY_FETCH_ERROR_MESSAGE = "カテゴリー取得出来ません";
-
+    
+    public final static String STUDENT_FETCH_ERROR_MESSAGE = "該当学生がいません";
+    public final static int FETCH_ERROR = 300;// リターンコード
 }
