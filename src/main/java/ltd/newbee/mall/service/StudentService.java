@@ -7,4 +7,7 @@ import ltd.newbee.mall.entity.Student;
 public interface StudentService 
 {
 	ArrayList<Student> getStudentListByName(String name);
+	
+	Long insertStudent(Student s);
+	
 }
