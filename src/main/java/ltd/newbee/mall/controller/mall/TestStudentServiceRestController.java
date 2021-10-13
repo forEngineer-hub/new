@@ -37,7 +37,7 @@ public class TestStudentServiceRestController
     @SuppressWarnings("rawtypes")
 	@RequestMapping(value = "/student", method = RequestMethod.GET)
     @ResponseBody
-    public Result categories(@RequestParam String name) 
+    public Result searchStudent(@RequestParam String name) 
     {
     	
     	List<Student> list = studentService.getStudentListByName(name);
@@ -48,6 +48,26 @@ public class TestStudentServiceRestController
         else 
         {
         	return ResultGenerator.genSuccessResult(list);
+        }
+    
+    }
+    
+    @SuppressWarnings("rawtypes")
+	@RequestMapping(value = "/student", method = RequestMethod.POST)
+    @ResponseBody
+    public Result insertStudent(@RequestBody Student s) 
+    {
+    	
+    	Long count = studentService.insertStudent(s);
+  
+    	
+    	if(count <= 0)
+        {
+        	return ResultGenerator.genErrorResult(Constants.FETCH_ERROR, Constants.STUDENT_FETCH_ERROR_MESSAGE);
+        }
+        else 
+        {
+        	return ResultGenerator.genSuccessResult("挿入成功");
         }
     
     }
