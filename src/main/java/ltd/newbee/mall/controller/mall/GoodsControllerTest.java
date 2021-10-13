@@ -59,9 +59,10 @@ public class GoodsControllerTest {
 	}
 
 	@Test
-	public void testEquals() {
+	public void testEquals() 
+	{
 		//dev2_brach 
-		//dev2_brach agin
+		//dev2_brach Again
 		GoodsImage img1 = new GoodsImage();
 		img1.setId(1l);
 		img1.setPath("xxx");
@@ -94,7 +95,8 @@ public class GoodsControllerTest {
 	}
 	
 	@Test
-	public void testInsertStudent() {
+	public void testInsertStudent() 
+	{
 //		Long id = mappper.getStudentId();
 //		Student s = new Student();
 //		s.setId(id);

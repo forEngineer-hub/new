@@ -17,7 +17,7 @@ package ltd.newbee.mall.common;
  */
 public class Constants {
     //public final static String FILE_UPLOAD_DIC = "/opt/image/upload/";//上传文件的默认url前缀，根据部署设置自行修改
-    public final static String FILE_UPLOAD_DIC = "D:\\upload\\";//上传文件的默认url前缀，根据部署设置自行修改
+    public final static String FILE_UPLOAD_DIC = "D:\\Project\\upload\\";//上传文件的默认url前缀，根据部署设置自行修改
 
     public final static int INDEX_CAROUSEL_NUMBER = 5;//首页轮播图数量(可根据自身需求修改)
 
@@ -46,5 +46,7 @@ public class Constants {
     
     public final static int CATEGORY_FETCH_ERROR = 300;// リターンコード
     public final static String CATEGORY_FETCH_ERROR_MESSAGE = "カテゴリー取得出来ません";
-
+    
+    public final static String STUDENT_FETCH_ERROR_MESSAGE = "該当学生がいません";
+    public final static int FETCH_ERROR = 300;// リターンコード
 }

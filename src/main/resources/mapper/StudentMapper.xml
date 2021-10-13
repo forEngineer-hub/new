@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ltd.newbee.mall.dao.StudentMapper">
+
+  <select id = "getStudentListByName" parameterType = "java.lang.String" resultType = "ltd.newbee.mall.entity.Student">
+    SELECT student_id,
+    student_name,
+    student_old,
+    sexual,address,
+    hometown,
+    telephone_number,
+    total_score,
+    student_class,
+    score_rank,
+    blacklist,
+    score_of_physics,
+    score_of_chemistry,
+    score_of_biology FROM student where student_name like CONCAT('%',#{name},'%')
+    
+   </select>
+</mapper>
