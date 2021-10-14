@@ -14,17 +14,23 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.util.CollectionUtils;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ltd.newbee.mall.common.Constants;
+import ltd.newbee.mall.common.ServiceResultEnum;
 import ltd.newbee.mall.entity.Student;
 import ltd.newbee.mall.service.StudentService;
 import ltd.newbee.mall.util.Result;
 import ltd.newbee.mall.util.ResultGenerator;
+
 
 @Controller
 public class TestStudentServiceRestController 
@@ -52,6 +58,7 @@ public class TestStudentServiceRestController
     
     }
     
+    /* insert test */
     @SuppressWarnings("rawtypes")
 	@RequestMapping(value = "/student", method = RequestMethod.POST)
     @ResponseBody
@@ -72,24 +79,39 @@ public class TestStudentServiceRestController
     
     }
     
-    @SuppressWarnings("rawtypes")
-	@RequestMapping(value = "/student", method = RequestMethod.POST)
+    /* update test */
+	@SuppressWarnings("rawtypes")
+	@PutMapping("/student")
     @ResponseBody
-    public Result updateStudent(@RequestBody Student s) 
+    public Result updateStudent(@RequestBody Student student) 
     {
-		return null;
-    	
+		student.setStudentId(student.getStudentId());
+		String result = studentService.updateStudent(student);
+		if(!ServiceResultEnum.SUCCESS.getResult().equals(result))
+		{
+			return ResultGenerator.genErrorResult(Constants.FETCH_ERROR, Constants.STUDENT_FETCH_ERROR_MESSAGE);
+		}
+		else
+		{
+			return ResultGenerator.genSuccessResult("更新成功");
+		}
     }
-
     
-    
+    /* delete test */   
     @SuppressWarnings("rawtypes")
-   	@RequestMapping(value = "/student", method = RequestMethod.POST)
+   	@DeleteMapping("/student/{studentID}")
     @ResponseBody
-    public Result deleteStudent(@RequestBody Student s) 
+    public Result deleteStudent(@PathVariable("studentId") Long id) 
     {
-   		return null;
-       	
+   		Boolean ResultOfDelete = studentService.deleteStudent(id);
+   		if(ResultOfDelete)
+   		{
+   			return ResultGenerator.genSuccessResult("削除成功");
+   		}
+   		else
+   		{
+   		return ResultGenerator.genFailResult(ServiceResultEnum.OPERATE_ERROR.getResult());
+   		}
     }
     
 }

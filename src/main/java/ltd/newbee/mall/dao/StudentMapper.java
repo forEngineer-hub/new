@@ -20,13 +20,18 @@ public interface StudentMapper {
 
 	ArrayList<Student> getStudentListByName(String name);
 
+	/* insert student */
 	Long insertStudent(Student s);
 
 	Long getMaxStudentID();
 	
-	Long updateByStudentSelective(Long studentid);
+	/* update student */
+	String UpdateStudent(Student u);
 	
-	Boolean updateStudent(Student r);
-   
+	Student checkByStudentId(Long id);
+	
+	Long updateByStudentIdCheckOut(Student r);
+
+	/* delete student */
 	Long deleteStudent(Long id);
 }

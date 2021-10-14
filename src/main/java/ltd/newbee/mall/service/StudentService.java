@@ -8,10 +8,13 @@ public interface StudentService
 {
 	ArrayList<Student> getStudentListByName(String name);
 	
+	/* insert student */
 	Long insertStudent(Student s);
 	
-	Boolean updateStudentName(String oldName,String newName);
+	/* update student */
+	String updateStudent(Student sUpdate);
 
-	Long deleteStudent(Student d);
+	/* delete student */
+	Boolean deleteStudent(Long id);
 	
 }

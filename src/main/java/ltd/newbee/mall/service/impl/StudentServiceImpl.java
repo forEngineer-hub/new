@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
+import ltd.newbee.mall.common.ServiceResultEnum;
 
 
 import ltd.newbee.mall.dao.StudentMapper;
@@ -45,29 +46,45 @@ public class StudentServiceImpl implements StudentService
 	
 	/* Update Student */
 	@Override
-	public Boolean updateStudentName(String oldName,String newName)
+	public String updateStudent(Student sUpdate)
 	{
-		// TODO Auto-generated method stub
-		Long id = studentMapper.getStudentId();
+		Student temp = studentMapper.checkByStudentId(sUpdate.getStudentId());
 		
-		if(studentid != null)
+		if(temp == null)
 		{
-			if(studentMapper.updateByStudentSelective(studentid) > 0)
-			{
-				return true;
-			}
+			return ServiceResultEnum.DATA_NOT_EXIST.getResult();
 		}
-		return false;
+		
+		temp.setStudentName(sUpdate.getStudentName());
+		temp.setStudentOld(sUpdate.getStudentOld());
+		temp.setSexual(sUpdate.getSexual());
+		temp.setAddress(sUpdate.getAddress());
+		temp.setHometown(sUpdate.getHometown());
+		temp.setTelephoneNumber(sUpdate.getTelephoneNumber());
+		temp.setTotalScore(sUpdate.getTotalScore());
+		temp.setStudentClass(sUpdate.getStudentClass());
+		temp.setScoreRank(sUpdate.getScoreRank());
+		temp.setBlacklist(sUpdate.getBlacklist());
+		temp.setScoreOfphysics(sUpdate.getScoreOfPhysics());
+		temp.setScoreOfChemistry(sUpdate.getScoreOfChemistry());
+		temp.setScoreOfBiology(sUpdate.getScoreOfBiology());
+		
+		
+		if(studentMapper.updateByStudentIdCheckOut(temp) > 0)
+		{
+			return ServiceResultEnum.SUCCESS.getResult();
+		}
+		
+		return ServiceResultEnum.DB_ERROR.getResult();
 	}
 
 	
-	/* Delete Student */
+
 	@Override
-	public Long deleteStudent(Long id) 
+	public Boolean deleteStudent(Long id) 
 	{
 		// TODO Auto-generated method stub
-		Long id = studentMapper.getStudentId();
-		
-		return null;
+		return studentMapper.deleteStudent(id)>0;
 	}
+
 }

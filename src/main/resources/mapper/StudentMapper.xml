@@ -16,9 +16,8 @@
     blacklist,
     score_of_physics,
     score_of_chemistry,
-    score_of_biology FROM student where student_name like CONCAT('%',#{name},'%')
-    
-   </select>
+    score_of_biology FROM student where student_name like CONCAT('%',#{name},'%')    
+   </select>   
    
    	<select id="getMaxStudentID" resultType="java.lang.Long">
 		SELECT max(student_id) FROM student	
@@ -69,9 +68,7 @@
 		    <if test="scoreOfBiology != null">
 		        score_of_biology
 		    </if>
-	    </trim>
-	    
-	    
+	    </trim>    
 	    <trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="studentId != null">
 		        #{studentId,jdbcType=BIGINT},
@@ -118,7 +115,7 @@
 	    </trim>	    
 	</insert>
 	
-	<update id="updateByStudentSelective" parameterType="ltd.newbee.mall.entity.Student">
+	<update id="updateStudent" parameterType="ltd.newbee.mall.entity.Student">
     	update student
 	    <set>
 	      <if test="studentId != null">
@@ -166,25 +163,13 @@
     </set>
     where student_id = #{studentId,jdbcType=BIGINT}
   	</update>
-  	<update id="updateStudent" parameterType="ltd.newbee.mall.entity.Student">
-    update student
-    set student_name = #{studentName,jdbcType=VARCHAR},
-      	student_old = #{studentOld,jdbcType=SMALLINT},
-      	sexual = #{sexual,jdbcType=VARCHAR},
-      	address = #{address,jdbcType=VARCHAR},
-      	hometown = #{hometown,jdbcType=VARCHAR},
-      	telephone_number = #{telephoneNumber,jdbcType=BIGINT},
-      	total_score = #{totalScore,jdbcType=SMALLINT},
-      	student_class = #{studentClass,jdbcType=VARCHAR},
-      	score_rank = #{scoreRank,jdbcType=SMALLINT},
-      	blacklist = #{blacklist,jdbcType=VARCHAR},
-      	score_of_physics = #{scoreOfPhysics,jdbcType=SMALLINT},
-      	score_of_chemistry = #{scoreOfChemistry,jdbcType=SMALLINT},
-      	score_of_biology = #{scoreOfBiology,jdbcType=SMALLINT}
-    where student_id = #{studentId,jdbcType=BIGINT}
-  </update>
-  
-  <delete id="deleteStudent" parameterType="ltd.newbee.mall.entity.Student">
-  	delete from student where student_id = #{studentId,jdbcType=BIGINT}  
+  	
+  	<update id="checkByStudentId" parameterType="java.lang.Long">
+  		SELECT student_id FROM student
+  	</update>
+  	
+
+  <delete id="deleteStudent" parameterType="java.lang.Long" >
+  	delete from student where student_id = #{studentId,jdbcType=BIGINT} 
   </delete>
 </mapper>
