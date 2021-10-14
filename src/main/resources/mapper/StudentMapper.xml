@@ -18,4 +18,157 @@
     score_of_biology FROM student where student_name like CONCAT('%',#{name},'%')
     
    </select>
+   
+   <select id="getMaxStudentId" resultType="java.lang.Long">
+		select max(student_id) from student
+   </select>
+   
+   <insert id="insertStudent" parameterType="ltd.newbee.mall.entity.Student">
+		insert into student
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="studentId != null">
+				student_id,
+			</if>
+			<if test="studentName != null">
+				student_name,
+			</if>
+			<if test="studentOld= null">
+				student_old,
+			</if>
+			<if test="sexual != null">
+				sexual,
+			</if>
+			<if test="address != null">
+				address,
+			</if>
+			<if test="hometown != null">
+				hometown,
+			</if>
+			<if test="telephoneNumber != null">
+				telephone_number,
+			</if>
+			<if test="totalScore != null">
+				total_score,
+			</if>
+			<if test="studentClass != null">
+				student_class,
+			</if>
+			<if test="scoreRank != null">
+				score_rank,
+			</if>
+			<if test="blacklist= null">
+				blacklist,
+			</if>
+			<if test="scoreOfPhysics != null">
+				score_of_physics,
+			</if>
+			<if test="scoreOfChemistry != null">
+				score_of_chemistry,
+			</if>
+			<if test="scoreOfBiology != null">
+				score_of_biology,
+			</if>
+
+
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="studentId != null">
+				#{student_id,jdbcType=BIGINT},
+			</if>
+			<if test="studentName != null">
+				#{student_name,jdbcType=VARCHAR},
+			</if>
+			<if test="studentOld != null">
+				#{student_old,jdbcType=SMALLINT},
+			</if>
+			<if test="sexual != null">
+				#{sexual,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				#{address,jdbcType=VARCHAR},
+			</if>
+			<if test="hometown != null">
+				#{hometown,jdbcType=VARCHAR},
+			</if>
+			<if test="telephoneNumber != null">
+				#{telephone_number,jdbcType=BIGINT},
+			</if>
+			<if test="totalScore != null">
+				#{total_score,jdbcType=SMALLINT},
+			</if>
+			<if test="studentClass != null">
+				#{student_class,jdbcType=VARCHAR},
+			</if>
+			<if test="scoreRank != null">
+				#{score_rank,jdbcType=SMALLINT},
+			</if>
+			<if test="blacklist != null">
+				#{blacklist,jdbcType=VARCHAR},
+			</if>
+			<if test="scoreOfPhysics != null">
+				#{score_of_physics,jdbcType=SMALLINT},
+			</if>
+			<if test="scoreOfOhemistry != null">
+				#{score_of_chemistry,jdbcType=SMALLINT},
+			</if>
+			<if test="scoreOfBiology != null">
+				#{score_of_biology,jdbcType=SMALLINT},
+			</if>
+		</trim>
+	</insert>
+	
+	<update id="updateStudent"
+		parameterType="ltd.newbee.mall.entity.Student">
+		update student
+		<set>
+			<if test="studentId != null">
+				#{student_id,jdbcType=BIGINT},
+			</if>
+			<if test="studentName != null">
+				#{student_name,jdbcType=VARCHAR},
+			</if>
+			<if test="studentOld != null">
+				#{student_old,jdbcType=SMALLINT},
+			</if>
+			<if test="sexual != null">
+				#{sexual,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				#{address,jdbcType=VARCHAR},
+			</if>
+			<if test="hometown != null">
+				#{hometown,jdbcType=VARCHAR},
+			</if>
+			<if test="telephoneNumber != null">
+				#{telephone_number,jdbcType=BIGINT},
+			</if>
+			<if test="totalScore != null">
+				#{total_score,jdbcType=SMALLINT},
+			</if>
+			<if test="studentClass != null">
+				#{student_class,jdbcType=VARCHAR},
+			</if>
+			<if test="scoreRank != null">
+				#{score_rank,jdbcType=SMALLINT},
+			</if>
+			<if test="blacklist != null">
+				#{blacklist,jdbcType=VARCHAR},
+			</if>
+			<if test="scoreOfPhysics != null">
+				#{score_of_physics,jdbcType=SMALLINT},
+			</if>
+			<if test="scoreOfOhemistry != null">
+				#{score_of_chemistry,jdbcType=SMALLINT},
+			</if>
+			<if test="scoreOfBiology != null">
+				#{score_of_biology,jdbcType=SMALLINT},
+			</if>
+		</set>
+		where student_id = #{student_id,jdbcType=BIGINT}
+	</update>
+
+
+	<delete id="deleteStudent" parameterType="java.lang.Long">
+		delete from student where student_id = #{student_id,jdbcType=BIGINT}
+	</delete>
 </mapper>

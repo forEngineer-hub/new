@@ -26,7 +26,7 @@ public class StudentServiceImpl implements StudentService
     @Resource
     private StudentMapper studentMapper;
    
-	
+	/* select student */
 	@Override
 	public ArrayList<Student> getStudentListByName(String name) 
 	{
@@ -34,11 +34,26 @@ public class StudentServiceImpl implements StudentService
 		return studentMapper.getStudentListByName(name);
 	}
 	
+	/* insert student */
 	@Override
 	public Long insertStudent(Student s)
 	{
 		Long id = studentMapper.getMaxStudentID();
 		s.setStudentId(id + 1);
 		return studentMapper.insertStudent(s);
+	}
+	
+	/* update student */
+	@Override
+	public Long updateStudent(Student uStudent)
+	{
+		return studentMapper.updateStudent(uStudent);
+	}
+	
+	/* delete student */
+	@Override
+	public Boolean deleteStudent(Long id)
+	{
+		return studentMapper.deleteStudent(id) > 0;
 	}
 }

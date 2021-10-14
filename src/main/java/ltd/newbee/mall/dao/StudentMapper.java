@@ -16,12 +16,20 @@ import ltd.newbee.mall.entity.Student;
 public interface StudentMapper {
     List<Student> selectByName(String name);
     
+    /* search student */
     Long getStudentId();
 
 	ArrayList<Student> getStudentListByName(String name);
 
+	/* insert student */
 	Long insertStudent(Student s);
 
 	Long getMaxStudentID();
+
+	/* update student */
+	Long updateStudent(Student uStudent);
+
+	/* delete student */
+	Long deleteStudent(Long id);
    
 }

@@ -10,4 +10,8 @@ public interface StudentService
 	
 	Long insertStudent(Student s);
 	
+	Long updateStudent(Student uStudent);
+
+	Boolean deleteStudent(Long id);
+	
 }
