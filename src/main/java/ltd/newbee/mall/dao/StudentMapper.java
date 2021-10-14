@@ -23,5 +23,10 @@ public interface StudentMapper {
 	Long insertStudent(Student s);
 
 	Long getMaxStudentID();
+	
+	Long updateByStudentSelective(Long studentid);
+	
+	Boolean updateStudent(Student r);
    
+	Long deleteStudent(Long id);
 }

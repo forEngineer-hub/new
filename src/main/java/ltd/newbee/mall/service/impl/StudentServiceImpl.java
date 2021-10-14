@@ -41,4 +41,33 @@ public class StudentServiceImpl implements StudentService
 		s.setStudentId(id + 1);
 		return studentMapper.insertStudent(s);
 	}
+
+	
+	/* Update Student */
+	@Override
+	public Boolean updateStudentName(String oldName,String newName)
+	{
+		// TODO Auto-generated method stub
+		Long id = studentMapper.getStudentId();
+		
+		if(studentid != null)
+		{
+			if(studentMapper.updateByStudentSelective(studentid) > 0)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	
+	/* Delete Student */
+	@Override
+	public Long deleteStudent(Long id) 
+	{
+		// TODO Auto-generated method stub
+		Long id = studentMapper.getStudentId();
+		
+		return null;
+	}
 }

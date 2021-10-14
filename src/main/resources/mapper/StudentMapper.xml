@@ -67,7 +67,7 @@
 		        score_of_chemistry,
 		    </if>  
 		    <if test="scoreOfBiology != null">
-		        score_of_biology,
+		        score_of_biology
 		    </if>
 	    </trim>
 	    
@@ -113,8 +113,78 @@
 		        #{scoreOfChemistry,jdbcType=SMALLINT},
 		    </if>  
 		    <if test="scoreOfBiology != null">
-		        #{scoreOfBiology,jdbcType=SMALLINT},
+		        #{scoreOfBiology,jdbcType=SMALLINT}
 		    </if>	    
 	    </trim>	    
 	</insert>
+	
+	<update id="updateByStudentSelective" parameterType="ltd.newbee.mall.entity.Student">
+    	update student
+	    <set>
+	      <if test="studentId != null">
+	        student_id = #{studentID,jdbcType=BIGINT},
+	      </if>
+	      <if test="studentName != null">
+	        student_name = #{studentName,jdbcType=VARCHAR},
+	      </if>
+	      <if test="studentOld != null">
+	        student_old = #{studentOld,jdbcType=SMALLINT},
+	      </if>
+	      <if test="sexual != null">
+	        sexual = #{sexual,jdbcType=VARCHAR},
+	      </if>
+	      <if test="address != null">
+	        address = #{address,jdbcType=VARCHAR},
+	      </if>
+	      <if test="hometown != null">
+	        hometown = #{hometown,jdbcType=VARCHAR},
+	      </if>
+	      <if test="telephoneNumber != null">
+			telephone_number = #{telephoneNumber,jdbcType=BIGINT},
+		  </if>  
+		  <if test="totalScore != null">
+			total_score = #{totalScore,jdbcType=SMALLINT},
+		  </if>  
+		  <if test="studentClass != null">
+		    student_class = #{studentClass,jdbcType=VARCHAR},
+		  </if>  
+		  <if test="scoreRank != null">
+		    score_rank = #{scoreRank,jdbcType=SMALLINT},
+		  </if>  
+		  <if test="blacklist != null">
+		    blacklist = #{blacklist,jdbcType=VARCHAR},
+		  </if>  
+		  <if test="scoreOfPhysics != null">
+		    score_of_physics = #{scoreOfPhysics,jdbcType=SMALLINT},
+		  </if>  
+		  <if test="scoreOfChemistry != null">
+		    score_of_chemistry = #{scoreOfChemistry,jdbcType=SMALLINT},
+		  </if>  
+		  <if test="scoreOfBiology != null">
+		    score_of_biology = #{scoreOfBiology,jdbcType=SMALLINT}
+		  </if>	    
+    </set>
+    where student_id = #{studentId,jdbcType=BIGINT}
+  	</update>
+  	<update id="updateStudent" parameterType="ltd.newbee.mall.entity.Student">
+    update student
+    set student_name = #{studentName,jdbcType=VARCHAR},
+      	student_old = #{studentOld,jdbcType=SMALLINT},
+      	sexual = #{sexual,jdbcType=VARCHAR},
+      	address = #{address,jdbcType=VARCHAR},
+      	hometown = #{hometown,jdbcType=VARCHAR},
+      	telephone_number = #{telephoneNumber,jdbcType=BIGINT},
+      	total_score = #{totalScore,jdbcType=SMALLINT},
+      	student_class = #{studentClass,jdbcType=VARCHAR},
+      	score_rank = #{scoreRank,jdbcType=SMALLINT},
+      	blacklist = #{blacklist,jdbcType=VARCHAR},
+      	score_of_physics = #{scoreOfPhysics,jdbcType=SMALLINT},
+      	score_of_chemistry = #{scoreOfChemistry,jdbcType=SMALLINT},
+      	score_of_biology = #{scoreOfBiology,jdbcType=SMALLINT}
+    where student_id = #{studentId,jdbcType=BIGINT}
+  </update>
+  
+  <delete id="deleteStudent" parameterType="ltd.newbee.mall.entity.Student">
+  	delete from student where student_id = #{studentId,jdbcType=BIGINT}  
+  </delete>
 </mapper>

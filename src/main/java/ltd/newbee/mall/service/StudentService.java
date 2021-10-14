@@ -10,4 +10,8 @@ public interface StudentService
 	
 	Long insertStudent(Student s);
 	
+	Boolean updateStudentName(String oldName,String newName);
+
+	Long deleteStudent(Student d);
+	
 }

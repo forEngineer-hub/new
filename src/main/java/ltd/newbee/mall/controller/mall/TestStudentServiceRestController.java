@@ -72,5 +72,24 @@ public class TestStudentServiceRestController
     
     }
     
+    @SuppressWarnings("rawtypes")
+	@RequestMapping(value = "/student", method = RequestMethod.POST)
+    @ResponseBody
+    public Result updateStudent(@RequestBody Student s) 
+    {
+		return null;
+    	
+    }
 
+    
+    
+    @SuppressWarnings("rawtypes")
+   	@RequestMapping(value = "/student", method = RequestMethod.POST)
+    @ResponseBody
+    public Result deleteStudent(@RequestBody Student s) 
+    {
+   		return null;
+       	
+    }
+    
 }
