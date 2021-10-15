@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ltd.newbee.mall.dao.GoodsDetailMapper">
+
+  <select id = "getGoodsDetailListById" parameterType = "java.lang.Long" resultType = "ltd.newbee.mall.entity.GoodsDetail">
+    SELECT goods_id,
+    goods_color,
+    goods_meterial,
+    goods_size_weight,
+    goods_size_height,
+    goods_size_length,
+    goods_size_width,
+    goods_size_weight_unit,
+    goods_size_weight_unit,
+    goods_size_length_unit,
+    goods_size_width_unit,
+    goods_package_size,
+    goods_warranty_year,
+    goods_assembly_time,
+    goods_warranty_year_unit,
+    goods_assembly_time_unit FROM goods_detail where id =#{goodsID,jdbcType=BIGNET} 
+    
+   </select>
+   
+</mapper>
