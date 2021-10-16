@@ -15,10 +15,15 @@
     blacklist,
     score_of_physics,
     score_of_chemistry,
-    score_of_biology FROM student where student_name like CONCAT('%',#{name},'%')
-    
+    score_of_biology FROM student where student_name like CONCAT('%',#{name},'%')    
    </select>
    
+
+   <select id = "getPageRecords" parameterType = "ltd.newbee.mall.entity.SearchCondition">
+   	SELECT * FROM student ORDER BY student_id limit limit, order_by_colomn
+   
+   </select>
+
    <select id="getMaxStudentId" resultType="java.lang.Long">
 		select max(student_id) from student
    </select>

@@ -11,7 +11,8 @@ import java.util.List;
  * @email 2449207463@qq.com
  * @link https://github.com/newbee-ltd
  */
-public class PageResult implements Serializable {
+public class PageResult implements Serializable 
+{
 
     //总记录数
     private int totalCount;
@@ -32,7 +33,8 @@ public class PageResult implements Serializable {
      * @param pageSize   每页记录数
      * @param currPage   当前页数
      */
-    public PageResult(List<?> list, int totalCount, int pageSize, int currPage) {
+    public PageResult(List<?> list, int totalCount, int pageSize, int currPage) 
+    {
         this.list = list;
         this.totalCount = totalCount;
         this.pageSize = pageSize;
@@ -40,43 +42,53 @@ public class PageResult implements Serializable {
         this.totalPage = (int) Math.ceil((double) totalCount / pageSize);
     }
 
-    public int getTotalCount() {
+    public int getTotalCount() 
+    {
         return totalCount;
     }
 
-    public void setTotalCount(int totalCount) {
+    public void setTotalCount(int totalCount)
+    {
         this.totalCount = totalCount;
     }
 
-    public int getPageSize() {
+    public int getPageSize() 
+    {
         return pageSize;
     }
 
-    public void setPageSize(int pageSize) {
+    public void setPageSize(int pageSize) 
+    {
         this.pageSize = pageSize;
     }
 
-    public int getTotalPage() {
+    public int getTotalPage()
+    {
         return totalPage;
     }
 
-    public void setTotalPage(int totalPage) {
+    public void setTotalPage(int totalPage)
+    {
         this.totalPage = totalPage;
     }
 
-    public int getCurrPage() {
+    public int getCurrPage() 
+    {
         return currPage;
     }
 
-    public void setCurrPage(int currPage) {
+    public void setCurrPage(int currPage)
+    {
         this.currPage = currPage;
     }
 
-    public List<?> getList() {
+    public List<?> getList() 
+    {
         return list;
     }
 
-    public void setList(List<?> list) {
+    public void setList(List<?> list)
+    {
         this.list = list;
     }
 

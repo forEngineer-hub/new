@@ -20,6 +20,8 @@ public interface StudentMapper {
     Long getStudentId();
 
 	ArrayList<Student> getStudentListByName(String name);
+	
+	ArrayList<Student> getPageRecords(int currentPage,int limit,String orderByColumn);
 
 	/* insert student */
 	Long insertStudent(Student s);

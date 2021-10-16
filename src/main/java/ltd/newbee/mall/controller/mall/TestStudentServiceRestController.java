@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import ltd.newbee.mall.common.Constants;
 import ltd.newbee.mall.common.ServiceResultEnum;
 import ltd.newbee.mall.entity.Student;
+import ltd.newbee.mall.service.PagingIF;
 import ltd.newbee.mall.service.StudentService;
 import ltd.newbee.mall.util.Result;
 import ltd.newbee.mall.util.ResultGenerator;
@@ -36,6 +37,9 @@ public class TestStudentServiceRestController
 
 	@Resource
     private StudentService studentService;
+	
+	@Resource
+	private PagingIF pagingIF;
 	
     /* select student */
     @SuppressWarnings("rawtypes")
@@ -62,6 +66,8 @@ public class TestStudentServiceRestController
     @ResponseBody
     public Result insertStudent(@RequestBody Student s) 
     {
+    	pagingIF.setPagingParamBean(s);
+    	
     	
     	Long count = studentService.insertStudent(s);
   
@@ -103,6 +109,8 @@ public class TestStudentServiceRestController
 		return ResultGenerator.genFailResult(ServiceResultEnum.OPERATE_ERROR.getResult());
 	}
 
+	
+	
     
 
 }
