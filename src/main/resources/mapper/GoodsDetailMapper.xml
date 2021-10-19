@@ -18,7 +18,7 @@
     goods_warranty_year,
     goods_assembly_time,
     goods_warranty_year_unit,
-    goods_assembly_time_unit FROM goods_detail where id =#{goodsID,jdbcType=BIGNET} 
+    goods_assembly_time_unit FROM goods_detail where id =#{goodsID,jdbcType=BIGINT} 
     
    </select>
    

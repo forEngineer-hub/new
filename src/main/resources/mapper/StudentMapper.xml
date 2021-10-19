@@ -19,7 +19,7 @@
    </select>
    
 
-   <select id = "getPageRecords" parameterType = "ltd.newbee.mall.entity.SearchCondition">
+   <select id = "getPageRecords" parameterType = "java.lang.Long">
    	SELECT * FROM student ORDER BY student_id limit limit, order_by_colomn
    
    </select>

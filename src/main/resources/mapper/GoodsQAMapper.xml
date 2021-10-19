@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ltd.newbee.mall.dao.GoodsQAMapper">	
+	<select id="findGoodsQAList" parameterType="Map" resultType = "ltd.newbee.mall.entity.QuestionAndAnswer">
+		select qa.goods_id,qa.question_id,
+				qa.question,qa.answer,
+				qs.submit_date,qs.answers_date,
+		count(user_id)as help_num
+		from question_and_answer as qa,question_sankou as qs
+		<where>
+			<if test="goodsId!=null and goodsId!=''">
+				and qa.goods_id = #{goodsId}
+			</if>
+			and qs.goods_id=qa.goods_id
+			and qs.question_id=qa.question_id
+		</where>
+		group by qa.goods_id,
+				qa.question_id,
+				qa.answer,
+				qs.submit_date,
+				qs.answers_date
+		order by ${orderByColumn} ${ascOrDesc}
+		<if test="start!=null and limit!=null">
+			limit #{start},#{limit}
+		</if>
+	</select>	
+	<select id="getGoodsQA" parameterType="Map" resultType="int">
+        select count(goods_id) from question_sankou
+        <where>
+            <if test="goods_id!=null and goods_id!=''">
+                and goods_id = #{goodsId}
+            </if>
+        </where>
+    </select>
+    
+    <select id="getMaxGoodsId" parameterType="java.lang.Long" resultType="java.lang.Long">
+		select max(goods_id) from
+		question_and_answer
+		where goods_id
+		= #{goodsId,jdbcType=BIGINT}
+	</select>
+    	
+    <insert id="insertGoodsQA" parameterType="ltd.newbee.mall.entity.QuestionAndAnswer">
+        insert into question_and_answer
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="goodsId != null">
+                goods_id,
+            </if>
+  			<if test="questionId != null">
+                question_id,
+            </if>
+            <if test="question != null">
+                question,
+            </if>
+  			<if test="answer != null">
+                answer,
+            </if>
+  			<if test="submitDate != null">
+                submit_date,
+            </if>  
+            <if test="answersDate != null">
+                answers_date,
+            </if>                  
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="goodsId != null">
+                #{goodsId,jdbcType=BIGINT},
+            </if>
+            <if test="questionId != null">
+                #{questionId,jdbcType=BIGINT},
+            </if>
+            <if test="question != null">
+                #{question,jdbcType=VARCHAR},
+            </if>
+            <if test="answer != null">
+                #{answer,jdbcType=VARCHAR},
+            </if>
+            <if test="submitDate != null">
+                #{submitDate,jdbcType=DATE},
+            </if> 
+            <if test="answersDate != null">
+                #{answersDate,jdbcType=DATE},
+            </if>                                                                   
+        </trim>
+    </insert>
+</mapper>

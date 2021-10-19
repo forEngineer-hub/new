@@ -3,6 +3,6 @@
 <mapper namespace="ltd.newbee.mall.dao.GoodsImgMapper">
   <select id = "getGoodsImgListById" parameterType = "java.lang.Long" resultType = "ltd.newbee.mall.entity.GoodsImg">
     SELECT goods_id,
-    goods_img_url From goods_img where id =#{goodsId,jdbcType=BIGNET}   
+    goods_img_url From goods_img where id =#{goodsId,jdbcType=BIGINT}   
    </select>  
 </mapper>

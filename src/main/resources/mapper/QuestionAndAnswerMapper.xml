@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ltd.newbee.mall.dao.QuestionAndAnswerMapper">
+
+	
+   
+   <insert id="insertQuestionAndAnswer" parameterType="ltd.newbee.mall.entity.QuestionAndAnswer">
+		insert into question_and_answer
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="goodsId != null">
+				goods_id,
+			</if>
+			<if test="questionId != null">
+				question_id,
+			</if>
+			<if test="question != null">
+				question,
+			</if>
+			<if test="answer != null">
+				answer,
+			</if>
+			<if test="submitDate != null">
+				submit_date,
+			</if>
+			<if test="answersDate != null">
+				answers_date,
+			</if>
+		</trim>
+		
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="goodsId != null">
+				#{goods_id,jdbcType=BIGINT},
+			</if>
+			<if test="questionId != null">
+				#{question_id,jdbcType=BIGINT},
+			</if>
+			<if test="question != null">
+				#{question,jdbcType=VARCHAR},
+			</if>
+			<if test="answer != null">
+				#{answer,jdbcType=VARCHAR},
+			</if>
+			<if test="submitDate != null">
+				#{submit_date,jdbcType=DATE},
+			</if>
+			<if test="answersDate != null">
+				#{answers_date,jdbcType=DATE},
+			</if>
+		</trim>
+	</insert>
+		
+</mapper>
