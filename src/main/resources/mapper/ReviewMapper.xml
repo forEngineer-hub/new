@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ltd.newbee.mall.dao.ReviewMapper">
+
+	
+   
+   <insert id="insertReview" parameterType="ltd.newbee.mall.entity.Review">
+		insert into review
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="goodsId != null">
+				goods_id,
+			</if>
+			<if test="reviewId != null">
+				review_id,
+			</if>
+			<if test="reviewUserId != null">
+				review_user_id,
+			</if>
+			<if test="star != null">
+				star,
+			</if>
+			<if test="submitDate != null">
+				submit_date,
+			</if>
+			<if test="reviewTitle != null">
+				review_title,
+			</if>
+			<if test="reviewDetail != null">
+				review_detail,
+			</if>
+			<if test="imageUrl != null">
+				image_url,
+			</if>
+		</trim>
+		
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="goodsId != null">
+				#{goods_id,jdbcType=BIGINT},
+			</if>
+			<if test="reviewId != null">
+				#{review_id,jdbcType=BIGINT},
+			</if>
+			<if test="reviewUserId != null">
+				#{review_user_id,jdbcType=BIGINT},
+			</if>
+			<if test="star != null">
+				#{star,jdbcType=SMALLINT},
+			</if>
+			<if test="submitDate != null">
+				#{submit_date,jdbcType=DATE},
+			</if>
+			<if test="reviewTitle != null">
+				#{review_title,jdbcType=VARCHAR},
+			</if>
+			<if test="reviewDetail != null">
+				#{review_detail,jdbcType=VARCHAR},
+			</if>
+			<if test="imageUrl != null">
+				#{image_url,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+		
+</mapper>

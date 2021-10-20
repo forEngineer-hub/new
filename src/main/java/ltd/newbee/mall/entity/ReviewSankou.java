@@ -12,17 +12,12 @@ import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-public class Review 
+public class ReviewSankou 
 {
 	private long goodsId;
 	private long reviewId;
-	private long reviewUserId;
-	private short star; 
+	private long reviewSankouUserId;
 	private Date submitDate;
-	private String reviewTitle;
-	private String reviewDetail;
-	private String imageUrl;
-	private String helpNum;
 	
 	public long getGoodsId() 
 	{
@@ -44,24 +39,14 @@ public class Review
 		this.reviewId = reviewId;
 	}
 	
-	public long getReviewUserId() 
+	public long getReviewSankouUserId() 
 	{
-		return reviewUserId;
+		return reviewSankouUserId;
 	}
 	
-	public void setReviewUserId(long reviewUserId) 
+	public void setReviewSankouUserId(long reviewSankouUserId) 
 	{
-		this.reviewUserId = reviewUserId;
-	}
-	
-	public short getStar() 
-	{
-		return star;
-	}
-	
-	public void setStar(short star)
-	{
-		this.star = star;
+		this.reviewSankouUserId = reviewSankouUserId;
 	}
 	
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+9")
@@ -75,46 +60,5 @@ public class Review
 	{
 		this.submitDate = submitDate;
 	}
-	
-	public String getReviewTitle() 
-	{
-		return reviewTitle;
-	}
-	
-	public void setReviewTitle(String reviewTitle) 
-	{
-		this.reviewTitle = reviewTitle;
-	}
-	
-	public String getReviewDetail() 
-	{
-		return reviewDetail;
-	}
-	
-	public void setReviewDetail(String reviewDetail)
-	{
-		this.reviewDetail = reviewDetail;
-	}
-	
-	public String getImageUrl() 
-	{
-		return imageUrl;
-	}
-	
-	public void setImageUrl(String imageUrl) 
-	{
-		this.imageUrl = imageUrl;
-	}
-
-	public String getHelpNum() 
-	{
-		return helpNum;
-	}
-
-	public void setHelpNum(String helpNum) 
-	{
-		this.helpNum = helpNum;
-	}
-	
 	
 }

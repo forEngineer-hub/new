@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ltd.newbee.mall.dao.ReviewSankouMapper">
+
+	
+   
+   <insert id="insertReviewSankou" parameterType="ltd.newbee.mall.entity.ReviewSankou">
+		insert into review
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="goodsId != null">
+				goods_id,
+			</if>
+			<if test="reviewSankouUserId != null">
+				review_sankou_user_id,
+			</if>
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="submitDate != null">
+				submit_date,
+			</if>
+		</trim>
+		
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="goodsId != null">
+				#{goods_id,jdbcType=BIGINT},
+			</if>
+			<if test="reviewSankouUserId != null">
+				#{review_sankou_user_id,jdbcType=BIGINT},
+			</if>
+			<if test="userId != null">
+				#{user_id,jdbcType=BIGINT},
+			</if>
+			<if test="submitDate != null">
+				#{submit_date,jdbcType=DATE},
+			</if>
+		</trim>
+	</insert>
+		
+</mapper>

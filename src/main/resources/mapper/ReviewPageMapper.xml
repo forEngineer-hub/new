@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ltd.newbee.mall.dao.ReviewPageMapper">	
+	<select id="findReviewPageList" parameterType="Map" resultType = "ltd.newbee.mall.entity.Review">
+		select rs.goods_id,
+				rs.review_id,
+				r.star,
+				r.review_title,
+				r.review_detail,
+				r.review_user_id,
+				r.image_url,
+				r.submit_date,
+		count(rs.review_sankou_user_id)as help_num
+		from review as r,review_sankou as rs
+		<where>
+			<if test="goodsId!=null and goodsId!=''">
+				and rs.goods_id = #{goodsId}
+			</if>
+			and rs.goods_id=r.goods_id
+			and rs.review_id=r.review_id
+		</where>
+		group by rs.goods_id,
+				rs.review_id,
+				r.star,
+				r.review_title,
+				r.review_detail,
+				r.review_user_id,
+				r.image_url,
+				r.submit_date
+		order by ${orderByColumn} ${ascOrDesc}
+		<if test="start!=null and limit!=null">
+			limit #{start},#{limit}
+		</if>
+	</select>	
+	
+	<select id="getPageResult" parameterType="Map" resultType="int">
+        select count(goods_id) from review
+        <where>
+            <if test="goods_id!=null and goods_id!=''">
+                and goods_id = #{goodsId}
+            </if>
+        </where>
+    </select>
+    
+    <select id="getMaxGoodsId" parameterType="java.lang.Long" resultType="java.lang.Long">
+		select max(goods_id) from
+		review
+		where goods_id
+		= #{goodsId,jdbcType=BIGINT}
+	</select>
+</mapper>

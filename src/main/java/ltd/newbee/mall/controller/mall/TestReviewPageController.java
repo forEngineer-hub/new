@@ -14,20 +14,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ltd.newbee.mall.common.Constants;
-import ltd.newbee.mall.entity.QuestionAndAnswer;
-import ltd.newbee.mall.service.GoodsQAService;
+import ltd.newbee.mall.entity.Review;
+import ltd.newbee.mall.service.ReviewPageService;
 import ltd.newbee.mall.util.PageQueryUtil;
 import ltd.newbee.mall.util.Result;
 import ltd.newbee.mall.util.ResultGenerator;
 
 @Controller
-public class TestGoodsQAController 
+public class TestReviewPageController 
 {
 	@Resource
-	GoodsQAService goodsQAService;
+	ReviewPageService reviewPageService;
 	
 
-	@RequestMapping(value = "/goodsQAService",method = RequestMethod.GET)
+	@RequestMapping(value = "/reviewPageService",method = RequestMethod.GET)
     @ResponseBody
 	public Result list(@RequestParam Map<String, Object> params)
 	{
@@ -36,31 +36,7 @@ public class TestGoodsQAController
             return ResultGenerator.genErrorResult(300,"Error");
         }
         PageQueryUtil pageUtil = new PageQueryUtil(params);
-        return ResultGenerator.genSuccessResult(goodsQAService.getQuestionAndAnswer(pageUtil));
+        return ResultGenerator.genSuccessResult(reviewPageService.getReview(pageUtil));
 	}
-	
-	@ResponseBody
-	public Result insertQA(@RequestBody QuestionAndAnswer qa) 
-	{
-
-		long count = goodsQAService.insertGoodsQA(qa);
-
-		Long qaId = goodsQAService.getMaxGoodsId(qa.getGoodsId());
-    	qa.setGoodsId(qaId);
-
-		Date submitDate = new Date();
-		Date answersDate = new Date();
-		qa.setSubmitDate(submitDate);
-		qa.setAnswersDate(answersDate);
-
-		if (count <= 0) {
-			return ResultGenerator.genErrorResult(Constants.FETCH_ERROR, Constants.STUDENT_FETCH_ERROR_MESSAGE);
-		} else {
-			return ResultGenerator.genSuccessResult("挿入成功");
-		}
-	
-	}
-	
-	
 	
 }

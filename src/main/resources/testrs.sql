@@ -1,0 +1,1 @@
+SELECT * FROM newbee_mall_db.review_sankou;

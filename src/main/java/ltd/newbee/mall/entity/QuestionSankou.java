@@ -34,11 +34,13 @@ public class QuestionSankou
 	}
 	
 
-	public Long getUserID() {
+	public Long getUserID() 
+	{
 		return userID;
 	}
 
-	public void setUserID(Long userID) {
+	public void setUserID(Long userID) 
+	{
 		this.userID = userID;
 	}
 	
