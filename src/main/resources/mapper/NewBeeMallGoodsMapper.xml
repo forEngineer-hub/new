@@ -542,6 +542,7 @@
         <include refid = "basic_column"/>
         From tb_newbee_mall_goods_info
         where goods_name like CONCAT('%',#{keyword},'%')
+        
         <!-- where goods_name like CONCAT('%','#{keyword}','%')  '#{keyword}' 的single quote是错的-->
     </select>
 </mapper>
