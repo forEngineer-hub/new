@@ -72,7 +72,7 @@
 			</div>
 			<div class="clear"></div>
 		</div>
-		<div class="imgContainer">
+<!-- 		<div class="imgContainer">
 			<div class="slgrow">
 				<a class="slgprev" onclick="plusSlides(-1)">❮</a>
 				<th:block th:each="image: ${imageList}">
@@ -80,19 +80,10 @@
 						<img class="slgdemo" th:src="@{${image.path}}" th:attr="onclick=|clickImage('${image.path}')|" >
 					</div>
 				</th:block>
-
-				<!-- <div class="slgcolumn" >
-		      <img class="slgdemo" src="/goods-img/6a160b96-9b4a-4844-b335-feb31b1f5d8c.jpg"  onclick="currentSlide(1)" alt="The Woods">
-		    </div>
-		    <div class="slgcolumn" >
-		      <img class="slgdemo" src="/goods-img/6a160b96-9b4a-4844-b335-feb31b1f5d8c.jpg"  onclick="currentSlide(2)" alt="Cinque Terre">
-		    </div>
-		    <div class="slgcolumn" >
-		      <img class="slgdemo" src="/goods-img/6a160b96-9b4a-4844-b335-feb31b1f5d8c.jpg"  onclick="currentSlide(3)" alt="Mountains and fjords">
-		    </div> -->
 				<a class="slgnext" onclick="plusSlides(1)">❯</a>
 			</div>
-		</div>
+		</div> -->
+<!-- 		<div th:utext ="${#strings.replace( #strings.escapeXml( testBr ),'xx','&lt;br /&gt;')}"></div> -->
 		<div id="sizeQAContainer">
 			<div id="innerSizeQAContainer">
 				<section class="g-block-sm p-spec" id="js-product-spec">

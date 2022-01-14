@@ -76,6 +76,7 @@ public class NewBeeMallCarouselController {
     }
 
 
+
     /**
      * 修改
      */
@@ -99,6 +100,7 @@ public class NewBeeMallCarouselController {
      * 详情
      */
     @GetMapping("/carousels/info/{id}")
+    
     @ResponseBody
     public Result info(@PathVariable("id") Integer id) {
         Carousel carousel = newBeeMallCarouselService.getCarouselById(id);

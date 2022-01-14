@@ -1,7 +1,6 @@
 package ltd.newbee.mall.controller.mall;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 
@@ -9,11 +8,13 @@ import javax.annotation.Resource;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.util.CollectionUtils;
 
-import ltd.newbee.mall.entity.Student;
+import ltd.newbee.mall.entity.GoodsImage;
+import ltd.newbee.mall.entity.GoodsInfo;
+import ltd.newbee.mall.entity.NewBeeMallGoods;
+import ltd.newbee.mall.service.NewBeeMallGoodsService;
 import ltd.newbee.mall.service.StudentService;
-
-
 
 @SpringBootTest
 public class TestStudentController {
@@ -22,25 +23,37 @@ public class TestStudentController {
 	@Resource
 	StudentService studentService;
 	
-	// 01 王小丽
-	// 02 王小丫
-	String name = "小";
-	String name1 = "王小丽";
-	String name2 = "王小丫";
+	@Resource
+	NewBeeMallGoodsService newBeeMallGoodsService;
+	
 	
 	@Test
-	public void testLenght() {
-		ArrayList<Student> list = studentService.getStudentsListByName(name);
-		if(list !=null && !list.isEmpty()) {
-			assertEquals(2,list.size());
+	public void testGoodsInfo() {
+		GoodsInfo info = newBeeMallGoodsService.getGoodsInfoByPk(10700l);
+		assertEquals("iphone11",info.getName());
+		assertEquals("40cm",info.getSize());
+	}
+	
+	@Test
+	public void testGoodsImage() {
+		ArrayList<GoodsImage> list = newBeeMallGoodsService.getGoodsImage(10700l);
+
+		if (!CollectionUtils.isEmpty(list)) {
+			assertEquals(1,list.size());
+		}
+		list.size();
+	}
+	@Test
+	public void testGoodsPage() {
+		ArrayList<NewBeeMallGoods> list = newBeeMallGoodsService.getGoodsPage("iphone", 1);
+		if (!CollectionUtils.isEmpty(list)) {
+			assertEquals(3,list.size());
+			//10278在list当中
+			assertTrue(checkGoodsIdInList(list, 10278l));
 		}
 	}
-
-	@Test
-	public void ifMactchName() {
-		ArrayList<Student> list = studentService.getStudentsListByName(name);
-		for(Student s :list) {
-			assertTrue(name1.equals(s.getStudentName()) || name2.equals(s.getStudentName()) );
-		}
+	
+	public boolean checkGoodsIdInList(ArrayList<NewBeeMallGoods> list, long goodsId) {
+		return true;
 	}
 }

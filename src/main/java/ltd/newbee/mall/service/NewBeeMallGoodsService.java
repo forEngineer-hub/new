@@ -8,11 +8,14 @@
  */
 package ltd.newbee.mall.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ltd.newbee.mall.controller.vo.GoodsReviewVo;
 import ltd.newbee.mall.entity.GoodsDescEntity;
+import ltd.newbee.mall.entity.GoodsDetail;
 import ltd.newbee.mall.entity.GoodsImage;
+import ltd.newbee.mall.entity.GoodsInfo;
 import ltd.newbee.mall.entity.GoodsQa;
 import ltd.newbee.mall.entity.GoodsReviewHelpNum;
 import ltd.newbee.mall.entity.NewBeeMallGoods;
@@ -106,4 +109,12 @@ public interface NewBeeMallGoodsService {
     boolean updateReviewNum(GoodsReviewHelpNum goodsReviewHelpNum);
     
     long getGoodsReviewHelpNum(int reviewId);
+    
+    ArrayList<GoodsDetail> getGoodsDetail(long goodsId);
+    
+    GoodsInfo getGoodsInfoByPk(long id);
+    
+    ArrayList<GoodsImage> getGoodsImage(long id);
+    
+    ArrayList<NewBeeMallGoods> getGoodsPage(String keyword, int pageNo);
 }

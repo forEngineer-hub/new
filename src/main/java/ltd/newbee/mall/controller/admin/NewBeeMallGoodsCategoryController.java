@@ -61,6 +61,22 @@ public class NewBeeMallGoodsCategoryController {
         PageQueryUtil pageUtil = new PageQueryUtil(params);
         return ResultGenerator.genSuccessResult(newBeeMallCategoryService.getCategorisPage(pageUtil));
     }
+    
+	/*
+	 * @RequestMapping(value = "/categories/list", method = RequestMethod.GET)
+	 * 
+	 * @ResponseBody public Result list2(@RequestParam Map<String, Object> params) {
+	 * if (StringUtils.isEmpty(params.get("goodsId"))) { return
+	 * ResultGenerator.genFailResult("参数异常！"); } //PageQueryUtil pageUtil = new
+	 * PageQueryUtil(params); //查询总共该当商品有多少件 //int count = xxSer.getCount(); int
+	 * count = 181; if(params.get("callTimes").equals("1")) { params.put("limit",
+	 * 3); params.put("start",0); }else { params.put("start",3); params.put("limit",
+	 * count); }
+	 * 
+	 * return
+	 * ResultGenerator.genSuccessResult(newBeeMallCategoryService.getCategorisPage(
+	 * params)); }
+	 */
 
     /**
      * 列表

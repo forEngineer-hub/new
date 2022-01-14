@@ -10,19 +10,22 @@ package ltd.newbee.mall.service.impl;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import ltd.newbee.mall.common.ServiceResultEnum;
-import ltd.newbee.mall.controller.vo.GoodsImageVO;
 import ltd.newbee.mall.controller.vo.GoodsReviewVo;
 import ltd.newbee.mall.controller.vo.NewBeeMallSearchGoodsVO;
 import ltd.newbee.mall.dao.NewBeeMallGoodsMapper;
 import ltd.newbee.mall.entity.GoodsDescEntity;
+import ltd.newbee.mall.entity.GoodsDetail;
 import ltd.newbee.mall.entity.GoodsImage;
+import ltd.newbee.mall.entity.GoodsInfo;
 import ltd.newbee.mall.entity.GoodsQa;
 import ltd.newbee.mall.entity.GoodsReview;
 import ltd.newbee.mall.entity.GoodsReviewHelpNum;
@@ -167,5 +170,33 @@ public class NewBeeMallGoodsServiceImpl implements NewBeeMallGoodsService {
 		
 		return goodsMapper.getGoodsReviewHelpNum(reviewId);
 	}
+	
+	@Override
+	public ArrayList<GoodsDetail> getGoodsDetail(long goodsId) {
+		
+		return goodsMapper.getGoodsDetail(goodsId);
+	}
+
+	@Override
+	public GoodsInfo getGoodsInfoByPk(long id) {
+		
+		return goodsMapper.getGoodsInfoByPK(id);
+	}
+
+	@Override
+	public ArrayList<GoodsImage> getGoodsImage(long id) {
+		
+		return goodsMapper.getGoodsImage(id);
+	}
+
+	@Override
+	public ArrayList<NewBeeMallGoods> getGoodsPage(String keyword, int pageNo) {
+		int start = (pageNo-1)*3;
+		Map<String,Object> paraMap = new HashMap<String,Object>();
+		paraMap.put("keyword", keyword);
+		paraMap.put("start", start);
+		return goodsMapper.selectBygoodsPage(paraMap);
+	}
+	
 	
 }

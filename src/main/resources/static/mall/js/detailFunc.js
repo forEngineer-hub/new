@@ -6,6 +6,12 @@ $(function() {
 	$(".previousPage").css("pointer-events", "none").css("color","grey");
 	//閉じるボタンを非表示させる
 	$("#closeBtn").hide();
+	debugger;
+	var imgArr = document.getElementsByTagName("img");
+	imgArr = [...imgArr];
+	imgArr.map( img => console.log(img));
+	/*var numbers = [12,23,232];
+	numbers.map(e => console.log(e));*/
 });
 
 
@@ -172,8 +178,11 @@ function paging(num) {
 						
 					}
 					for(let i = 0; i < result.data.list.length; i++) {
+						
 						el = $(".hiddenQaDiv").clone().removeClass("hiddenQaDiv");
 						el.find(".zv-cqa-q-text").html(result.data.list[i].question);
+						el.myParam  = "xxx";
+						el.find(".zv-cqa-q-text").click(myFunction);
 						
 						$("#detailFooter").before(el);
 						//el.appendTo("#ZVCQuestionsArea");
@@ -249,13 +258,13 @@ function getGoodsId(){
 function clickImage(src){
 	$(".swiper-container").find("img").attr('src',src);
 	
-	var length = 3;
+	/*var length = 3;
 	for(var i =2; i<= length+1; i++){
 		var imageSrc = $( ".slgrow div:nth-child("+ i +")" ).find("img").attr('src'); 
 		if(imageSrc == src){
 			currentImageIndex = i-1;
 		}
-	}
+	}*/
 }
 
 // num is 1 or -1

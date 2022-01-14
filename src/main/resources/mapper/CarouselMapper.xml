@@ -168,4 +168,8 @@
             #{id}
         </foreach>
     </update>
+
+    <sql id="goods_info_list">
+	goods_id,goods_name,goods_intro,goods_category_id,goods_cover_img,goods_carousel,goods_detail_content,original_price,selling_price,stock_num,tag,goods_sell_status,create_user,create_time,update_user,update_time
+	</sql>	
 </mapper>

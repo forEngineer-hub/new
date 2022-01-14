@@ -208,3 +208,7 @@
     width: 100%;
     margin-top: 2px;
 }
+#innerSizeQAContainer {
+    justify-content: space-between;
+    display: flex;
+}

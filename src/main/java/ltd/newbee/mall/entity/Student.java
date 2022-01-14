@@ -1,6 +1,6 @@
 package ltd.newbee.mall.entity;
 
-public class Student {
+public class Student extends PagingParamBean{
 	private int studentId;
 	private String studentName;
 	public int getStudentId() {

@@ -504,4 +504,44 @@
 	 SELECT review_num
  		FROM review where id = #{reviewId,jdbcType=BIGINT}
    </select>
+   <select id="getGoodsDetail" parameterType="long" resultType="ltd.newbee.mall.entity.GoodsDetail">
+	 SELECT goods_id,
+			goods_color,
+			goods_material,
+			goods_size_weight,
+			goods_size_height,
+			goods_size_width,
+			goods_size_length,
+			goods_size_weight_unit,
+			goods_size_length_unit,
+			goods_size_height_unit,
+			goods_size_width_unit,
+			goods_package_size,
+			goods_warranty_year,
+			goods_warranty_year_unit,
+			goods_assembly_time,
+			goods_assembly_time_init
+ 		FROM goods_detail where goods_id = #{goodsId,jdbcType=BIGINT}
+   </select>
+   <select id="getGoodsInfoByPK" parameterType="long" resultType="ltd.newbee.mall.entity.GoodsInfo">
+	 SELECT id,name,size,pa,weight,housyou,package_size,time
+ 		FROM goods_info where id = #{id,jdbcType=BIGINT}
+   </select>
+   <select id="getGoodsImage" parameterType="long" resultType="ltd.newbee.mall.entity.GoodsImage">
+	 SELECT id,path
+ 		FROM goods_image where id = #{id,jdbcType=BIGINT}
+   </select>
+   
+   <sql id = "basic_column">
+    goods_id,goods_name,goods_intro,goods_category_id,goods_cover_img,goods_carousel,goods_detail_content,original_price,
+    selling_price,stock_num,tag,goods_sell_status,create_user,create_time,update_user,update_time
+   </sql>
+    
+   <select id="selectBygoodsPage" parameterType="Map" resultType="ltd.newbee.mall.entity.NewBeeMallGoods">
+        select 
+        <include refid = "basic_column"/>
+        From tb_newbee_mall_goods_info
+        where goods_name like CONCAT('%',#{keyword},'%')
+        <!-- where goods_name like CONCAT('%','#{keyword}','%')  '#{keyword}' 的single quote是错的-->
+    </select>
 </mapper>

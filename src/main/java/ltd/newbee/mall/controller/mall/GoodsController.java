@@ -8,14 +8,10 @@
  */
 package ltd.newbee.mall.controller.mall;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
-import java.util.TimeZone;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -40,10 +36,12 @@ import ltd.newbee.mall.controller.vo.GoodsReviewVo;
 import ltd.newbee.mall.controller.vo.NewBeeMallGoodsDetailVO;
 import ltd.newbee.mall.controller.vo.NewBeeMallUserVO;
 import ltd.newbee.mall.controller.vo.SearchPageCategoryVO;
+import ltd.newbee.mall.entity.GoodsDetail;
 import ltd.newbee.mall.entity.GoodsImage;
 import ltd.newbee.mall.entity.GoodsQa;
 import ltd.newbee.mall.entity.GoodsReviewHelpNum;
 import ltd.newbee.mall.entity.NewBeeMallGoods;
+import ltd.newbee.mall.service.GoodsImageService;
 import ltd.newbee.mall.service.NewBeeMallCategoryService;
 import ltd.newbee.mall.service.NewBeeMallGoodsService;
 import ltd.newbee.mall.util.BeanUtil;
@@ -54,8 +52,11 @@ import ltd.newbee.mall.util.ResultGenerator;
 
 @Controller
 public class GoodsController {
-
-    @Resource
+	
+	@Resource 
+	private GoodsImageService goodsImageService;
+    
+	@Resource
     private NewBeeMallGoodsService newBeeMallGoodsService;
 
     @Resource
@@ -63,7 +64,7 @@ public class GoodsController {
 
     @GetMapping({"/search", "/search.html"})
     public String searchPage(@RequestParam Map<String, Object> params, HttpServletRequest request) {
-        if (StringUtils.isEmpty(params.get("page"))) {
+    	if (StringUtils.isEmpty(params.get("page"))) {
             params.put("page", 1);
         }
         params.put("limit", Constants.GOODS_SEARCH_PAGE_LIMIT);
@@ -98,7 +99,7 @@ public class GoodsController {
 
     @GetMapping("/goods/detail/{goodsId}")
     public String detailPage(@PathVariable("goodsId") Long goodsId, HttpServletRequest request) {
-        
+    	ArrayList<GoodsImage> list = goodsImageService.getGoodsImages(goodsId);
     	if (goodsId < 1) {
             return "error/error_5xx";
         }
@@ -111,7 +112,16 @@ public class GoodsController {
         }
         //added by ka 2021/04/20 add imageList
         List<GoodsImage> imageEntityList = newBeeMallGoodsService.getImageList(goodsId);
-        
+        ArrayList<List<GoodsImage>> outterList = new ArrayList<List<GoodsImage>>();
+        ArrayList<GoodsImage> innerList = new ArrayList<GoodsImage>();
+        for(int i = 0; i < imageEntityList.size(); i++) {
+        	innerList.add(imageEntityList.get(i));
+        	if( (i+1)%4 == 0  || i== imageEntityList.size() -1) {
+        		ArrayList<GoodsImage> tempList = (ArrayList<GoodsImage>) BeanUtil.copyList(innerList, GoodsImage.class);
+        		outterList.add(tempList);
+        		innerList.clear();
+        	}
+        }
         //copy list
         List<GoodsImageVO> imageVoList = BeanUtil.copyList(imageEntityList, GoodsImageVO.class);
         
@@ -121,9 +131,11 @@ public class GoodsController {
         request.setAttribute("goodsDetail", goodsDetailVO);
         // set imageList
         request.setAttribute("imageList", imageVoList);
+        request.setAttribute("outterList", outterList);
         
         //added by foren 2021/04/15 詳細画面追加対応
         //newBeeMallGoodsService.getImageList("1");
+        ArrayList<GoodsDetail> goodsDetailList = newBeeMallGoodsService.getGoodsDetail(goodsId);
         return "mall/detail";
     }
 
@@ -219,7 +231,7 @@ public class GoodsController {
     	}
 	    
     }
-    @CrossOrigin(origins = "http://localhost:3001")
+    @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(value = "/searchHistory/getSearchHistory", method = RequestMethod.POST)
     @ResponseBody
     public Result getSearchHistory() {

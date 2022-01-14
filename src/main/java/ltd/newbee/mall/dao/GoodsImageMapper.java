@@ -6,22 +6,14 @@
  * Copyright (c) 2019-2020 十三 all rights reserved.
  * 版权所有，侵权必究！
  */
-package ltd.newbee.mall.service;
+package ltd.newbee.mall.dao;
 
 import java.util.ArrayList;
 
-import ltd.newbee.mall.entity.Student;
+import ltd.newbee.mall.entity.GoodsImage;
 
-public interface StudentService {
+public interface GoodsImageMapper {
 
-
-    /**
-     * 取得学生list，通过学生名字来进行模糊查询
-     *
-     * @param loginUserId
-     * @return 学生list
-     */
-    ArrayList<Student> getStudentsListByName(String name);
-    
-    int insertStudent(Student s);
+	public ArrayList<GoodsImage> getImagesByGoodsId(long goodsId);
+	
 }

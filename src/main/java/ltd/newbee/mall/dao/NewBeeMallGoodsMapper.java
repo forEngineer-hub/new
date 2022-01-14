@@ -10,12 +10,16 @@ package ltd.newbee.mall.dao;
 
 
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
 import ltd.newbee.mall.entity.GoodsDescEntity;
+import ltd.newbee.mall.entity.GoodsDetail;
 import ltd.newbee.mall.entity.GoodsImage;
+import ltd.newbee.mall.entity.GoodsInfo;
 import ltd.newbee.mall.entity.GoodsQa;
 import ltd.newbee.mall.entity.GoodsReview;
 import ltd.newbee.mall.entity.GoodsReviewHelpNum;
@@ -39,8 +43,8 @@ public interface NewBeeMallGoodsMapper {
 
     int updateByPrimaryKey(NewBeeMallGoods record);
 
-    List<NewBeeMallGoods> findNewBeeMallGoodsList(PageQueryUtil pageUtil);
     
+    List<NewBeeMallGoods> findNewBeeMallGoodsList(PageQueryUtil pageUtil);
     int getTotalNewBeeMallGoods(PageQueryUtil pageUtil);
 
     List<NewBeeMallGoods> selectByPrimaryKeys(List<Long> goodsIds);
@@ -79,4 +83,11 @@ public interface NewBeeMallGoodsMapper {
     
     long getGoodsReviewHelpNum(int reviewId);
     
+    ArrayList<GoodsDetail> getGoodsDetail(long goodsId);
+    
+    GoodsInfo getGoodsInfoByPK(long id); //ctrl shift o
+    
+    ArrayList<GoodsImage> getGoodsImage(long id);
+    
+    ArrayList<NewBeeMallGoods> selectBygoodsPage(Map<String,Object> map);
 }

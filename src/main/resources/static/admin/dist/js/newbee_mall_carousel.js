@@ -130,6 +130,7 @@ $('#saveButton').click(function () {
             });
         }
     });
+
 });
 
 function carouselEdit() {

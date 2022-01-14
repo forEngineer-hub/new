@@ -18,7 +18,9 @@ var newbeeSwiper = new Swiper('.swiper-container', {
 })
 debugger;
 $('.all-sort-list > .item').hover(function () {
-
+	
+	debugger;
+	
     var eq = $('.all-sort-list > .item').index(this),				//获取当前滑过是第几个元素
         h = $('.all-sort-list').offset().top,						//获取当前下拉菜单距离窗口多少像素
         s = $(window).scrollTop(),									//获取游览器滚动了多少高度
@@ -47,6 +49,7 @@ $('.all-sort-list > .item').hover(function () {
     $(this).addClass('hover');
     $(this).children('.item-list').css('display', 'block');
 }, function () {
+	debugger;
     $(this).removeClass('hover');
     $(this).children('.item-list').css('display', 'none');
 });

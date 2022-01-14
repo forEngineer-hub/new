@@ -54,7 +54,7 @@ public class UploadController {
 
     @PostMapping({"/upload/file"})
     @ResponseBody
-    public Result upload(@RequestParam("goodsId") Long goodsId,HttpServletRequest httpServletRequest, @RequestParam("file") MultipartFile file) throws URISyntaxException {
+    public Result upload(HttpServletRequest httpServletRequest, @RequestParam("file") MultipartFile file) throws URISyntaxException {
         String fileName = file.getOriginalFilename();
         String suffixName = fileName.substring(fileName.lastIndexOf("."));
         //生成文件名称通用方法
