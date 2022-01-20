@@ -541,8 +541,14 @@
         select 
         <include refid = "basic_column"/>
         From tb_newbee_mall_goods_info
-        where goods_name like CONCAT('%',#{keyword},'%')
-        
+       <where>
+        <if test="keyword!=null and keyword!=''">
+       		and goods_name like CONCAT('%',#{keyword},'%')
+        </if>
+<!--         <if test="cat!=null and cat!=''">
+       		and goods_category_id = #{cat, jdbcType = INTEGER}
+        </if> -->
+       </where>
         <!-- where goods_name like CONCAT('%','#{keyword}','%')  '#{keyword}' 的single quote是错的-->
     </select>
 </mapper>
