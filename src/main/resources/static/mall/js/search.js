@@ -1,8 +1,7 @@
 var MouseOnSearchResultUl;
-
+var index = 0;
 $(function () {
     $('#keyword').keypress(function (e) {
-		debugger;
         var key = e.which; //e.which是按键的值
         if (key == 13) {
             var q = $(this).val();
@@ -11,11 +10,32 @@ $(function () {
             }
         }
     });
-
+	
 });
 
-function search() {
+function slide(leftOrRight){
+	console.log(leftOrRight);
+	var eles = document.getElementsByClassName("swiper-slide");
+	var length = eles.length;
+	if(leftOrRight === 'left'){
+		index --;
+		if (index === -1){
+			index = length -1;
+		}
+	}else{
+		index ++;
+		if ( index >= length){
+			index = 0;
+		}
+	}
+	console.log('index is ' + index);
+	
+	// 0 = > 1  -500* 1
+	// 1 => 2  -500*2 
+}
 
+function search() {
+	debugger;
     var q = $('#keyword').val();
     if (q && q != '') {
         window.location.href = '/search?keyword=' + q;
@@ -24,7 +44,7 @@ function search() {
 
 //ajax与后台通信，查找查询履歴
 $( "#keyword" ).focus(function(e) {
-	debugger;
+	
 	var keyword = $("#keyword").val();
 	// when input is filled , trigger keyup event
 	//トリガー
@@ -120,7 +140,7 @@ function showResultForLikeSearch(result){
 }
 
 function appendToSearchBar(el){
-	debugger;
+	
 	var searchBar = $("#keyword"); //jquery object
 
 	//var searchBar = document.getElementById("keyword");// dom

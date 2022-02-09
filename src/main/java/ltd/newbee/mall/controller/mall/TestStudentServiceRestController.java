@@ -17,6 +17,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.util.CollectionUtils;
@@ -29,6 +30,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ltd.newbee.mall.common.Constants;
+import ltd.newbee.mall.controller.vo.NewBeeMallUserVO;
 import ltd.newbee.mall.entity.Student;
 import ltd.newbee.mall.service.PagingIF;
 import ltd.newbee.mall.service.StudentService;
@@ -85,17 +87,22 @@ public class TestStudentServiceRestController {
 	
 	@RequestMapping(value = "/students", method = RequestMethod.POST)
 	@ResponseBody
-	public Result insertStudent(@RequestBody Student s) {
-		pagingIF.setPagingParam(s);
-		if (s.getStudentName() == null | s.getStudentName().isEmpty()) {
-			return ResultGenerator.genErrorResult(301, "name invalid");
-		}
-		int count = studentService.insertStudent(s);
-		if (count <= 0) {
-			return ResultGenerator.genErrorResult(Constants.FETCH_ERROR, Constants.STUDENT_FETCH_ERROR_MESSAGE);
-		} else {
-			return ResultGenerator.genSuccessResult("挿入できました。");
-		}
+//	public Result insertStudent(@RequestBody Student s,HttpSession httpSession) {
+	public Result insertStudent(@RequestBody Map<String,Object> s,HttpSession httpSession) {		
+		NewBeeMallUserVO user = (NewBeeMallUserVO) httpSession.getAttribute(Constants.MALL_USER_SESSION_KEY);
+    	
+		return ResultGenerator.genSuccessResult(s);
+    	
+//		pagingIF.setPagingParam(s);
+//		if (s.getStudentName() == null | s.getStudentName().isEmpty()) {
+//			return ResultGenerator.genErrorResult(301, "name invalid");
+//		}
+//		int count = studentService.insertStudent(s);
+//		if (count <= 0) {
+//			return ResultGenerator.genErrorResult(Constants.FETCH_ERROR, Constants.STUDENT_FETCH_ERROR_MESSAGE);
+//		} else {
+//			return ResultGenerator.genSuccessResult("挿入できました。");
+//		}
 	}
 
 	@RequestMapping(value = "/csvInsertCampaign", method = RequestMethod.POST)

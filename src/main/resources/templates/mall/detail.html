@@ -3,6 +3,12 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="mall/header::head-fragment('NewBee商城-商品详情','detail')">
 </head>
+<head>
+ <link rel="stylesheet" th:href="@{/mall/styles/fr011.css}">
+ <link rel="stylesheet" th:href="@{/mall/styles/all_response.css}">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">	
+</head>
 <body>
 	<header th:replace="mall/header::header-fragment"></header>
 
@@ -21,6 +27,37 @@
 			<div class="left fl" style="position: relative;">
 				<div class="swiper-container fl">
 					<img th:src="@{${goodsDetail.goodsCoverImg}}">
+				</div>
+				<div class="p-grid_gallery">
+				<div class="p-gallery_thumbs">
+				    <div class="swiper-container p-gallery_thumbs_el swiper-container-horizontal">
+				        <div class="swiper-wrapper js-gallery-thumbnails">
+				            <div class="swiper-slide swiper-slide-active" style="width: 362px;">
+				                <div class="p-gallery_thumbs_item p-gallery_thumbs_item-active" role="button" tabindex="0" data-index="0" style="background-image:url(https://www.nitori-net.jp/ecstatic/image/product/5651205/565120501.jpg?imwidth=97&amp;ts=20210115150146714)"></div>
+				                <div class="p-gallery_thumbs_item" role="button" tabindex="0" data-index="1" style="background-image:url(https://www.nitori-net.jp/ecstatic/image/product/5651205/565120502.jpg?imwidth=97&amp;ts=20210115150146714)"></div>
+				                <div class="p-gallery_thumbs_item" role="button" tabindex="0" data-index="2" style="background-image:url(https://www.nitori-net.jp/ecstatic/image/product/5651205/565120503.jpg?imwidth=97&amp;ts=20210115150146714)"></div>
+				                <div class="p-gallery_thumbs_item" role="button" tabindex="0" data-index="3" style="background-image:url(https://www.nitori-net.jp/ecstatic/image/product/5651205/565120504.jpg?imwidth=97&amp;ts=20210115150146714)"></div>
+				                <div class="p-gallery_thumbs_item" role="button" tabindex="0" data-index="4" style="background-image:url(https://www.nitori-net.jp/ecstatic/image/product/5651205/565120505.jpg?imwidth=97&amp;ts=20210115150146714)"></div>
+				                <div class="p-gallery_thumbs_item" role="button" tabindex="0" data-index="5" style="background-image:url(https://www.nitori-net.jp/ecstatic/image/product/5651205/565120506.jpg?imwidth=97&amp;ts=20210115150146714)"></div>
+				                <div class="p-gallery_thumbs_item" role="button" tabindex="0" data-index="6" style="background-image:url(https://www.nitori-net.jp/ecstatic/image/product/5651205/565120507.jpg?imwidth=97&amp;ts=20210115150146714)"></div>
+				                <div class="p-gallery_thumbs_item" role="button" tabindex="0" data-index="7" style="background-image:url(https://www.nitori-net.jp/ecstatic/image/product/5651205/565120508.jpg?imwidth=97&amp;ts=20210115150146714)"></div>
+				                </div>
+				                <div class="swiper-slide swiper-slide-next" style="width: 362px;">
+				                <div class="p-gallery_thumbs_item" role="button" tabindex="0" data-index="8" style="background-image:url(https://www.nitori-net.jp/ecstatic/image/product/5651205/565120509.jpg?imwidth=97&amp;ts=20210115150146714)"></div>
+				                <div class="p-gallery_thumbs_item" role="button" tabindex="0" data-index="9" style="background-image:url(https://www.nitori-net.jp/ecstatic/image/product/5651205/565120510.jpg?imwidth=97&amp;ts=20210115150146714)"></div>
+				                <div class="p-gallery_thumbs_item" role="button" tabindex="0" data-index="10" style="background-image:url(https://www.nitori-net.jp/ecstatic/image/product/5651205/565120511.jpg?imwidth=97&amp;ts=20210115150146714)"></div>
+				                <div class="p-gallery_thumbs_item" role="button" tabindex="0" data-index="11" style="background-image:url(https://www.nitori-net.jp/ecstatic/image/product/5651205/565120512.jpg?imwidth=97&amp;ts=20210115150146714)"></div>
+				                <div class="p-gallery_thumbs_item" role="button" tabindex="0" data-index="12" style="background-image:url(https://www.nitori-net.jp/ecstatic/image/product/5651205/565120513.jpg?imwidth=97&amp;ts=20210728142137272)"></div>
+				                <div class="p-gallery_thumbs_item" role="button" tabindex="0" data-index="13" style="background-image:url(https://www.nitori-net.jp/ecstatic/image/product/5651205/565120598.jpg?imwidth=97&amp;ts=20210901151133879)"></div>
+				                </div>
+				                </div>
+				    </div>
+				    <div class="p-gallery_controls">
+				        <div class="p-gallery_btn p-gallery_prev swiper-button-disabled"  onclick="slide('left')"><i class="g-i g-i-arrow-l" aria-hidden="true"></i></div>
+				        <div class="p-gallery_pagination swiper-pagination-clickable swiper-pagination-bullets"><span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span><span class="swiper-pagination-bullet"></span></div>
+				        <div class="p-gallery_btn p-gallery_next" onclick="slide('right')"><i class="g-i g-i-arrow-r" aria-hidden="true" ></i></div>
+				    </div>
+					</div>
 				</div>
 			</div>
 			<div class="right fr">
@@ -72,6 +109,7 @@
 			</div>
 			<div class="clear"></div>
 		</div>
+		
 <!-- 		<div class="imgContainer">
 			<div class="slgrow">
 				<a class="slgprev" onclick="plusSlides(-1)">❮</a>
@@ -168,6 +206,7 @@
 								src="https://tag.voice.zetacx.net/__zv_action_log.gif?user_id=bb509976-7f7d-481c-aa65-93b0650c7380&amp;session_key=4541238c-b398-4e25-84b9-a1c1ac5b2d1f&amp;at=2021-04-15T00:07:27.877Z&amp;path=https%3A%2F%2Fwww.nitori-net.jp%2Fec%2Fproduct%2F1141058s%2F%3Frc%3Dset&amp;merchant=21f1714d-68e4-49b8-bc66-fed761ce701a&amp;needs_login=1&amp;user=&amp;page=1&amp;order_by=desc&amp;item_group_id=1141058s&amp;sort=created_at&amp;type=detail">
 							<p class="zv-heading">カスタマーQ&amp;A</p>
 							<div class="zv-cqa hiddenQaDiv">
+								 <input type="hidden" class="hiddenQaId">
 								<div class="zv-cqa-question">
 									<span class="zv-space">Q. </span> <span class="zv-cqa-q-text">この商品は脚を外してロースタイルにすることは可能でしょうか？</span>
 								</div>
@@ -248,7 +287,7 @@
 								<div class="zv-cqa-step">
 									<div class="zv-cqa-step-link">
 										<span class="previousPage">前ページ</span> <span>全2件</span> <span>ページ<span
-											id="currentPageNo">1</span>/5
+											id="currentPageNo">1</span>/<span id="totalPage" th:text="${totalPage}"></span>
 										</span> <span class="nextPage">次ページ</span>
 									</div>
 									<div class="zv-select-wrap">
@@ -592,7 +631,7 @@
 									</span>
 								</a>
 							</p>
-							<p class="g-align-tc" id="closeBtn">
+							<!-- <p class="g-align-tc" id="closeBtn">
 								<a class="g-link displaymorereview" href="#p-reviewMore"
 									role="button" aria-expanded="false"
 									aria-controls="p-reviewMore" data-label="閉じる"
@@ -601,7 +640,7 @@
 									
 									<span id="closeLabel">閉じる</span>
 								</a>
-							</p>
+							</p> -->
 						</div>
 					</section>
 				</section>

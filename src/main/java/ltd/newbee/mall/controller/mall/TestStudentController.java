@@ -1,13 +1,17 @@
 package ltd.newbee.mall.controller.mall;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.samePropertyValuesAs;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.hamcrest.MatcherAssert.*;
-import static org.hamcrest.Matchers.*;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.annotation.Resource;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.util.CollectionUtils;
@@ -21,7 +25,8 @@ import ltd.newbee.mall.service.StudentService;
 
 @SpringBootTest
 public class TestStudentController {
-
+	
+	private static final Logger logger = LogManager.getLogger(TestStudentController.class);
 	//用以下注释导入service
 	@Resource
 	StudentService studentService;
@@ -32,6 +37,7 @@ public class TestStudentController {
 	@Test
 	
 	public void testArrayList() {
+
 		ArrayList<Student> aLs1 = new ArrayList<Student>();
 		Student s1 = new Student();
 		s1.setStudentId(100);
@@ -58,13 +64,10 @@ public class TestStudentController {
 		for( int i = 0; i < aLs1.size(); i ++) {
 			Student st1 = aLs1.get(i);
 			Student st2 = aLs2.get(i);
+			logger.debug("Hello from Log4j 2 - num : {}", st2);
 //			assertEquals(st1,st2);
 			assertThat(st1, samePropertyValuesAs(st2));
 		}
-		
-		//assertEquals(aLs1,aLs2);
-		
-		
 		
 	}
 	@Test

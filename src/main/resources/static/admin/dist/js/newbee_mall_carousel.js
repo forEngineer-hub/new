@@ -110,6 +110,7 @@ $('#saveButton').click(function () {
         contentType: 'application/json',
         data: JSON.stringify(data),
         success: function (result) {
+			debugger;
             if (result.resultCode == 200) {
                 $('#carouselModal').modal('hide');
                 swal("保存成功", {
@@ -125,6 +126,7 @@ $('#saveButton').click(function () {
             ;
         },
         error: function () {
+			debugger;
             swal("操作失败", {
                 icon: "error",
             });

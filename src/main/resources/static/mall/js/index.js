@@ -16,7 +16,7 @@ var newbeeSwiper = new Swiper('.swiper-container', {
         prevEl: '.swiper-button-prev',
     }
 })
-debugger;
+
 $('.all-sort-list > .item').hover(function () {
 	
 	debugger;

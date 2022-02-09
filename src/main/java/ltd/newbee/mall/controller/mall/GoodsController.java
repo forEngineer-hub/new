@@ -10,7 +10,6 @@ package ltd.newbee.mall.controller.mall;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -18,6 +17,9 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.logging.log4j.LogManager;
+//import org.slf4j.Logger;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -37,23 +39,28 @@ import ltd.newbee.mall.controller.vo.GoodsReviewVo;
 import ltd.newbee.mall.controller.vo.NewBeeMallGoodsDetailVO;
 import ltd.newbee.mall.controller.vo.NewBeeMallUserVO;
 import ltd.newbee.mall.controller.vo.SearchPageCategoryVO;
+import ltd.newbee.mall.controller.vo.StudentVo;
 import ltd.newbee.mall.entity.GoodsDetail;
 import ltd.newbee.mall.entity.GoodsImage;
 import ltd.newbee.mall.entity.GoodsQa;
 import ltd.newbee.mall.entity.GoodsReviewHelpNum;
 import ltd.newbee.mall.entity.NewBeeMallGoods;
+import ltd.newbee.mall.entity.Student;
 import ltd.newbee.mall.service.GoodsImageService;
 import ltd.newbee.mall.service.NewBeeMallCategoryService;
 import ltd.newbee.mall.service.NewBeeMallGoodsService;
+import ltd.newbee.mall.service.StudentService;
 import ltd.newbee.mall.util.BeanUtil;
 import ltd.newbee.mall.util.PageQueryUtil;
 import ltd.newbee.mall.util.PageResult;
 import ltd.newbee.mall.util.Result;
 import ltd.newbee.mall.util.ResultGenerator;
+//import org.slf4j.LoggerFactory;
 
 @Controller
 public class GoodsController {
-	
+	private static final Logger logger = LogManager.getLogger(TestStudentController.class);
+//	Logger logger = LoggerFactory.getLogger(GoodsController.class);
 	@Resource 
 	private GoodsImageService goodsImageService;
     
@@ -63,6 +70,9 @@ public class GoodsController {
     @Resource
     private NewBeeMallCategoryService newBeeMallCategoryService;
 
+    @Resource
+    private StudentService studentService;
+    
     @GetMapping({"/search", "/search.html"})
     public String searchPage(@RequestParam Map<String, Object> params, HttpServletRequest request) {
     	if (StringUtils.isEmpty(params.get("page"))) {
@@ -100,6 +110,18 @@ public class GoodsController {
 
     @GetMapping("/goods/detail/{goodsId}")
     public String detailPage(@PathVariable("goodsId") Long goodsId, HttpServletRequest request) {
+    	
+    	List<Student> stuList = studentService.getStudentsListByName("小");
+    	List<StudentVo> sVoList  = BeanUtil.copyList(stuList, StudentVo.class);
+    	request.setAttribute("studentList", sVoList);
+    	
+    	logger.info("detailPage is runing ");
+    	logger.debug("detailPage is runing in debug mode");
+    	logger.trace("A TRACE Message");
+        logger.debug("A DEBUG Message");
+        logger.info("An INFO Message");
+        logger.warn("A WARN Message");
+        logger.error("An ERROR Message");
     	ArrayList<GoodsImage> list = goodsImageService.getGoodsImages(goodsId);
     	if (goodsId < 1) {
             return "error/error_5xx";
@@ -133,6 +155,11 @@ public class GoodsController {
         // set imageList
         request.setAttribute("imageList", imageVoList);
         request.setAttribute("outterList", outterList);
+        //review
+        	//list
+        	//totalPage
+        	//currentPage
+        request.setAttribute("totalPage", 4);
         
         //added by foren 2021/04/15 詳細画面追加対応
         //newBeeMallGoodsService.getImageList("1");

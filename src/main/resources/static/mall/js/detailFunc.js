@@ -1,15 +1,14 @@
 //image index flag
 var currentImageIndex = 1;
-
+var butText ;
 $(function() {
   	// disable previous page
 	$(".previousPage").css("pointer-events", "none").css("color","grey");
 	//閉じるボタンを非表示させる
 	$("#closeBtn").hide();
-	debugger;
 	var imgArr = document.getElementsByTagName("img");
 	imgArr = [...imgArr];
-	imgArr.map( img => console.log(img));
+	/*imgArr.map( img => console.log(img));*/
 	/*var numbers = [12,23,232];
 	numbers.map(e => console.log(e));*/
 });
@@ -32,11 +31,19 @@ $( "#closeBtn" ).click(function() {
 	$("#p-reviewMore").hide();
 	$("#closeBtn" ).hide();
 	$("#showMoreReviewsBtn").show();	
+	///
 });
 
 //レビューをもっと見るクリックイベント
 $( "#showMoreReviewsBtn" ).click(function() {
-	debugger;
+	if ($("#showMoreReviewsBtn").text() === "閉じる"){
+		$("#p-reviewMore").hide();
+		$("#showMoreReviewsBtn").text(butText);
+		return;
+	};	
+	
+	$("#p-reviewMore").find(".g-reviewList_item").not('.hiddenList').remove();
+	
 	var goodsId = getGoodsId();
 	
 	$.ajax({
@@ -80,10 +87,11 @@ $( "#showMoreReviewsBtn" ).click(function() {
 						}	
 					}
 					
+					butText = $("#showMoreReviewsBtn").text();
 					//レビューをもっと見るの非表示
-					$("#showMoreReviewsBtn").hide();
+					$("#showMoreReviewsBtn").text("閉じる");
 					//閉じるボタンを表示させる
-					$("#closeBtn").show();
+					//$("#closeBtn").show();
                 } else {
                     swal(result.message, {
                         icon: "error",
@@ -140,7 +148,6 @@ $("#ZVPostQuestionButton").click(function(){
 //isNextPage 0是下一页的处理 1上一页
 //2的话 是排序
 function paging(num) {
-	debugger;
   //alert("hello world");
 	var page = $("#currentPageNo").text();
 	var pageNo = 0;
@@ -167,25 +174,27 @@ function paging(num) {
             success: function (result) {
 			//サーバーが成功の場合ここ呼ばれる
                 if (result.resultCode == 200) {
+					var list = result.data.list
 					debugger;
-                    /*swal("保存成功", {
-                        icon: "success",
-                    });*/
-					//获取隐藏元素
-					var el;
-					if(result.data.list.length > 0){
-						$("#ZVCQuestionsArea").find(".zv-cqa").remove();
-						
+					$(".ZVCQuestionsArea").find(".zv-cqa").remove();
+					for(var el of $(".zv-cqa")){
+						if(!el.className.includes("hiddenQaDiv")){
+							el.remove();
+						}
+						// jquery <=> javascript 
+						//  el[0] = javascript
+						// $(javascript)
 					}
-					for(let i = 0; i < result.data.list.length; i++) {
+					for(var i = 0; i< list.length; i++){
+						var cloneEl = $(".hiddenQaDiv").clone();
+						cloneEl.find(".zv-cqa-q-text")
+						.text(list[i].question);
 						
-						el = $(".hiddenQaDiv").clone().removeClass("hiddenQaDiv");
-						el.find(".zv-cqa-q-text").html(result.data.list[i].question);
-						el.myParam  = "xxx";
-						el.find(".zv-cqa-q-text").click(myFunction);
-						
-						$("#detailFooter").before(el);
-						//el.appendTo("#ZVCQuestionsArea");
+						cloneEl.find(".zv-cqa-a-text").text(list[i].answer)
+						cloneEl.removeClass("hiddenQaDiv");
+						cloneEl.find(".hiddenQaId").val(i); // set qa id
+						cloneEl.find(".zv-helpful-yes")[0].setAttribute('onclick', 'qaHelpNum('+i+')');
+						$("#detailFooter").before(cloneEl);
 					}
 					
                 } else {
@@ -204,6 +213,36 @@ function paging(num) {
         });
 	}
 
+function qaHelpNum(e,qaId2){
+	console.log(qaId2);
+	var data = {studentId:1,studentName:'mac'};
+	 $.ajax({
+            type: 'POST',//方法类型
+            url: '/students',
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            success: function (result) {
+			//サーバーが成功の場合ここ呼ばれる
+                if (result.resultCode == 200) {
+					swal(result.message, {
+                        icon: "success",
+                    });
+					
+                } else {
+                    swal(result.message, {
+                        icon: "error",
+                    });
+                }
+                ;
+            },
+		//エラーの場合、以下呼ばれる
+            error: function () {
+                swal("操作失败", {
+                    icon: "error",
+                });
+            }
+        });
+}
 function helpNumClickFunc() {
 	
   	var reviewId = $( this ).parent().find(".hidSpForRevId").text();
