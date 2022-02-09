@@ -8,9 +8,7 @@ $(function() {
 	$("#closeBtn").hide();
 	var imgArr = document.getElementsByTagName("img");
 	imgArr = [...imgArr];
-	/*imgArr.map( img => console.log(img));*/
-	/*var numbers = [12,23,232];
-	numbers.map(e => console.log(e));*/
+
 });
 
 
