@@ -8,6 +8,8 @@
  */
 package ltd.newbee.mall;
 
+import java.util.function.Supplier;
+
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -22,6 +24,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class NewBeeMallApplication {
     public static void main(String[] args) {
+    	Supplier<Double> randomValue = () -> Math.random();
+    	  
+        // Print the random value using get()
+        System.out.println(randomValue.get());
         SpringApplication.run(NewBeeMallApplication.class, args);
     }
 }

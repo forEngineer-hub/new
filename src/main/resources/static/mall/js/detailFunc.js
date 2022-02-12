@@ -1,6 +1,19 @@
 //image index flag
 var currentImageIndex = 1;
 var butText ;
+
+$.fn.stars = function() { 
+  return this.each(function() {
+    // Get the value
+    var val = parseFloat($(this).html()); 
+    // Make sure that the value is in 0 - 5 range, multiply to get width
+    var size = Math.max(0, (Math.min(5, val))) * 18.4; 
+    // Create stars holder
+    var $span = $('<span> </span>').width(size); 
+    // Replace the numerical value with stars
+    $(this).empty().append($span);
+  });
+}
 $(function() {
   	// disable previous page
 	$(".previousPage").css("pointer-events", "none").css("color","grey");
@@ -8,7 +21,9 @@ $(function() {
 	$("#closeBtn").hide();
 	var imgArr = document.getElementsByTagName("img");
 	imgArr = [...imgArr];
-
+	
+	//$('#testModal').modal('show');
+	$('.results-content span.stars').stars();
 });
 
 
@@ -152,16 +167,21 @@ function paging(num) {
 	console.log("current page: ",page);
     var url = '/goods/qaSort';
 	//next page
+	var sortBy ='';
 	if(num == 0){
 		pageNo = parseInt(page) + 1;	
 	}else if (num == 1){
 		pageNo = parseInt(page) - 1;	
 	}else{
-		pageNo = 1;
+		pageNo = $("#currentPageNo").text(); // sort
+		sortBy = $("#zv-cqa-select-sort").val();
 	}
 	
 	data = {
         "page": pageNo,
+		"sortBy": sortBy
+		// order by question_date
+		// question_date is table column name
     };
 	console.log("data",data);
         $.ajax({

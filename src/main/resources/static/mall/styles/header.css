@@ -1405,3 +1405,24 @@ img {
     background-color: #fff;
     width:300px;
 }
+.results {
+  font-size: 0;
+  padding-bottom: 16px;
+}
+.results-content {
+    font-size: 13px;
+    display: inline-block;
+    margin-left: 20px;
+    vertical-align: top;
+    background: url(https://i.stack.imgur.com/rwkqF.png) 0 0 repeat-x;
+    width: 92px;
+    height: 17.5px;
+    background-size: 92px 35px;
+}
+.results .results-content span.stars span {
+    background: url(https://i.stack.imgur.com/rwkqF.png) 0 -17.5px repeat-x;
+    display: inline-block;
+    height: 17.5px;
+    width: 92px;
+    background-size: 92px 35px;
+}
