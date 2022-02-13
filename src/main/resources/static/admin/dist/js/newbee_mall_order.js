@@ -116,8 +116,7 @@ function openOrderItems(orderId) {
     $('.modal-title').html('订单详情');
     $.ajax({
         type: 'GET',//方法类型
-        //url: '/admin/order-items/' + orderId,
-        url: 'xxx/orderBy=' + orderId + '&upOrDown=up',
+        url: '/admin/order-items/' + orderId,
         contentType: 'application/json',
         success: function (result) {
             debugger;
