@@ -39,18 +39,51 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
-/**
- * @author 13
- * @qq交流群 796794009
- * @email 2449207463@qq.com
- * @link https://github.com/newbee-ltd
- */
 @Controller
 @RequestMapping("/admin")
 public class UploadController {
 
     @Autowired
     private StandardServletMultipartResolver standardServletMultipartResolver;
+
+    @PostMapping({"/upload/filesCSV"})
+    @ResponseBody
+    public Result uploadForUploadCsvFiles(HttpServletRequest httpServletRequest, @RequestParam("file") MultipartFile file) throws URISyntaxException {
+        String fileName = file.getOriginalFilename();
+        String suffixName = fileName.substring(fileName.lastIndexOf("."));
+        //生成文件名称通用方法
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
+        Random r = new Random();
+        StringBuilder tempName = new StringBuilder();
+        tempName.append(sdf.format(new Date())).append(r.nextInt(100)).append(suffixName);
+        String newFileName = tempName.toString();
+        File fileDirectory = new File(Constants.FILE_UPLOAD_DIC);
+        //创建文件
+        File destFile = new File(Constants.FILE_UPLOAD_DIC + newFileName);
+        //*** forEngineer: 后去到输入流
+        // 获取输入流后，获取文件的内容
+        try {
+			InputStream is = file.getInputStream();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+        //**
+        try {
+            if (!fileDirectory.exists()) {
+                if (!fileDirectory.mkdir()) {
+                    throw new IOException("文件夹创建失败,路径为：" + fileDirectory);
+                }
+            }
+            file.transferTo(destFile);
+            Result resultSuccess = ResultGenerator.genSuccessResult();
+            resultSuccess.setData(NewBeeMallUtils.getHost(new URI(httpServletRequest.getRequestURL() + "")) + "/upload/" + newFileName);
+            return resultSuccess;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return ResultGenerator.genFailResult("文件上传失败");
+        }
+    }
 
     @PostMapping({"/upload/file"})
     @ResponseBody
@@ -66,14 +99,6 @@ public class UploadController {
         File fileDirectory = new File(Constants.FILE_UPLOAD_DIC);
         //创建文件
         File destFile = new File(Constants.FILE_UPLOAD_DIC + newFileName);
-        //***
-        try {
-			InputStream is = file.getInputStream();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-        //**
         try {
             if (!fileDirectory.exists()) {
                 if (!fileDirectory.mkdir()) {
@@ -141,70 +166,6 @@ public class UploadController {
         }
         Result resultSuccess = ResultGenerator.genSuccessResult();
         resultSuccess.setData(fileNames);
-        return resultSuccess;
-    }
-    
-    @PostMapping({"/upload2/file"})
-    @ResponseBody
-    public Result upload2(@RequestParam("goodsId") Long goodsId,HttpServletRequest httpServletRequest, @RequestParam("file") MultipartFile file) throws URISyntaxException {
-        	// step1 read file 
-    		// step2 insert record 
-    		
-			try {
-				InputStream is = file.getInputStream();
-				//wrap inputStream
-				//bufferedReader <=> writer   i/o 
-				//while readline
-				//split
-				//set entity
-				//call insert service
-			
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			return null;
-    }
-    
-    @PostMapping({"/file/download"})
-    @ResponseBody
-    public Result download(@RequestBody int[] ids) throws URISyntaxException {
-    	File f = new File("D:\\upload\\test.csv"); //仕様
-		try {
-			BufferedWriter bw = new BufferedWriter(new FileWriter(f,true));
-			//List<Campaign> camList = service.xxx();
-			
-			Campaign c1 = new Campaign();
-			c1.setId(1L);
-			c1.setName("cam1");
-			Campaign c2 = new Campaign();
-			c2.setId(2L);
-			c2.setName("cam2");
-			//camList.add(c1);
-			//camList.add(c2);
-			List<Campaign> camList =  Arrays.asList(c1,c2);
-			
-			// for each
-			camList.stream().forEach( c -> {
-					try {
-						bw.write(c.toString());
-						bw.newLine();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					
-			});
-		
-			bw.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		Result resultSuccess = ResultGenerator.genSuccessResult();
-        resultSuccess.setData("/upload/test.csv");
         return resultSuccess;
     }
 }

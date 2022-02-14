@@ -48,7 +48,7 @@ $(function () {
 
     //图片上传插件初始化 用于商品预览图上传
     new AjaxUpload('#uploadGoodsCoverImg', {
-        action: '/admin/upload/file?goodsId=' + 1,
+        action: '/admin/upload/file',
         name: 'file',
         autoSubmit: true,
         responseType: "json",
@@ -69,54 +69,6 @@ $(function () {
         }
     });
 
-	//testUpload
-	//图片上传插件初始化 用于商品预览图上传
-    new AjaxUpload('#testUpload', {
-        action: '/admin/upload/file?goodsId=' + 1,
-        name: 'file',
-        autoSubmit: true,
-        responseType: "json",
-        onSubmit: function (file, extension) {
-            if (!(extension && /^(jpg|jpeg|png|gif)$/.test(extension.toLowerCase()))) {
-                alert('只支持jpg、png、gif格式的文件！');
-                return false;
-            }
-        },
-        onComplete: function (file, r) {
-            if (r != null && r.resultCode == 200) {
-                $("#goodsCoverImg").attr("src", r.data);
-                $("#goodsCoverImg").attr("style", "width: 128px;height: 128px;display:block;");
-                return false;
-            } else {
-                alert("error");
-            }
-        }
-    });
-
-
-	var _data = [1,3,4];
-	$.ajax({
-        url: '/admin/file/download',
-        type: 'POST',
-		contentType: 'application/json',
-		data: JSON.stringify(_data),
-        success: function (result) {
-            if (result.resultCode == 200) {
-				debugger;
-				window.location.assign(result.data);
-            } else {
-                swal(result.message, {
-                    icon: "error",
-                });
-            }
-            ;
-        },
-        error: function () {
-            swal("操作失败", {
-                icon: "error",
-            });
-        }
-    });
 });
 
 $('#saveButton').click(function () {

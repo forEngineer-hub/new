@@ -707,6 +707,50 @@
                     </div>
                 </div>
             </div>
+            <!-- 模态框（Modal） -->
+            <div class="modal fade" id="testInfoModal" tabindex="-1" role="dialog"
+                 aria-labelledby="orderInfoModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                            <h6 class="modal-title" id="orderInfoModalLabel">Modal</h6>
+                        </div>
+                        <div class="modal-body">
+                            <form id="##">
+                                <div class="form-group">
+                                    <div class="alert alert-danger" id="edit-error-msg" style="display: none;">
+                                        错误信息展示栏。
+                                    </div>
+                                </div>
+                                <input type="hidden" id="orderId">
+                                <div class="form-group">
+                                    <label for="totalPrice" class="control-label">订单价格:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                    <input type="number" class="form-control" id="totalPrice" name="totalPrice"
+                                           placeholder="请输入改价金额" required="true">
+                                </div>
+                                <div class="form-group">
+                                    <label for="userAddress"
+                                           class="control-label">收件人信息:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                    <input type="text" class="form-control" id="userAddress" name="userAddress"
+                                           placeholder="请输入收件人地址" value="##">
+                                </div>
+
+                            </form>
+                            <button class="btn btn-info" style="margin-bottom: 5px;"
+                                                id="uploadGoodsCoverImg">
+                                            <i class="fa fa-picture-o"></i>&nbsp;上传商品主图
+                            </button>
+                        </div>
+                        <div class="modal-footer">
+                        	
+                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                            <button type="button" class="btn btn-primary" id="saveButton">确认</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <!-- /.modal -->
 		<!-- 这里使用的是 th:utext 标签，用 th:text 不会解析 html，用 th:utext 会解析 html -->
 		<div class="goods mt20 w clearfix"
