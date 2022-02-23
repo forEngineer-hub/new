@@ -11,7 +11,7 @@ package ltd.newbee.mall.controller.mall;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -23,6 +23,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -31,6 +32,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import ltd.newbee.mall.common.Constants;
 import ltd.newbee.mall.controller.vo.NewBeeMallUserVO;
+import ltd.newbee.mall.entity.Inner;
+import ltd.newbee.mall.entity.KaguInfo;
 import ltd.newbee.mall.entity.Student;
 import ltd.newbee.mall.service.PagingIF;
 import ltd.newbee.mall.service.StudentService;
@@ -57,9 +60,50 @@ public class TestStudentServiceRestController {
 
 		return "mall/search";
 	}
+	
+	@GetMapping("/testSelectOption")
+	public String testSelectOption(HttpServletRequest request) {
+	  List<KaguInfo>  list = new ArrayList<KaguInfo>();
+	  KaguInfo info = new KaguInfo();
+	  info.setId(1);
+	  info.setName("机");
+	  info.setIsValid(1); // 有効
+	  list.add(info);
 
-	// @CrossOrigin(origins = "http://localhost:3000")
-//	@RequestMapping(value = "/students", method = RequestMethod.GET)
+	  info = new KaguInfo();
+	  info.setId(2);
+	  info.setName("椅子");
+	  info.setIsValid(0); // 無効
+	  list.add(info);
+
+	  info = new KaguInfo();
+	  info.setId(3);
+	  info.setName("棚");
+	  info.setIsValid(1); // 有効
+	  list.add(info);
+	  request.setAttribute("kaguInfoList",list);
+	  request.setAttribute("selectedKaguId",2);
+	  return "mall/testSelectOption.html";
+	}
+	
+	@GetMapping("/testsearch2")
+	@ResponseBody
+	public Object searchPage2(@RequestBody Map<String, Object> params) {
+
+		return params;
+	}
+	
+	
+	
+	@PostMapping("/objectList")
+	@ResponseBody
+	public Result testObjectList(@RequestBody List<Inner> list){
+		
+		return ResultGenerator.genSuccessResult(list);
+	}
+	
+	
+	
 	@GetMapping({"/students/{name1}","/students"})
 	@ResponseBody
 	public Result searchStudents(@RequestParam(required=false) String name,
@@ -73,17 +117,6 @@ public class TestStudentServiceRestController {
 		}
 	}
 	
-//	@GetMapping("/students")
-//	@ResponseBody
-//	public Result searchStudents2(@RequestParam String name) {
-//
-//		List<Student> list = studentService.getStudentsListByName(name);
-//		if (CollectionUtils.isEmpty(list)) {
-//			return ResultGenerator.genErrorResult(Constants.FETCH_ERROR, Constants.STUDENT_FETCH_ERROR_MESSAGE);
-//		} else {
-//			return ResultGenerator.genSuccessResult(list);
-//		}
-//	}
 	
 	@RequestMapping(value = "/students", method = RequestMethod.POST)
 	@ResponseBody

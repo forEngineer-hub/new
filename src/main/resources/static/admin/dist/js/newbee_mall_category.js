@@ -123,6 +123,20 @@ $('#saveButton').click(function () {
                 "categoryRank": categoryRank
             };
         }
+		
+		/*var _data = [
+			    {
+			 "s1": "hi",
+			 "s2": "you"
+			
+			},
+			{
+			 "s1": "hi s2",
+			 "s2": "you s2"
+			
+			}
+			
+			]*/
         $.ajax({
             type: 'POST',//方法类型
             url: url,

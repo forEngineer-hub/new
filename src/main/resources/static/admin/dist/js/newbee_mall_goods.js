@@ -1,14 +1,74 @@
+function customSelectboxRenderer2(){
+// ajax
+// call back 
+// for build string
+// console.log(data);
+// return
+   var outerlist;
+   $.ajax({
+            type: 'POST',//方法类型
+            url: '/goods/showMoreRevies',
+            contentType: 'application/json',
+            data: JSON.stringify(10700),
+			async: false,
+            success: function (result) {
+			//サーバーが成功の場合ここ呼ばれる
+                if (result.resultCode == 200) {
+					
+					var list = result.data;
+					
+					outerlist = list;
+                } else {
+                    swal(result.message, {
+                        icon: "error",
+                    });
+                }
+                ;
+            },
+		//エラーの場合、以下呼ばれる
+            error: function () {
+                swal("操作失败", {
+                    icon: "error",
+                });
+            }
+        });
+	
+	return outerlist;
+
+
+}
+ function customSelectboxRenderer(){
+	var data = [
+		{"camId":'',"text":"请选择"},
+		{"camId":'c001',"text":"30%"},
+		{"camId":'c002',"text":"500"},
+	]
+	var rs = "<select name='cars' id='cars'>";
+	
+	for(var i = 0; i< data.length; i++){
+		rs = rs + "<option value='"+ data[i].camId + "'>"+data[i].text+"</option>";
+	}
+	rs = rs + "</select>";
+	return rs;
+
+}
 $(function () {
-    debugger;
+	//customSelectboxRenderer().then(()=>console.log(ls));
+	
+	//var list2 = customSelectboxRenderer2();
+	
     $("#jqGrid").jqGrid({
-        url: '/admin/goods/list',
+        url: '/admin/goods/list?keyword=hi',
         datatype: "json",
         colModel: [
             {label: '商品编号', name: 'goodsId', index: 'goodsId', width: 60, key: true},
             {label: '商品名', name: 'goodsName', index: 'goodsName', width: 120},
             {label: '商品简介', name: 'goodsIntro', index: 'goodsIntro', width: 120},
             {label: '商品图片', name: 'goodsCoverImg', index: 'goodsCoverImg', width: 120, formatter: coverImageFormatter},
-            {label: '商品库存', name: 'stockNum', index: 'stockNum', width: 60},
+            //{label: '商品库存', name: 'stockNum', index: 'stockNum', width: 60},
+			{
+			name: 'MyCol', index: 'MyCol', formatter: customSelectboxRenderer
+			},
             {label: '商品售价', name: 'sellingPrice', index: 'sellingPrice', width: 60},
             {
                 label: '上架状态',
@@ -40,6 +100,23 @@ $(function () {
             rows: "limit",
             order: "order",
         },
+		loadComplete:function(){
+			debugger;
+			//console.log($("#jqGrid").jqGrid('getRowData'));
+			var objectArr = [
+				{"goodsId":10906,"camId":"c001"},
+				{"goodsId":10905,"camId":"c002"},
+				{"goodsId":10903,"camId":"c001"},
+				{"goodsId":10895,"camId":"c002"},
+				{"goodsId":10894,"camId":"c001"},
+				{"goodsId":10893,"camId":""}
+			];
+			for(var i = 0 ;i < objectArr.length ; i++){
+				if (objectArr[i].camId){
+					$("#"+objectArr[i].goodsId).find("select").val(objectArr[i].camId);
+				}
+			}
+		},
         gridComplete: function () {
             //隐藏grid底部滚动条
             $("#jqGrid").closest(".ui-jqgrid-bdiv").css({"overflow-x": "hidden"});
