@@ -9,16 +9,22 @@
 package ltd.newbee.mall.controller.mall;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -117,6 +123,30 @@ public class TestStudentServiceRestController {
 		}
 	}
 	
+	@RequestMapping(value = "downloadTestFile", method = RequestMethod.GET)
+	public void getSteamingFile1(HttpServletResponse response) throws IOException {
+		response.setContentType("application/csv");
+		response.setHeader("Content-Disposition", "attachment; filename=\"test.csv\"");
+		InputStream inputStream = new FileInputStream(new File("D:\\upload\\test.csv"));
+	    int nRead;
+//		while ((nRead = inputStream.read()) != -1) {
+//		   response.getWriter().write(nRead);
+//		}
+		String inputString = "Hello World!";
+		byte[] byteArrray = inputString.getBytes();
+		for(int i=0 ; i< byteArrray.length;i ++) {
+			//response.getWriter().write(byteArrray[i]);
+			response.getWriter().write(inputString);
+		}
+	}
+	
+	@RequestMapping(value = "downloadTestFile2", method = RequestMethod.GET)
+	public InputStreamResource FileSystemResource (HttpServletResponse response) throws IOException {
+		response.setContentType("application/csv");
+		response.setHeader("Content-Disposition", "attachment; filename=\"test.csv\"");
+		InputStreamResource resource = new InputStreamResource(new FileInputStream("D:\\upload\\test.csv"));
+		return resource;
+	}
 	
 	@RequestMapping(value = "/students", method = RequestMethod.POST)
 	@ResponseBody
