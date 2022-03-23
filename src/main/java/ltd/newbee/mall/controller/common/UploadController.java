@@ -8,17 +8,24 @@
  */
 package ltd.newbee.mall.controller.common;
 
-import ltd.newbee.mall.common.Constants;
-import ltd.newbee.mall.entity.Campaign;
-import ltd.newbee.mall.util.NewBeeMallUtils;
-import ltd.newbee.mall.util.Result;
-import ltd.newbee.mall.util.ResultGenerator;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Random;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.CollectionUtils;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -26,18 +33,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 
-import javax.servlet.http.HttpServletRequest;
-
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.text.SimpleDateFormat;
-import java.util.*;
-import java.util.stream.Collectors;
+import ltd.newbee.mall.common.Constants;
+import ltd.newbee.mall.util.NewBeeMallUtils;
+import ltd.newbee.mall.util.Result;
+import ltd.newbee.mall.util.ResultGenerator;
 
 @Controller
 @RequestMapping("/admin")
@@ -138,7 +137,7 @@ public class UploadController {
         if (multipartFiles != null && multipartFiles.size() > 5) {
             return ResultGenerator.genFailResult("最多上传5张图片");
         }
-        List<String> fileNames = new ArrayList(multipartFiles.size());
+        List<String> fileNames = new ArrayList<String>(multipartFiles.size());
         for (int i = 0; i < multipartFiles.size(); i++) {
             String fileName = multipartFiles.get(i).getOriginalFilename();
             String suffixName = fileName.substring(fileName.lastIndexOf("."));

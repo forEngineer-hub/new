@@ -40,7 +40,6 @@ import ltd.newbee.mall.dao.NewBeeMallGoodsMapper;
 import ltd.newbee.mall.dao.NewBeeMallOrderItemMapper;
 import ltd.newbee.mall.dao.NewBeeMallOrderMapper;
 import ltd.newbee.mall.dao.NewBeeMallShoppingCartItemMapper;
-import ltd.newbee.mall.entity.GoodsDetail;
 import ltd.newbee.mall.entity.NewBeeMallGoods;
 import ltd.newbee.mall.entity.NewBeeMallOrder;
 import ltd.newbee.mall.entity.NewBeeMallOrderItem;

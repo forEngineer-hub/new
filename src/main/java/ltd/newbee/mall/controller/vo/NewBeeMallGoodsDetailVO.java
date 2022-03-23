@@ -9,7 +9,6 @@
 package ltd.newbee.mall.controller.vo;
 
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * 商品详情页VO
