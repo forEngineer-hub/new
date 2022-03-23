@@ -1,4 +1,5 @@
-package ltd.newbee.mall.controller.mall;
+package ltd.newbee.mall.test;
+
 
 import static org.junit.Assert.assertEquals;
 
