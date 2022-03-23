@@ -59,8 +59,6 @@ import ltd.newbee.mall.util.ResultGenerator;
 
 @Controller
 public class GoodsController {
-	private static final Logger logger = LogManager.getLogger(TestStudentController.class);
-//	Logger logger = LoggerFactory.getLogger(GoodsController.class);
 	@Resource 
 	private GoodsImageService goodsImageService;
     
@@ -110,18 +108,7 @@ public class GoodsController {
 
     @GetMapping("/goods/detail/{goodsId}")
     public String detailPage(@PathVariable("goodsId") Long goodsId, HttpServletRequest request) {
-    	
-    	List<Student> stuList = studentService.getStudentsListByName("小");
-    	List<StudentVo> sVoList  = BeanUtil.copyList(stuList, StudentVo.class);
-    	request.setAttribute("studentList", sVoList);
-    	
-    	logger.info("detailPage is runing ");
-    	logger.debug("detailPage is runing in debug mode");
-    	logger.trace("A TRACE Message");
-        logger.debug("A DEBUG Message");
-        logger.info("An INFO Message");
-        logger.warn("A WARN Message");
-        logger.error("An ERROR Message");
+
     	ArrayList<GoodsImage> list = goodsImageService.getGoodsImages(goodsId);
     	if (goodsId < 1) {
             return "error/error_5xx";
