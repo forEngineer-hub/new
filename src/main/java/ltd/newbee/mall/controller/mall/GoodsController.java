@@ -149,36 +149,7 @@ public class GoodsController {
         return "mall/detail";
     }
 
-    /**
-     * paging
-     */
-    @RequestMapping(value = "/goods/qaSort", method = RequestMethod.POST)
-    @ResponseBody
-    public Result qaSort(@RequestBody PagingBean page) {
-    	
-    	List<GoodsQa> qaList = new ArrayList<GoodsQa>();
-    	GoodsQa q1 = new GoodsQa();
-    	GoodsQa q2 = new GoodsQa();
-    	GoodsQa q3 = new GoodsQa();
-    	q1.setId(1L);
-    	q1.setAnswer("①答えです。よろしくお願いいたします。");
-    	q1.setQuestion("１回答よろしくお願いいたします。");
-    	qaList.add(q1);
-    	
-    	q2.setId(2L);
-    	q2.setAnswer("②答えです。よろしくお願いいたします。");
-    	q2.setQuestion("２回答よろしくお願いいたします。");
-    	qaList.add(q2);
-    	
-    	q3.setId(3L);
-    	q3.setAnswer("③答えです。よろしくお願いいたします。");
-    	q3.setQuestion("３回答よろしくお願いいたします。");
-    	qaList.add(q3);
-    	
-		 PageResult pageResult = new PageResult(qaList, 10, 3, page.getPage());
-	     return ResultGenerator.genSuccessResult(pageResult);
-    
-    }
+   
     
     
     @RequestMapping(value = "/goods/insertQa", method = RequestMethod.POST)
