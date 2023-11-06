@@ -178,12 +178,13 @@ public class GoodsController {
     
     }
     
+    @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(value = "/goods/showMoreRevies", method = RequestMethod.POST)
     @ResponseBody
-    public Result showMoreRevies(@RequestBody Long goodsId) {
+    public Result showMoreRevies(@RequestParam long goodsId) {
     	
     	List<GoodsReviewVo>	reviewList = newBeeMallGoodsService.getGoodsReviews(goodsId);
-    	List<GoodsReviewVo>	subReviewList = reviewList.subList(3, reviewList.size()-1); 
+//    	List<GoodsReviewVo>	subReviewList = reviewList.subList(3, reviewList.size()-1); 
     	return ResultGenerator.genSuccessResult(reviewList);
 	    
     } 
@@ -238,4 +239,10 @@ public class GoodsController {
 	    
     }
     
+    @RequestMapping(value = "/answers", method = RequestMethod.GET)
+    @ResponseBody
+    public Result answers(@RequestParam long answerId) {
+    	return ResultGenerator.genSuccessResult(newBeeMallGoodsService.getAnswerById(answerId)); 
+    		    
+    }
 }

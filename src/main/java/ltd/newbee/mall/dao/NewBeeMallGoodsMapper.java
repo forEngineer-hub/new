@@ -16,6 +16,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
+import ltd.newbee.mall.entity.Answer;
 import ltd.newbee.mall.entity.GoodsDescEntity;
 import ltd.newbee.mall.entity.GoodsDetail;
 import ltd.newbee.mall.entity.GoodsImage;
@@ -90,4 +91,6 @@ public interface NewBeeMallGoodsMapper {
     ArrayList<GoodsImage> getGoodsImage(long id);
     
     ArrayList<NewBeeMallGoods> selectBygoodsPage(Map<String,Object> map);
+    
+    Answer getAnswerById(long answerId); //ctrl shift o
 }

@@ -487,9 +487,9 @@
    </select>
    
    <select id="getGoodsReview" parameterType="java.lang.Long" resultType="ltd.newbee.mall.entity.GoodsReview">
-	 SELECT id,star,customer_id,comment_date,goods_id,title,content,picture
+	 SELECT review_id,rating,title,content,photo1,photo2
  		FROM review where goods_id = #{goodsId,jdbcType=BIGINT}
- 		order by star DESC
+ 		order by rating DESC
    </select>
    <insert id="insertHelpNum" parameterType="ltd.newbee.mall.entity.GoodsReviewHelpNum">
         insert into help_num(review_id, user_id) 
@@ -550,5 +550,9 @@
         </if> -->
        </where>
         <!-- where goods_name like CONCAT('%','#{keyword}','%')  '#{keyword}' 的single quote是错的-->
+    </select>
+    
+       <select id="getAnswerById" parameterType="long" resultType="ltd.newbee.mall.entity.Answer">
+        SELECT answer_id FROM answers where answer_id = #{answerId,jdbcType=BIGINT};
     </select>
 </mapper>

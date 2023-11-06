@@ -22,6 +22,7 @@ import ltd.newbee.mall.common.ServiceResultEnum;
 import ltd.newbee.mall.controller.vo.GoodsReviewVo;
 import ltd.newbee.mall.controller.vo.NewBeeMallSearchGoodsVO;
 import ltd.newbee.mall.dao.NewBeeMallGoodsMapper;
+import ltd.newbee.mall.entity.Answer;
 import ltd.newbee.mall.entity.GoodsDescEntity;
 import ltd.newbee.mall.entity.GoodsDetail;
 import ltd.newbee.mall.entity.GoodsImage;
@@ -196,6 +197,12 @@ public class NewBeeMallGoodsServiceImpl implements NewBeeMallGoodsService {
 		paraMap.put("keyword", keyword);
 		paraMap.put("start", start);
 		return goodsMapper.selectBygoodsPage(paraMap);
+	}
+
+	@Override
+	public Answer getAnswerById(long answerId) {
+		Answer answer = goodsMapper.getAnswerById(answerId);
+		return answer;
 	}
 	
 	

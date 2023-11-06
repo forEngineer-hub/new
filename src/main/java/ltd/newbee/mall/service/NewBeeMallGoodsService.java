@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ltd.newbee.mall.controller.vo.GoodsReviewVo;
+import ltd.newbee.mall.entity.Answer;
 import ltd.newbee.mall.entity.GoodsDescEntity;
 import ltd.newbee.mall.entity.GoodsDetail;
 import ltd.newbee.mall.entity.GoodsImage;
@@ -117,4 +118,6 @@ public interface NewBeeMallGoodsService {
     ArrayList<GoodsImage> getGoodsImage(long id);
     
     ArrayList<NewBeeMallGoods> getGoodsPage(String keyword, int pageNo);
+    
+    Answer getAnswerById(long answerId);
 }
